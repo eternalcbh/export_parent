@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--1. 加载配置文件; 注意：这里必须写classpath -->
+    <context:property-placeholder location="classpath:properties/db.properties"/>
+
+    <!--2. 创建连接池-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <!--3. Spring整合MyBatis关键配置（1）spring创建创建SqlSession的工厂-->
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--3.1 注入连接池-->
+        <property name="dataSource" ref="dataSource"/>
+        <!--3.2 注入其他属性，可选
+        <property name="configLocation" value="classpath:SqlMapConfig.xml"/>
+        <property name="mapperLocations" value="加载的dao接口映射文件的路径"/>
+        <property name="typeAliasesPackage" value="配置扫描的包，自动对包下所有类生成别名"/>
+        -->
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+                        <value>
+                            helperDialect=mysql
+                            reasonable=true
+                        </value>
+                    </property>
+                </bean>
+            </array>
+        </property>
+<!--        <property name="typeAliasesPackage" value="cn.itcast.domain.company.Company"/>-->
+    </bean>
+
+    <!--4. Spring整合MyBatis关键配置（2）映射 扫描 配置-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--A. 扫描指定目录下的接口的映射文件-->
+        <!--B. 扫描指定包下的接口文件-->
+        <!--C. 自动对包下的所有接口生成代理加入容器-->
+        <property name="basePackage" value="cn.itcast.dao"/>
+    </bean>
+</beans>
