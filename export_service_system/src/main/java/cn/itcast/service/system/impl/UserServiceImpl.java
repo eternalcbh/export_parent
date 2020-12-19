@@ -47,11 +47,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Integer delete(String id) {
-        Integer roleByUserNumber = userDao.findRoleByUserId(id);
+        int roleByUserNumber = userDao.findRoleByUserId(id);
         if (roleByUserNumber == 0){
             return userDao.delete(id);
         }else {
-            return 1;
+            return 0;
         }
     }
 }

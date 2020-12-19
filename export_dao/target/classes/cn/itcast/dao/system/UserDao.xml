@@ -113,4 +113,8 @@
         </set>
         where user_id = #{id}
     </update>
+
+<!--    <select id="findRoleByUserId" resultType="int">-->
+<!--        select count(role_id) from pe_role_user where user_id = #{id}-->
+<!--    </select>-->
 </mapper>

@@ -16,18 +16,18 @@
 </head>
 <script>
     function deleteById() {
-        var id = getCheckId()
+        var id = getCheckId();
         if(id) {
             if(confirm("你确认要删除此条记录吗？")) {
                 $.ajax({
-                          url:"${ctx}/system/user/delete.do?id="+id,//传输地址
+                          url:"${ctx}/system/user/delete",//传输地址
                           data:{"id":id},//传输数据
                           async:true,//开启异步
                           method:"get",//传输方式,
                           dataType:"json",
                           //成功回调函数
                           success:function (result) {
-                                if (result == "true"){
+                                if (result == true){
                                     location.reload();
                                 }else {
                                     alert("删除失败,当前用户可能有别的表引用,不能删除")

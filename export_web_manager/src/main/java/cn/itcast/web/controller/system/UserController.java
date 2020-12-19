@@ -21,87 +21,88 @@ import java.util.List;
 @RequestMapping("/system/user")
 @Log4j
 public class UserController extends BaseController {
-    @Autowired
-    private UserService userService;
+	@Autowired
+	private UserService userService;
 
-    @Autowired
-    private DeptService deptService;
+	@Autowired
+	private DeptService deptService;
 
-    /**
-     * 列表查询
-     */
-    @RequestMapping("/list")
-    private String list(@RequestParam(defaultValue = "1") Integer pageNum,
-                        @RequestParam(defaultValue = "5") Integer pageSize){
-        log.info("执行用户列表查询开始");
-        String companyId = getLoginCompanyId();
-        PageInfo<User> pageInfo = userService.findByPage(companyId,pageNum,pageSize);
-        request.setAttribute("pageInfo",pageInfo);
-        return "system/user/user-list";
-    }
+	/**
+	 * 列表查询
+	 */
+	@RequestMapping("/list")
+	private String list(@RequestParam(defaultValue = "1") Integer pageNum,
+	                    @RequestParam(defaultValue = "5") Integer pageSize) {
+		log.info("执行用户列表查询开始");
+		String companyId = getLoginCompanyId();
+		PageInfo<User> pageInfo = userService.findByPage(companyId, pageNum, pageSize);
+		request.setAttribute("pageInfo", pageInfo);
+		return "system/user/user-list";
+	}
 
-    /**
-     * 进入添加页面
-     */
-    @RequestMapping("/toAdd")
-    public String toAdd(Model model){
-        //根据企业id查询
-        List<User> userList = userService.findAll(getLoginCompanyId());
-        model.addAttribute("userList",userList);
+	/**
+	 * 进入添加页面
+	 */
+	@RequestMapping("/toAdd")
+	public String toAdd(Model model) {
+		//根据企业id查询
+		List<User> userList = userService.findAll(getLoginCompanyId());
+		model.addAttribute("userList", userList);
 
-        //查询所有部门,页面下拉列表显示
-        List<Dept> deptList = deptService.findAll(getLoginCompanyId());
-        model.addAttribute("deptList",deptList);
+		//查询所有部门,页面下拉列表显示
+		List<Dept> deptList = deptService.findAll(getLoginCompanyId());
+		model.addAttribute("deptList", deptList);
 
-        return "system/user/user-add";
-    }
+		return "system/user/user-add";
+	}
 
-    /**
-     * 添加或修改
-     */
-    @RequestMapping("/edit")
-    public String edit(User user){
-        //设置企业信息
-        user.setCompanyId(getLoginCompanyId());
-        user.setCompanyName(getLoginCompanyName());
-        if (StringUtils.isEmpty(user.getId())){
-            userService.save(user);
-        }else {
-            userService.update(user);
-        }
-        //重定向到列表
-        return "redirect:/system/user/list";
-    }
+	/**
+	 * 添加或修改
+	 */
+	@RequestMapping("/edit")
+	public String edit(User user) {
+		//设置企业信息
+		user.setCompanyId(getLoginCompanyId());
+		user.setCompanyName(getLoginCompanyName());
+		if (StringUtils.isEmpty(user.getId())) {
+			userService.save(user);
+		} else {
+			userService.update(user);
+		}
+		//重定向到列表
+		return "redirect:/system/user/list";
+	}
 
-    /**
-     * 进入修改页面
-     */
-    @RequestMapping("toUpdate")
-    public String toUpdate(String id, Model model){
-        //1.根据id查询
-        User user = userService.findById(id);
+	/**
+	 * 进入修改页面
+	 */
+	@RequestMapping("toUpdate")
+	public String toUpdate(String id, Model model) {
+		//1.根据id查询
+		User user = userService.findById(id);
 
-        //查询所有部门
-        List<Dept> deptList = deptService.findAll(getLoginCompanyId());
-        model.addAttribute("deptList",deptList);
+		//查询所有部门
+		List<Dept> deptList = deptService.findAll(getLoginCompanyId());
+		model.addAttribute("deptList", deptList);
 
-        //3.保存
-        model.addAttribute("user",user);
-        model.addAttribute("deptList",deptList);
-        return "system/user/user-update";
-    }
-    /**
-     * 删除
-     */
-    @RequestMapping("/delete")
-    @ResponseBody
-    public String delete(String id){
-        String message = null;
-        if (userService.delete(id) == 1){
-            message = "true";
-        }else {
-            message = "false";
-        }
-        return message;
-    }
+		//3.保存
+		model.addAttribute("user", user);
+		model.addAttribute("deptList", deptList);
+		return "system/user/user-update";
+	}
+
+	/**
+	 * 删除
+	 */
+	@RequestMapping("/delete")
+	@ResponseBody
+	public String delete(String id) {
+		String message = null;
+		if (userService.delete(id) != 0) {
+			message = "true";
+		} else {
+			message = "false";
+		}
+		return message;
+	}
 }
