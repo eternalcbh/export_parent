@@ -26,7 +26,7 @@
     <mvc:default-servlet-handler/>
 
     <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
-        <property name="converters">
+        <property name="converters" >
                 <bean class="cn.itcast.web.converter.StringToDateConverter"></bean>
         </property>
     </bean>
