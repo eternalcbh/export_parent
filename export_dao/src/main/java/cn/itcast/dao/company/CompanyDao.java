@@ -1,6 +1,7 @@
 package cn.itcast.dao.company;
 
 import cn.itcast.domain.company.Company;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -8,7 +9,7 @@ public interface CompanyDao {
     /**
      * 查询全部
      */
-    List<Company> findAll();
+    List<Company> findAll(@Param("likeName") String likeName);
 
     /**
      * 添加

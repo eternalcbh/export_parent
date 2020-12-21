@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
 <body>
 <div class="pull-left">
@@ -17,12 +17,13 @@
 
 <div class="box-tools pull-right">
     <ul class="pagination" style="margin: 0px;">
-        <li >
+        <li>
             <a href="javascript:goPage(1)" aria-label="Previous">首页</a>
         </li>
         <li><a href="javascript:goPage(${pageInfo.prePage})">上一页</a></li>
         <c:forEach begin="1" end="${pageInfo.pages}" var="i">
-            <li class="paginate_button ${pageInfo.pageNum==i ? 'active':''}"><a href="javascript:goPage(${i})">${i}</a></li>
+            <li class="paginate_button ${pageInfo.pageNum==i ? 'active':''}"><a href="javascript:goPage(${i})">${i}</a>
+            </li>
         </c:forEach>
         <li><a href="javascript:goPage(${pageInfo.nextPage})">下一页</a></li>
         <li>
@@ -33,21 +34,29 @@
 <form id="pageForm" action="${param.pageUrl}" method="post">
     <input type="hidden" name="pageNum" id="pageNum">
     <input type="hidden" name="pageSize" id="pageSize">
+    <input type="hidden" name="likeName" id="likeName2"/>
 </form>
 <script>
     function goPage(pageNum) {
+        let pageSize = $("#curPageSize").val();
         document.getElementById("pageNum").value = pageNum;
-        let pageSize = $("#curPageSize").val();
+        $("#likeName2").val($("#likeName").val());
         document.getElementById("pageSize").value = pageSize;
         document.getElementById("pageForm").submit();
     }
 
-    function goPageSize(){
+    function goPageSize() {
         let pageSize = $("#curPageSize").val();
         document.getElementById("pageSize").value = pageSize;
+        document.getElementById("likeName2").value = $("#likeName").val();
         document.getElementById("pageForm").submit();
     }
 
+    function search() {
+        let val = $("#likeName").val();
+        let pageSize = $("#curPageSize").val();
+        location.href = "${pageContext.request.contextPath}/company/list.do?likeName=" + val + "&pageSize=" + pageSize;
+    }
 </script>
 </body>
 </html>

@@ -17,7 +17,7 @@ public class CompanyServiceTest {
 
     @Test
     public void findAll(){
-        PageInfo<Company> pageInfo = companyService.findByPage(1, 2);
+        PageInfo<Company> pageInfo = companyService.findByPage(1, 2,"传智");
         System.out.println("当前页:" + pageInfo.getPageNum());
         System.out.println("页大小:" + pageInfo.getPageSize());
         System.out.println("总页数:" + pageInfo.getTotal());

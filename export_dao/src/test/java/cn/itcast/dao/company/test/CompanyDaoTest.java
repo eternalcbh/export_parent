@@ -15,7 +15,7 @@ public class CompanyDaoTest {
 
     @Test
     public void findAll(){
-        System.out.println(companyDao.findAll());
+        System.out.println(companyDao.findAll("传智"));
     }
 
     @Test

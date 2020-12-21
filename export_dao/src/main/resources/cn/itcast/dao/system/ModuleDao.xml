@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.itcast.dao.system.ModuleDao">
+
+    <resultMap id="baseMap" type="cn.itcast.domain.system.Module">
+        <id column="module_id" property="id"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="parent_name" property="parentName"/>
+        <result column="name" property="name"/>
+        <result column="layer_num" property="layerNum"/>
+        <result column="is_leaf" property="isLeaf"/>
+        <result column="ico" property="ico"/>
+        <result column="cpermission" property="cpermission"/>
+        <result column="curl" property="curl"/>
+        <result column="ctype" property="ctype"/>
+        <result column="state" property="state"/>
+        <result column="belong" property="belong"/>
+        <result column="cwhich" property="cwhich"/>
+        <result column="quote_num" property="quoteNum"/>
+        <result column="remark" property="remark"/>
+        <result column="order_no" property="orderNo"/>
+
+    </resultMap>
+
+    <sql id="selectModule">
+        select * from ss_module
+    </sql>
+
+
+    <select id="findAll" resultMap="baseMap">
+        <include refid="selectModule"></include>
+    </select>
+    
+    <select id="findById" resultMap="baseMap">
+        <include refid="selectModule"></include>
+        where module_id = #{id}
+    </select>
+
+    <insert id="add">
+        insert into ss_module(
+            module_id,
+            parent_id,
+            parent_name,
+            name,
+            layer_num,
+            is_leaf,
+            ico,
+            cpermission,
+            curl,
+            ctype,
+            state,
+            belong,
+            cwhich,
+            quote_num,
+            remark,
+            order_no
+        )
+        values (
+            #{id},
+            #{parentId},
+            #{parentName},
+            #{name},
+            #{layerNum},
+            #{isLeaf},
+            #{ico},
+            #{cpermission},
+            #{curl},
+            #{ctype},
+            #{state},
+            #{belong},
+            #{cwhich},
+            #{quoteNum},
+            #{remark},
+            #{orderNo}
+        )
+    </insert>
+
+    <update id="update">
+        update ss_module
+        <set>
+            parent_id=#{parentId},
+            parent_name=#{parentName},
+            name=#{name},
+            layer_num=#{layerNum},
+            is_leaf=#{isLeaf},
+            ico=#{ico},
+            cpermission=#{cpermission},
+            curl=#{curl},
+            ctype=#{ctype},
+            state=#{state},
+            belong=#{belong},
+            cwhich=#{cwhich},
+            quote_num=#{quoteNum},
+            remark=#{remark},
+            order_no=#{orderNo},
+        </set>
+        where module_id = #{id}
+    </update>
+    <select id="findModuleByRole" resultType="Integer">
+        select count(role_id) from pe_role_module where module_id = #{id}
+    </select>
+    
+    <delete id="delete">
+        delete from ss_module where module_id = #{id}
+    </delete>
+</mapper>

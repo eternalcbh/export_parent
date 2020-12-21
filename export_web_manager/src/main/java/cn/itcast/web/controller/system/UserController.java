@@ -76,7 +76,7 @@ public class UserController extends BaseController {
 	/**
 	 * 进入修改页面
 	 */
-	@RequestMapping("toUpdate")
+	@RequestMapping("/toUpdate")
 	public String toUpdate(String id, Model model) {
 		//1.根据id查询
 		User user = userService.findById(id);

@@ -28,7 +28,7 @@
                         </li>
                     </ul>
                     <div class="tab-content">
-                        <form id="editForm" action="/system/role/edit.do" method="post">
+                        <form id="editForm" action="/system/role/update.do" method="post">
                             <input type="hidden" name="id" value="${role.id}">
                             <div class="tab-pane active" id="tab-form">
                                 <div class="row data-type">

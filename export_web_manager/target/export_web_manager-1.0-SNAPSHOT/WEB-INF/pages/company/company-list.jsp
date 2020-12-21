@@ -67,9 +67,10 @@
                 </div>
                 <div class="box-tools pull-right">
                     <div class="has-feedback">
-                        <input type="text" class="form-control input-sm" placeholder="搜索">
-                        <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                        <input id="likeName" value="${likeName}" type="text" placeholder="搜索">
+                        <button  class="glyphicon glyphicon-search" onclick="search()"></button>
                     </div>
+
                 </div>
                 <!--工具栏/-->
 
@@ -92,7 +93,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${list}" var="item">
+                    <c:forEach items="${pageInfo.list}" var="item">
                     <tr>
                         <td><input name="ids" value="${item.id}" type="checkbox"></td>
                         <td>
@@ -118,11 +119,17 @@
 
         <!-- .box-footer-->
         <div class="box-footer">
-            <jsp:include page="../common/page.jsp"/>
+            <jsp:include page="../common/page.jsp">
+                <jsp:param value="${ctx}/company/list.do" name="pageUrl"/>
+            </jsp:include>
+
         </div>
     </div>
 </section>
 </div>
+<script>
+
+</script>
 </body>
 
 </html>

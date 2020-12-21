@@ -14,7 +14,7 @@ public class Role {
 	private String id;
 	private String name;
 	private String remark;
-	private String orderNo;
-	private String company_id;
-	private String company_name;
+	private Long orderNo;
+	private String companyId;
+	private String companyName;
 }

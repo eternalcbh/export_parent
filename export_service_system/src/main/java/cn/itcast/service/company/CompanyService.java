@@ -10,7 +10,7 @@ public interface CompanyService {
      * 查询所有
      * @return
      */
-    List<Company> findAll();
+    List<Company> findAll(String likeName);
 
     /**
      * 添加
@@ -43,5 +43,5 @@ public interface CompanyService {
      * @param pageSize 页大小
      * @return 返回PageInfo对象,是PageHelper提供的用于封装分页参数的对象
      */
-    PageInfo<Company> findByPage(int pageNum, int pageSize);
+    PageInfo<Company> findByPage(int pageNum, int pageSize,String likeName);
 }

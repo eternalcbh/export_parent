@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Date;
 import java.util.List;
@@ -28,10 +29,12 @@ public class CompanyController extends BaseController {
      * 响应路径:/WEB-INF/pages/company/company-list.jsp
      */
     @RequestMapping("/list")
-    public String list(@RequestParam(defaultValue = "1")Integer pageNum,@RequestParam(defaultValue = "5")Integer pageSize, Model model){
-        List<Company> list = companyService.findAll();
-        PageInfo<Company> pageInfo = companyService.findByPage(pageNum, pageSize);
-        model.addAttribute("list",list);
+    public String list(@RequestParam(defaultValue = "1")Integer pageNum,@RequestParam(defaultValue = "5")Integer pageSize, Model model,String likeName){
+        PageInfo<Company> pageInfo = companyService.findByPage(pageNum, pageSize,likeName);
+        if (!StringUtils.isEmpty(likeName)){
+            model.addAttribute("likeName",likeName);
+        }
+
         model.addAttribute("pageInfo",pageInfo);
         return "company/company-list";
     }

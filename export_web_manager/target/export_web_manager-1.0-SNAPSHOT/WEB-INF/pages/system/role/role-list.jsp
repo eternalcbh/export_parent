@@ -21,7 +21,27 @@
         var id = getCheckId()
         if(id) {
             if(confirm("你确认要删除此条记录吗？")) {
-                location.href="/system/role/delete.do?id="+id;
+                $.ajax({
+                          url:"${pageContext.request.contextPath}/system/role/delete.do?id="+id,    //传输地址
+                          async:true,//开启异步
+                          method:"post",//传输方式
+                          //成功回调函数
+                          success:function (result) {
+                              if (result.status=="true"){
+                                  location.href = "${pageContext.request.contextPath}/system/role/list"
+                              }else {
+                                  alert("该角色被某用户依赖不能删除");
+                              }
+                          },
+                          //失败回调函数
+                          error:function (errorObj) {
+                          //errorObj返回的一个错误封装的js对象
+                          //将错误对象打印到浏览器控制台
+                          console.log(errorObj);
+                          //给出友好提示
+                          alert("服务忙。。。");
+                         }
+                     });
             }
         }else{
             alert("请勾选待处理的记录，且每次只能勾选一个")
@@ -98,14 +118,14 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${page.rows}" var="o" varStatus="status">
+                    <c:forEach items="${pageInfo.list}" var="o" varStatus="status">
                     <tr class="odd" onmouseover="this.className='highlight'" onmouseout="this.className='odd'" >
                         <td><input type="checkbox" name="id" value="${o.id}"/></td>
                         <td>${status.index+1}</td>
                         <td>${o.id}</td>
                         <td><a href="/system/role/toUpdate.do?id=${o.id}">${o.name}</a></td>
                         <td>${o.remark}</td>
-                        <th class="text-center"><button type="button" class="btn bg-olive btn-xs" onclick='location.href="/system/role/toUpdate.do?id=${o.id}"'>编辑</button></th>
+                        <th class="text-center"><button type="button" class="btn bg-olive btn-xs" onclick='location.href="/system/role/edit?id=${o.id}"'>编辑</button></th>
                     </tr>
                     </c:forEach>
                     </tbody>

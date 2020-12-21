@@ -19,7 +19,28 @@
         var id = getCheckId()
         if(id) {
             if(confirm("你确认要删除此条记录吗？")) {
-                location.href="/system/module/delete.do?id="+id;
+                $.ajax({
+                          url:"${pageContext.request.contextPath}/system/module/delete",//传输地址
+                          data:{"id":id},//传输数据
+                          async:true,//开启异步
+                          method:"post",//传输方式
+                          //成功回调函数
+                          success:function (result) {
+                              if (result.status == "true") {
+                                  location.href ="${pageContext.request.contextPath}/system/module/list";
+                              }else {
+                                  alert("当前模块有依赖不能删除");
+                              }
+                          },
+                          //失败回调函数
+                          error:function (errorObj) {
+                          //errorObj返回的一个错误封装的js对象
+                          //将错误对象打印到浏览器控制台
+                          console.log(errorObj);
+                          //给出友好提示
+                          alert("服务忙。。。");
+                         }
+                     });
             }
         }else{
             alert("请勾选待处理的记录，且每次只能勾选一个")
@@ -90,7 +111,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${page.rows}" var="o"  varStatus="st">
+                    <c:forEach items="${pageInfo.list}" var="o"  varStatus="st">
                         <tr>
                             <td><input type="checkbox" name="id" value="${o.id }"/></td>
                             <td>${status.index+1}</td>

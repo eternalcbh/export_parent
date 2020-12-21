@@ -17,8 +17,8 @@ public class CompanyServiceImpl implements CompanyService {
     private CompanyDao companyDao;
 
     @Override
-    public List<Company> findAll() {
-        return companyDao.findAll();
+    public List<Company> findAll(String likeName) {
+        return companyDao.findAll(likeName);
     }
 
     @Override
@@ -44,11 +44,12 @@ public class CompanyServiceImpl implements CompanyService {
         companyDao.delete(id);
     }
 
-    public PageInfo<Company> findByPage(int pageNum, int pageSize) {
+    @Override
+    public PageInfo<Company> findByPage(int pageNum, int pageSize, String likeName) {
         //开启分页支持,自动对其后的第一条查询进行分页
         //参数1:当前页;参数2页大小
         PageHelper.startPage(pageNum,pageSize);
-        List<Company> list = companyDao.findAll();
+        List<Company> list = companyDao.findAll(likeName);
         //封装分页参数
         PageInfo<Company> pageInfo = new PageInfo<>(list);
         return pageInfo;

@@ -19,6 +19,9 @@
 
     <select id="findAll" resultMap="BaseResultMap">
         select * from ss_company
+        <if test="likeName != null and likeName != ''">
+            where name like "%"#{likeName}"%"
+        </if>
     </select>
     <insert id="save">
         insert into ss_company
