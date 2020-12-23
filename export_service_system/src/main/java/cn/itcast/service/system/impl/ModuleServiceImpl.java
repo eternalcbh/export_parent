@@ -66,4 +66,9 @@ public class ModuleServiceImpl implements ModuleService {
 		}
 	}
 
+	@Override
+	public List<Module> findRoleModuleByRoleId(String id) {
+		return moduleDao.findRoleModuleByRoleId(id);
+	}
+
 }

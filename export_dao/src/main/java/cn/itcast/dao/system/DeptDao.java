@@ -1,6 +1,7 @@
 package cn.itcast.dao.system;
 
 import cn.itcast.domain.system.Dept;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -8,7 +9,7 @@ public interface DeptDao {
     /**
      * 查询全部
      */
-    List<Dept> findAll(String companyId);
+    List<Dept> findAll(@Param("companyId") String companyId,@Param("id") String id);
 
     /**
      * 根据id查询

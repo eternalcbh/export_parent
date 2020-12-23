@@ -52,4 +52,12 @@ public interface ModuleService {
 	 * @return
 	 */
 	Boolean delete(String id);
+
+	/**
+	 * 根据角色查找用户权限
+	 * @param id
+	 * @return
+	 */
+	List<Module> findRoleModuleByRoleId(String id);
+
 }

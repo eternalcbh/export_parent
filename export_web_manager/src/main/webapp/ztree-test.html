@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--第一步： 引入ztree的js与css文件-->
+    <link rel="stylesheet" href="/plugins/ztree/css/demo.css" type="text/css">
+    <link rel="stylesheet" href="/plugins/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+    <script type="text/javascript" src="/plugins/ztree/js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="/plugins/ztree/js/jquery.ztree.core-3.5.js"></script>
+    <script type="text/javascript" src="/plugins/ztree/js/jquery.ztree.excheck-3.5.js"></script>
+</head>
+<body>
+
+<!--第二步： 使用ul标签给树预留一个位置-->
+<ul id="treeDemo" class="ztree"></ul>
+</body>
+
+<script>
+
+    // 第三步： 编写js展示树
+
+    // 3.1 给ztree定义一个全局参数
+    var setting = {
+        check: {
+            enable: true    //是否要使用复选框
+        },
+        data: {
+            simpleData: {
+                enable: true   //是否要展示树形结构
+            }
+        }
+    };
+
+    // 3.2 准备树的数据
+    var zNodes =[
+        { id:1, pId:0, name:"saas管理", open:true},
+        { id:11, pId:1, name:"企业管理", open:true},
+        { id:111, pId:1, name:"模块管理", open:true}
+    ];
+
+
+
+    // 3.3 把数的数组展示到ul标签中
+    $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+
+</script>
+</html>

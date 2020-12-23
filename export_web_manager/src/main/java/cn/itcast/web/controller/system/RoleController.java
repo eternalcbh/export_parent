@@ -1,6 +1,8 @@
 package cn.itcast.web.controller.system;
 
+import cn.itcast.domain.system.Module;
 import cn.itcast.domain.system.Role;
+import cn.itcast.service.system.ModuleService;
 import cn.itcast.service.system.RoleService;
 import cn.itcast.web.controller.BaseController;
 import com.github.pagehelper.PageInfo;
@@ -13,9 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * @author cbh
@@ -30,6 +33,9 @@ import java.util.UUID;
 public class RoleController extends BaseController {
 	@Autowired
 	RoleService roleService;
+
+	@Autowired
+	ModuleService moduleService;
 
 	@RequestMapping("/list")
 	public String list(@RequestParam(defaultValue = "5") Integer pageSize, @RequestParam(defaultValue = "1") Integer pageNum, Model model) {
@@ -78,5 +84,37 @@ public class RoleController extends BaseController {
 			map.put("status","false");
 		}
 		return map;
+	}
+
+	@RequestMapping("/roleModule")
+	public String roleModule(String roleid,Model model){
+		Role role = roleService.findById(roleid);
+		model.addAttribute("role",role);
+		return "system/role/role-module";
+	}
+
+	@RequestMapping("/getTreeNodes")
+	@ResponseBody
+	public List<Map<String, Object>> getTreeNodes(String roleid,Model model){
+		List<Map<String,Object>> resultList = new ArrayList<>();
+		//遍历所有权限
+		List<Module> moduleListAll = moduleService.findAll();
+
+		//遍历当前角色所拥有的权限
+		List<Module> moduleList = moduleService.findRoleModuleByRoleId(roleid);
+
+		//遍历map集合，每个权限对应一个对象
+		for (Module module : moduleListAll) {
+			Map<String, Object> map = new HashMap<>();
+			map.put("id",module.getId());
+			map.put("pId",module.getParentId());
+			map.put("name",module.getName());
+			map.put("open","true");
+			if (moduleList.contains(module)){
+				map.put("checked",true);
+			}
+			resultList.add(map);
+		}
+		return resultList;
 	}
 }

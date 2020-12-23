@@ -51,7 +51,7 @@ public class DeptController extends BaseController {
      */
     @RequestMapping("/toAdd")
     public String toAdd(Model model){
-        List<Dept> deptList = deptService.findAll(getLoginCompanyId());
+        List<Dept> deptList = deptService.findAll(getLoginCompanyId(),"");
         model.addAttribute("deptList",deptList);
         return "system/dept/dept-add";
     }
@@ -72,7 +72,7 @@ public class DeptController extends BaseController {
     @RequestMapping("/toUpdate")
     public String toUpdate(String id,Model model){
         Dept dept = deptService.findById(id);
-        List<Dept> deptList = deptService.findAll(getLoginCompanyId());
+        List<Dept> deptList = deptService.findAll(getLoginCompanyId(),id);
         model.addAttribute("dept",dept);
         model.addAttribute("deptList",deptList);
         return "system/dept/dept-update";

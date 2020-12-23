@@ -9,7 +9,7 @@ public interface DeptService {
     /**
      * 查询全部
      */
-    List<Dept> findAll(String companyId);
+    List<Dept> findAll(String companyId,String id);
 
     /**
      * 分页查询

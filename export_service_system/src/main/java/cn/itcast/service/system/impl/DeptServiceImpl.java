@@ -17,14 +17,14 @@ public class DeptServiceImpl implements DeptService {
     private DeptDao deptDao;
 
     @Override
-    public List<Dept> findAll(String companyId) {
-         return  deptDao.findAll(companyId);
+    public List<Dept> findAll(String companyId,String id) {
+         return  deptDao.findAll(companyId,id);
     }
 
     @Override
     public PageInfo<Dept> findByPage(String companyId, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum,pageSize);
-        List<Dept> list = deptDao.findAll(companyId);
+        List<Dept> list = deptDao.findAll(companyId,"");
         return new PageInfo<>(list);
     }
 

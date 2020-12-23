@@ -16,6 +16,6 @@ public class SystemDaoTest {
 
     @Test
     public void findAll(){
-        System.out.println(deptDao.findAll("1"));
+        System.out.println(deptDao.findAll("1","1"));
     }
 }

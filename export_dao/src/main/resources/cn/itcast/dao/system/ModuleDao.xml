@@ -19,7 +19,6 @@
         <result column="quote_num" property="quoteNum"/>
         <result column="remark" property="remark"/>
         <result column="order_no" property="orderNo"/>
-
     </resultMap>
 
     <sql id="selectModule">
@@ -30,7 +29,7 @@
     <select id="findAll" resultMap="baseMap">
         <include refid="selectModule"></include>
     </select>
-    
+
     <select id="findById" resultMap="baseMap">
         <include refid="selectModule"></include>
         where module_id = #{id}
@@ -99,8 +98,20 @@
     <select id="findModuleByRole" resultType="Integer">
         select count(role_id) from pe_role_module where module_id = #{id}
     </select>
-    
+
     <delete id="delete">
         delete from ss_module where module_id = #{id}
     </delete>
+
+    <select id="findRoleModuleByRoleId" resultMap="baseMap">
+        select
+		    *
+        FROM
+		    pe_role_module
+        INNER JOIN
+		    ss_module
+        on
+		    pe_role_module.module_id = ss_module.module_id
+        where role_id = #{id}
+    </select>
 </mapper>

@@ -51,4 +51,11 @@ public interface ModuleDao {
 	 * @return
 	 */
 	Integer findModuleByRole(@Param("id") String id);
+
+	/**
+	 * 根据角色查找权限
+	 * @param id
+	 * @return
+	 */
+	List<Module> findRoleModuleByRoleId(@Param("id") String id);
 }

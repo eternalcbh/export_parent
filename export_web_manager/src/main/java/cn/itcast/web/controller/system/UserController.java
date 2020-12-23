@@ -50,7 +50,7 @@ public class UserController extends BaseController {
 		model.addAttribute("userList", userList);
 
 		//查询所有部门,页面下拉列表显示
-		List<Dept> deptList = deptService.findAll(getLoginCompanyId());
+		List<Dept> deptList = deptService.findAll(getLoginCompanyId(),null);
 		model.addAttribute("deptList", deptList);
 
 		return "system/user/user-add";
@@ -82,7 +82,7 @@ public class UserController extends BaseController {
 		User user = userService.findById(id);
 
 		//查询所有部门
-		List<Dept> deptList = deptService.findAll(getLoginCompanyId());
+		List<Dept> deptList = deptService.findAll(getLoginCompanyId(),id);
 		model.addAttribute("deptList", deptList);
 
 		//3.保存

@@ -78,5 +78,42 @@
         </div>
     </section>
 </div>
+<script>
+    $(function () {
+        $.ajax({
+            url:"${pageContext.request.contextPath}/system/role/getTreeNodes",//传输地址
+            data:{"roleid":"${role.id}"},
+            async:true,//开启异步
+            dataType:"json",
+            method:"get",//传输方式
+            //成功回调函数
+            success:function (treeData) {
+                    var setting = {
+                        check:{
+                            enable:true
+                        },
+                        data:{
+                            simpleData:{
+                                enable: true
+                            }
+                        }
+                    };
+
+                    // 2.准备树的数据
+                var zNodes = treeData;
+                $.fn.zTree.init($("#treeDemo"),setting,zNodes);
+            },
+            //失败回调函数
+            error:function (errorObj) {
+                //errorObj返回的一个错误封装的js对象
+                //将错误对象打印到浏览器控制台
+                console.log(errorObj);
+                //给出友好提示
+                alert("服务忙。。。");
+            }
+        });
+    });
+
+</script>
 </body>
 </html>

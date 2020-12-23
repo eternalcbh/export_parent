@@ -16,6 +16,9 @@
     
     <select id="findAll" resultMap="BaseResultMap">
         select * from pe_dept where company_id=#{companyId}
+         <if test="id != null and id != ''">
+             and dept_id != #{id}
+         </if>
     </select>
 
     <select id="findById" resultMap="BaseResultMap">
@@ -33,7 +36,15 @@
         update pe_dept
         <set>
             dept_name=#{deptName},
-            parent_id=#{parent.id},
+            <choose>
+                <when test="parent.id != null and parent.id != ''">
+                    parent_id=#{parent.id},
+                </when>
+                <otherwise>
+                    parent_id=null,
+                </otherwise>
+            </choose>
+
             state=#{state},
             company_id=#{companyId},
             company_name=#{companyName}

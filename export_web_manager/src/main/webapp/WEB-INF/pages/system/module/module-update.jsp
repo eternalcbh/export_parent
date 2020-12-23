@@ -36,7 +36,9 @@
                             <select class="form-control" onchange="document.getElementById('parentName').value=this.options[this.selectedIndex].text" name="parentId">
                                 <option value="">请选择</option>
                                 <c:forEach items="${menus}" var="item">
-                                    <option ${module.parentId == item.id ?'selected':''} value="${item.id}">${item.name}</option>
+                                    <c:if test="${module.id != item.id}">
+                                        <option ${module.parentId == item.id ?'selected':''} value="${item.id}">${item.name}</option>
+                                    </c:if>
                                 </c:forEach>
                             </select>
                         </div>
