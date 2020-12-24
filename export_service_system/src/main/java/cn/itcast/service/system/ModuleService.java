@@ -1,6 +1,7 @@
 package cn.itcast.service.system;
 
 import cn.itcast.domain.system.Module;
+import cn.itcast.domain.system.User;
 import com.github.pagehelper.PageInfo;
 
 import java.util.List;
@@ -60,4 +61,10 @@ public interface ModuleService {
 	 */
 	List<Module> findRoleModuleByRoleId(String id);
 
+	/**
+	 * 根据用户id查找对应的模块
+	 * @param user
+	 * @return
+	 */
+	List<Module> findModuleByUser(User user);
 }

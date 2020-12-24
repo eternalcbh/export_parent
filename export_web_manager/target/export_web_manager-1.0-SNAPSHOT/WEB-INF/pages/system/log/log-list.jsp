@@ -45,7 +45,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${page.rows}" var="log"  varStatus="st">
+                    <c:forEach items="${pageInfo.list}" var="log"  varStatus="st">
                         <tr>
                             <td>${st.count }</td>
                             <td>${log.userName }</td>

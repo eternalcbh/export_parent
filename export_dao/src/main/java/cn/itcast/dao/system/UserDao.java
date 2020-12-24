@@ -43,4 +43,24 @@ public interface UserDao {
     @ResultType(java.lang.Integer.class)
     @Select({"select count(role_id) from pe_role_user where user_id = #{id}"})
     Integer findRoleByUserId(String id);
+
+    /**
+     * 删除用户的角色
+     * @param userid
+     */
+	void deleteUserRole(@Param("userid") String userid);
+
+    /**
+     * 添加用户角色
+     * @param userid
+     * @param roleIds
+     */
+    void addUserRoles(@Param("userid") String userid,@Param("roleIds") String[] roleIds);
+
+    /**
+     * 根据用户email去判断用户是否注册了
+     * @param email
+     * @return
+     */
+    User findByEmail(String email);
 }

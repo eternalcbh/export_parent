@@ -38,4 +38,19 @@ public interface UserService {
      * 删除部门
      */
     Integer delete(String id);
+
+    /**
+     * 修改用户的角色
+     * @param userid
+     * @param roleIds
+     */
+	void changeRoles(String userid, String[] roleIds);
+
+    /**
+     * 根据用户邮箱去判断用户是否注册了
+     * @param email
+     * @return
+     */
+    User findByEmail(String email);
+
 }

@@ -15,11 +15,11 @@
 </head>
 
 <script>
-    window.onload = function () {
-        if (window.parent.window != window) {
-            window.top.location = "/login.jsp";
-        }
-    }
+    // window.onload = function () {
+    //     if (window.parent.window != window) {
+    //         window.top.location = "/login.jsp";
+    //     }
+    // }
 </script>
 
 <body class="hold-transition login-page">

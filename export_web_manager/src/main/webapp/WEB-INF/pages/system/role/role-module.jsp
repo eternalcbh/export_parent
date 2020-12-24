@@ -26,7 +26,7 @@
 </head>
 
 <body style="overflow: visible;">
-<div id="frameContent" class="content-wrapper" style="margin-left:0px;height: 1200px" >
+<div id="frameContent" class="content-wrapper" style="margin-left:0px;height: 1200px">
     <section class="content-header">
         <h1>
             菜单管理
@@ -58,8 +58,8 @@
                     </div>
                     <!--工具栏/-->
                     <!-- 树菜单 -->
-                    <form name="icform" method="post" action="/system/role/updateRoleModule.do">
-                        <input type="hidden" name="roleid" value="${role.id}"/>
+                    <form id="icform" name="icform" method="post" action="/system/role/updateRoleModule.do">
+                        <input type="hidden" id="roleModule" name="roleid" value="${role.id}"/>
                         <input type="hidden" id="moduleIds" name="moduleIds" value=""/>
                         <div class="content_wrap">
                             <div class="zTreeDemoBackground left" style="overflow: visible">
@@ -81,30 +81,30 @@
 <script>
     $(function () {
         $.ajax({
-            url:"${pageContext.request.contextPath}/system/role/getTreeNodes",//传输地址
-            data:{"roleid":"${role.id}"},
-            async:true,//开启异步
-            dataType:"json",
-            method:"get",//传输方式
+            url: "${pageContext.request.contextPath}/system/role/getTreeNodes",//传输地址
+            data: {"roleid": $("#roleModule").val()},
+            async: true,//开启异步
+            dataType: "json",
+            method: "get",//传输方式
             //成功回调函数
-            success:function (treeData) {
-                    var setting = {
-                        check:{
-                            enable:true
-                        },
-                        data:{
-                            simpleData:{
-                                enable: true
-                            }
+            success: function (treeData) {
+                var setting = {
+                    check: {
+                        enable: true
+                    },
+                    data: {
+                        simpleData: {
+                            enable: true
                         }
-                    };
+                    }
+                };
 
-                    // 2.准备树的数据
+                // 2.准备树的数据
                 var zNodes = treeData;
-                $.fn.zTree.init($("#treeDemo"),setting,zNodes);
+                $.fn.zTree.init($("#treeDemo"), setting, zNodes);
             },
             //失败回调函数
-            error:function (errorObj) {
+            error: function (errorObj) {
                 //errorObj返回的一个错误封装的js对象
                 //将错误对象打印到浏览器控制台
                 console.log(errorObj);
@@ -114,6 +114,26 @@
         });
     });
 
+    function submitCheckedNodes() {
+        //1.找到所有被选中的节点
+        var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
+        var nodes = treeObj.getCheckedNodes(true);
+
+        //2.初始化一个保存节点的字符串2
+        var str = "";
+
+        //3.遍历节点,凭借字符串
+        for(var index = 0; index < nodes.length; index++){
+            if (index == nodes.length-1){
+                str += nodes[index].id;
+            }else {
+                str += nodes[index].id + ",";
+            }
+        }
+
+        $("#moduleIds").val(str);
+        $("#icform").submit();
+    }
 </script>
 </body>
 </html>

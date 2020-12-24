@@ -49,4 +49,18 @@ public interface RoleService {
 	 * @return
 	 */
 	boolean delete(String id);
+
+	/**
+	 * 修改角色的权限
+	 * @param roleid
+	 * @param moduleIds
+	 */
+	void updateRoleModule(String roleid, String[] moduleIds);
+
+	/**
+	 * 根据用户查找对应的权限
+	 * @param id
+	 * @return
+	 */
+	List<Role> findRoleByUid(String id);
 }

@@ -46,4 +46,30 @@ public interface RoleDao {
 	 * 根据id删除用户
 	 */
 	void delete(@Param("id") String id);
+
+	/**
+	 * 删除角色权限
+	 * @param roleid
+	 */
+	void deleRoleModule(@Param("roleid") String roleid);
+
+	/**
+	 * 添加角色权限
+	 * @param moduleIds
+	 */
+	void add(@Param("roleid") String roleid,@Param("moduleIds") String[] moduleIds);
+
+	/**
+	 * 查询模块被用户引用
+	 * @param id
+	 * @return
+	 */
+	Integer findRoleByModuleId(String id);
+
+	/**
+	 * 根据用户id找出所有的角色
+	 * @param id
+	 * @return
+	 */
+	List<Role> findRoleByUid(@Param("id") String id);
 }

@@ -43,7 +43,7 @@
                 <h3 class="box-title">用户 [${user.userName}] 角色列表</h3>
             </div>
             <div class="box-body">
-                <form name="icform" method="post" >
+                <form id="icform" name="icform" method="post" action="${pageContext.request.contextPath}/system/user/changeRoles">
                     <input type="hidden" name="userid" value="${user.id}"/>
                     <input type="hidden" name="oldRoleIds" value="${userRoleStr}"/>
                     <div class="textbox" id="centerTextbox">
@@ -69,6 +69,11 @@
         </div>
     </section>
 </div>
+<script>
+    function formSubmit() {
+        $("#icform").submit();
+    }
+</script>
 </body>
 
 </html>

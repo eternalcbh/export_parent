@@ -114,4 +114,26 @@
 		    pe_role_module.module_id = ss_module.module_id
         where role_id = #{id}
     </select>
+
+    <select id="findModuleByUser" resultMap="baseMap">
+        select
+            *
+        from
+           ss_module
+        inner join
+            pe_role_module
+        on
+            ss_module.module_id = pe_role_module.module_id
+        inner join
+            pe_role_user
+        on
+            pe_role_user.role_id = pe_role_module.role_id
+        where
+            user_id = #{id}
+						GROUP BY ss_module.module_id
+    </select>
+
+    <select id="findModuelByDegree" resultMap="baseMap">
+        select * from ss_module where belong = #{degree};
+    </select>
 </mapper>

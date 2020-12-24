@@ -2,6 +2,7 @@ package cn.itcast.service.system.impl;
 
 import cn.itcast.dao.system.ModuleDao;
 import cn.itcast.domain.system.Module;
+import cn.itcast.domain.system.User;
 import cn.itcast.service.system.ModuleService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -69,6 +70,21 @@ public class ModuleServiceImpl implements ModuleService {
 	@Override
 	public List<Module> findRoleModuleByRoleId(String id) {
 		return moduleDao.findRoleModuleByRoleId(id);
+	}
+
+	@Override
+	public List<Module> findModuleByUser(User user) {
+		//获取用户等级
+		Integer degree = user.getDegree();
+		List<Module> moduleList = null;
+
+		//判断用户等级
+		if (degree == 0 || degree == 1){
+			moduleList = moduleDao.findModuelByDegree(user.getDegree());
+		}else {
+			moduleList = moduleDao.findModuleByUser(user.getId());
+		}
+		return moduleList;
 	}
 
 }

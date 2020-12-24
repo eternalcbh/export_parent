@@ -58,4 +58,18 @@ public interface ModuleDao {
 	 * @return
 	 */
 	List<Module> findRoleModuleByRoleId(@Param("id") String id);
+
+	/**
+	 * 根据用户id查找对应的模块
+	 * @param id
+	 * @return
+	 */
+	List<Module> findModuleByUser(String id);
+
+	/**
+	 * 根据用户等级去找出用户的权限
+	 * @param degree
+	 * @return
+	 */
+	List<Module> findModuelByDegree(@Param("degree") Integer degree);
 }

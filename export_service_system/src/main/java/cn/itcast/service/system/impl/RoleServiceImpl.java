@@ -59,13 +59,29 @@ public class RoleServiceImpl implements RoleService {
 	@Override
 	public boolean delete(String id) {
 		Integer roleByUserId = roleDao.findRoleByUserId(id);
+		Integer roleByModuleId = roleDao.findRoleByModuleId(id);
 		boolean flag;
-		if (roleByUserId == 0){
+		if (roleByUserId == 0 && roleByModuleId == 0){
 			roleDao.delete(id);
 			flag = true;
 		}else {
 			flag = false;
 		}
 		return flag;
+	}
+
+	@Override
+	public void updateRoleModule(String roleid, String[] moduleIds) {
+		//1.删除角色权限
+		roleDao.deleRoleModule(roleid);
+		if (moduleIds.length != 0){
+			//2.添加角色权限
+			roleDao.add(roleid,moduleIds);
+		}
+	}
+
+	@Override
+	public List<Role> findRoleByUid(String id) {
+		return roleDao.findRoleByUid(id);
 	}
 }

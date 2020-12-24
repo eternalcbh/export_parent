@@ -1,5 +1,6 @@
 package cn.itcast.web.controller;
 
+import cn.itcast.domain.system.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,16 +28,24 @@ public abstract class BaseController {
     protected HttpSession session;
 
     /**
+     * 获取登陆者
+     * @return
+     */
+    public User getLoginUser(){
+        return (User) session.getAttribute("loginUser");
+    }
+
+    /**
      * 获取登录用户的企业id
      */
     public String getLoginCompanyId(){
-        return "1";
+        return getLoginUser().getCompanyId();
     }
 
     /**
      * 获取登录用户的企业名称
      */
     public String getLoginCompanyName(){
-        return "传智播客教育服务有限公司";
+        return getLoginUser().getCompanyName();
     }
 }

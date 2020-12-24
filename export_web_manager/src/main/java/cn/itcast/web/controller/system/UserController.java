@@ -1,8 +1,10 @@
 package cn.itcast.web.controller.system;
 
 import cn.itcast.domain.system.Dept;
+import cn.itcast.domain.system.Role;
 import cn.itcast.domain.system.User;
 import cn.itcast.service.system.DeptService;
+import cn.itcast.service.system.RoleService;
 import cn.itcast.service.system.UserService;
 import cn.itcast.web.controller.BaseController;
 import com.github.pagehelper.PageInfo;
@@ -26,6 +28,9 @@ public class UserController extends BaseController {
 
 	@Autowired
 	private DeptService deptService;
+
+	@Autowired
+	private RoleService roleService;
 
 	/**
 	 * 列表查询
@@ -104,5 +109,27 @@ public class UserController extends BaseController {
 			message = "false";
 		}
 		return message;
+	}
+
+	@RequestMapping("/roleList")
+	public String roleList(String id){
+		//1.查找出所有的用户列表
+		List<Role> roleListAll = roleService.findAll(getLoginCompanyId());
+
+		//2.查找用户对应的角色
+		List<Role> roleList = roleService.findRoleByUid(id);
+
+		User user = userService.findById(id);
+
+		request.setAttribute("user",user);
+		request.setAttribute("roleList",roleListAll);
+		request.setAttribute("userRoleStr",roleList.toString());
+		return "system/user/user-role";
+	}
+
+	@RequestMapping("/changeRoles")
+	public String changeRoles(String userid,String[] roleIds){
+		userService.changeRoles(userid,roleIds);
+		return "redirect:/system/user/list";
 	}
 }

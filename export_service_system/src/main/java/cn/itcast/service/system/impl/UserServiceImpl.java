@@ -54,4 +54,17 @@ public class UserServiceImpl implements UserService {
             return 0;
         }
     }
+
+	@Override
+	public void changeRoles(String userid, String[] roleIds) {
+		userDao.deleteUserRole(userid);
+		if (roleIds.length != 0){
+            userDao.addUserRoles(userid,roleIds);
+        }
+	}
+
+    @Override
+    public User findByEmail(String email) {
+        return userDao.findByEmail(email);
+    }
 }

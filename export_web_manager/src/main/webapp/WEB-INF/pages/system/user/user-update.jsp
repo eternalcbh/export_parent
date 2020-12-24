@@ -80,8 +80,8 @@
                         </div>
                     </div>
 
-                    <div class="col-md-2 title">入职时间</div>
-                    <div class="col-md-4 data">
+                    <div class="col-md-2 title" style="font-size: 15px;height: 80px">入职时间</div>
+                    <div class="col-md-4 data" style="font-size: 15px;height: 80px">
                         <div class="input-group date">
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>

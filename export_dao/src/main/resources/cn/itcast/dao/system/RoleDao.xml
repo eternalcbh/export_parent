@@ -66,4 +66,29 @@
         delete from pe_role where role_id = #{id}
     </delete>
 
+    <delete id="deleRoleModule">
+        delete from pe_role_module where role_id = #{roleid}
+    </delete>
+    
+    <insert id="add">
+            insert into pe_role_module values
+        <foreach collection="moduleIds" item="moduleId" separator=",">
+            (#{roleid},#{moduleId})
+        </foreach>
+    </insert>
+    <select id="findRoleByModuleId" resultType="Integer">
+        select count(*) from pe_role_module where role_id =#{roleid}
+    </select>
+    <select id="findRoleByUid" resultMap="BaseMap">
+       SELECT
+            *
+        from
+            pe_role
+        inner join
+            pe_role_user
+        on
+            pe_role_user.role_id = pe_role.role_id
+        where
+            user_id = #{id}
+    </select>
 </mapper>

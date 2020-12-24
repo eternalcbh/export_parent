@@ -24,6 +24,14 @@
         <filter-name>characterEncodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    <filter>
+        <filter-name>loginFilter</filter-name>
+        <filter-class>cn.itcast.web.filter.RequesrFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>loginFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 <!--    配置springmvcq前端控制器-->
     <servlet>
         <servlet-name>dispatcherServlet</servlet-name>
