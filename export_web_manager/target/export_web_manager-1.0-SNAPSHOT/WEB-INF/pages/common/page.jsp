@@ -22,14 +22,14 @@
         </li>
         <li><a href="javascript:goPage(${pageInfo.prePage})">上一页</a></li>
         <c:choose>
-            <c:when test="${pageInfo.pageNum <= 10}">
-                <c:forEach begin="1" end="${pageInfo.pages > 10 ? 10 : pageInfo.pages}" var="i">
+            <c:when test="${pageInfo.pageNum <= 5}">
+                <c:forEach begin="1" end="${pageInfo.pages < 10 ? pageInfo.pages : 10}" var="i">
                     <li class="paginate_button ${pageInfo.pageNum==i ? 'active':''}"><a href="javascript:goPage(${i})">${i}</a>
                     </li>
                 </c:forEach>
             </c:when>
-            <c:when test="${pageInfo.pageNum > 10}">
-                <c:forEach begin="${pageInfo.pageNum - 5 > 0 ? pageInfo.pageNum - 5 : 1 }" end="${pageInfo.pageNum + 5 < pageInfo.pages ? pageInfo.pageNum+5:pageInfo.pages}" var="i">
+            <c:when test="${pageInfo.pageNum > 5}">
+                <c:forEach begin="${pageInfo.pageNum - 4 > 0 ? pageInfo.pageNum - 4 : 1 }" end="${pageInfo.pageNum + 5 < pageInfo.pages ? pageInfo.pageNum+5:pageInfo.pages}" var="i">
                     <li class="paginate_button ${pageInfo.pageNum==i ? 'active':''}"><a href="javascript:goPage(${i})">${i}</a>
                     </li>
                 </c:forEach>
