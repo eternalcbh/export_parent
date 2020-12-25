@@ -4,7 +4,7 @@
 </head>
 <script type="text/javascript">
     //javascript页面跳转
-     window.location.href = "login.do";
+     window.location.href = "/login.do";
 </script>
 <body>
 </body>

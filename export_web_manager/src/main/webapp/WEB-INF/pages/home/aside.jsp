@@ -20,7 +20,7 @@
             <li class="header">菜单</li>
 
 
-            <c:forEach items="${modules}" var="item">
+            <c:forEach items="${sessionScope.modules}" var="item">
                 <c:if test="${item.ctype==0}">
                     <li class="treeview">
                         <a href="#">
@@ -28,7 +28,7 @@
                             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                         </a>
                         <ul class="treeview-menu">
-                            <c:forEach items="${modules}" var="item2">
+                            <c:forEach items="${sessionScope.modules}" var="item2">
                                 <c:if test="${item2.ctype==1 && item2.parentId == item.id}">
                                     <li id="${item2.id}">
                                         <a onclick="setSidebarActive(this)" href="${item2.curl}" target="iframe">

@@ -14,8 +14,8 @@
         <result column="company_name" property="companyName"/>
     </resultMap>
 
-    <select id="findByPage" resultMap="BaseMap">
-        select * from st_sys_log where company_id = #{companyId}
+    <select id="findAll" resultMap="BaseMap">
+        select * from st_sys_log where company_id = #{companyId} order by time desc
     </select>
 
     <insert id="save">

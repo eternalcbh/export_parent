@@ -8,6 +8,7 @@ import cn.itcast.service.system.SysLogService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
@@ -19,6 +20,7 @@ import java.util.UUID;
  * @Description:
  * @date 2020-12-24 23:55
  */
+@Service
 public class SysLogServiceImpl implements SysLogService {
 
 	/**

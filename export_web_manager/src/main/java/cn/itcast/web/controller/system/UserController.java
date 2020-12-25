@@ -36,7 +36,7 @@ public class UserController extends BaseController {
 	 * 列表查询
 	 */
 	@RequestMapping("/list")
-	private String list(@RequestParam(defaultValue = "1") Integer pageNum,
+	public String list(@RequestParam(defaultValue = "1") Integer pageNum,
 	                    @RequestParam(defaultValue = "5") Integer pageSize) {
 		log.info("执行用户列表查询开始");
 		String companyId = getLoginCompanyId();

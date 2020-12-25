@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void changeRoles(String userid, String[] roleIds) {
 		userDao.deleteUserRole(userid);
-		if (roleIds.length != 0){
+		if (roleIds != null && roleIds.length != 0){
             userDao.addUserRoles(userid,roleIds);
         }
 	}

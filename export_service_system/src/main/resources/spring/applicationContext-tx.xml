@@ -33,6 +33,8 @@
     <aop:config>
 <!--        切点表达式(拦截ioc容器所有以ServiceImpl结尾的类的所有方法)-->
         <aop:pointcut id="pt" expression="bean(*ServiceImpl)"/>
+
         <aop:advisor advice-ref="txAdvice" pointcut-ref="pt"/>
+
     </aop:config>
 </beans>

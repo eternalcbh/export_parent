@@ -62,8 +62,7 @@ public class RequesrFilter implements Filter {
 			chain.doFilter(request,response);
 		}else {
 			if (null == httpRequest.getSession().getAttribute("loginUser")){
-				request.getRequestDispatcher(httpRequest.getContextPath()+"/login.jsp").forward(request,response);
-				request.setAttribute("error","用户未登录");
+				request.getRequestDispatcher("/login.jsp").forward(request,response);
 			}else {
 				chain.doFilter(request,response);
 			}

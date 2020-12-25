@@ -51,7 +51,7 @@ public class LoginController extends BaseController {
 				//4.登录成功
 				session.setAttribute("loginUser",user);
 				List<Module> moduleList = moduleService.findModuleByUser(user);
-				request.setAttribute("modules",moduleList);
+				session.setAttribute("modules",moduleList);
 				return "/home/main";
 			}else {
 				//5.密码错误
