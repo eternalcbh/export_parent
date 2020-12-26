@@ -5,6 +5,7 @@ import cn.itcast.domain.system.User;
 import cn.itcast.service.system.UserService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +38,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public void save(User user) {
         user.setId(UUID.randomUUID().toString());
+        //加盐加密
+        Md5Hash md5Hash = new Md5Hash(user.getPassword(), user.getEmail());
+        user.setPassword(md5Hash.toString());
         userDao.save(user);
     }
 

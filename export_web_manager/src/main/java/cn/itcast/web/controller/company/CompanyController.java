@@ -5,6 +5,7 @@ import cn.itcast.service.company.CompanyService;
 import cn.itcast.web.controller.BaseController;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.log4j.Log4j;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

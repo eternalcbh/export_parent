@@ -2,15 +2,34 @@
 <beans
         xmlns="http://www.springframework.org/schema/beans"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:context="http://www.springframework.org/schema/context"
-        xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
-        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-            http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context.xsd
-            http://www.springframework.org/schema/mvc   http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!--    1.spring整合shiro-->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!--        1.配置权限管理器-->
         <property name="securityManager" ref="securityManager"/>
+        <!--        2.配置过滤器-->
+        <property name="filterChainDefinitions">
+            <value>
+                <!--配置一级路径
+                配置多级路径-->
+                /css/**=anon
+                /img/**=anon
+                /make/**=anon
+                /plugins/**=anon
+                /login.do=anon
+                /company/**=perms["企业管理"]
+                /system/dept/**=perms["部门管理"]
+                /system/module/**=perms["模块管理"]
+                /system/role/**=perms["角色管理"]
+                /system/log/**=perms["日志管理"]
+                /system/user/**=perms["用户管理"]
+                /**=authc
+            </value>
+        </property>
+        <!-- 配置shiro登录界面，shiro默认的登录界面是login.jsp-->
+        <property name="loginUrl" value="/login.jsp"/>
+        <property name="unauthorizedUrl" value="/unauthorized.jsp"/>
     </bean>
 
     <!--    2.传入securityManager-->
@@ -20,6 +39,22 @@
 
     <!--    3.创建Realm对象-->
     <bean id="realm" class="cn.itcast.web.shiro.AuthRealm">
-
+        <property name="credentialsMatcher" ref="credentialsMatcher"/>
     </bean>
+
+    <!--    创建md5的密码匹配器-->
+    <!--    <bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">-->
+    <!--        <property name="hashAlgorithmName" value="md5"/>-->
+    <!--    </bean>-->
+
+    <!--    自定义密码匹配器-->
+    <bean id="credentialsMatcher" class="cn.itcast.web.shiro.CustomCredentialMatcher"/>
+
+<!--    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>-->
+
+<!--    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>-->
+
+<!--    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">-->
+<!--        <property name="securityManager" ref="securityManager"/>-->
+<!--    </bean>-->
 </beans>
