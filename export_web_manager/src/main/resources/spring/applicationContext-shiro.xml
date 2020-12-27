@@ -13,6 +13,7 @@
             <value>
                 <!--配置一级路径
                 配置多级路径-->
+                /html/**=anon
                 /css/**=anon
                 /img/**=anon
                 /make/**=anon

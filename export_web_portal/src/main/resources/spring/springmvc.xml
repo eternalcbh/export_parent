@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    <!--    1.dubbo消费者配置 -->
+    <dubbo:application name="export_web_protal"/>
+    <dubbo:registry address="zookeeper://115.159.193.54" port="2181"/>
+    <dubbo:annotation package="cn.itcast.web"/>
+
+    <!--    2.springmvc配置-->
+    <context:component-scan base-package="cn.itcast.web"/>
+
+    <!--    3.开启注解驱动-->
+    <mvc:annotation-driven/>
+
+    <mvc:default-servlet-handler/>
+</beans>

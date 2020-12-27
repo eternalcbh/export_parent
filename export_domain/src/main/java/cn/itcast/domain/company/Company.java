@@ -1,11 +1,18 @@
 package cn.itcast.domain.company;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class Company {
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class Company implements Serializable {
     /**
      * 对象唯一标记,对应数据库主键
      */

@@ -13,6 +13,10 @@
         <module>export_dao</module>
         <module>export_service_system</module>
         <module>export_web_manager</module>
+        <module>export_company_interface</module>
+        <module>export_company_service</module>
+        <module>export_web_portal</module>
+        <module>export_web_portal</module>
     </modules>
 
 
