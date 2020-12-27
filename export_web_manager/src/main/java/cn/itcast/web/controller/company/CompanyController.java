@@ -3,25 +3,22 @@ package cn.itcast.web.controller.company;
 import cn.itcast.domain.company.Company;
 import cn.itcast.service.company.CompanyService;
 import cn.itcast.web.controller.BaseController;
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.log4j.Log4j;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Date;
-import java.util.List;
 
 @Controller
 @RequestMapping("/company")
 @Log4j
 public class CompanyController extends BaseController {
-    @Autowired
+    @Reference
     private CompanyService companyService;
 
     /**

@@ -4,39 +4,50 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns:context="http://www.springframework.org/schema/context"
         xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+        xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
         xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
             http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context.xsd
-            http://www.springframework.org/schema/mvc   http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+            http://www.springframework.org/schema/mvc   http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
-<!--    注解扫描-->
-   <context:component-scan base-package="cn.itcast.web"/>
+    <!--    注解扫描-->
+    <context:component-scan base-package="cn.itcast.web"/>
 
-<!--    配置视图解析器-->
+    <!--    配置视图解析器-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/pages/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
 
-<!--    开启注解驱动-->
+    <!--    开启注解驱动-->
     <mvc:annotation-driven conversion-service="conversionService"/>
 
-<!--    放行静态资源-->
+    <!--    放行静态资源-->
     <mvc:default-servlet-handler/>
 
     <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
-        <property name="converters" >
-                <bean class="cn.itcast.web.converter.StringToDateConverter"></bean>
+        <property name="converters">
+            <bean class="cn.itcast.web.converter.StringToDateConverter"></bean>
         </property>
     </bean>
 
     <bean class="cn.itcast.web.exceptions.CustomExceptionResolver"/>
 
-<!--    <aop:config>-->
-<!--        <aop:pointcut id="pt" expression="execution(* cn..controller.*.*.*(..))"/>-->
-<!--        <aop:aspect ref="logAspect">-->
-<!--            <aop:around method="around" pointcut-ref="pt"/>-->
-<!--        </aop:aspect>-->
-<!--    </aop:config>-->
-<!--    开启注解驱动-->
+    <!--    <aop:config>-->
+    <!--        <aop:pointcut id="pt" expression="execution(* cn..controller.*.*.*(..))"/>-->
+    <!--        <aop:aspect ref="logAspect">-->
+    <!--            <aop:around method="around" pointcut-ref="pt"/>-->
+    <!--        </aop:aspect>-->
+    <!--    </aop:config>-->
+    <!--    开启注解驱动-->
     <aop:aspectj-autoproxy/>
+
+    <!--    dubbo配置-->
+    <!--    1.dubbo名字-->
+    <dubbo:application name="export_web_manager"/>
+
+    <!--    2.配置注册中心端口-->
+    <dubbo:registry address="zookeeper://115.159.193.54" port="2181"/>
+
+    <!--    3.dubbo注解扫描-->
+    <dubbo:annotation package="cn.itcast.web"/>
 </beans>

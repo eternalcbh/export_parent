@@ -5,6 +5,7 @@ import cn.itcast.domain.system.User;
 import cn.itcast.service.company.CompanyService;
 import cn.itcast.service.system.ModuleService;
 import cn.itcast.service.system.UserService;
+import com.alibaba.dubbo.config.annotation.Reference;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -22,7 +23,7 @@ public class LoginController extends BaseController {
 	/**
 	 * 注入公司服务层对象
 	 */
-	@Autowired
+	@Reference
 	private CompanyService companyService;
 
 	/**

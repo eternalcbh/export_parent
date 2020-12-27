@@ -10,6 +10,7 @@
         <module name="export_dao" />
         <module name="export_company_service" />
         <module name="export_company_interface" />
+        <module name="mybatis_generate" />
         <module name="export_web_portal" />
         <module name="export_web_manager" />
         <module name="export_domain" />
@@ -25,6 +26,7 @@
       <module name="export_service_system" target="1.8" />
       <module name="export_web_manager" target="1.8" />
       <module name="export_web_portal" target="1.8" />
+      <module name="mybatis_generate" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

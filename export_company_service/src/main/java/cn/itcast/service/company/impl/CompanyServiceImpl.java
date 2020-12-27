@@ -11,7 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import java.util.UUID;
 
-@Service//创建对象,加入容器,加入容器的对象名默认是类名首字母小写
+/**
+ * dubbo公司服务提供者
+ * @author cbh
+ */
+@Service(timeout = 100000)//创建对象,加入容器,加入容器的对象名默认是类名首字母小写
 public class CompanyServiceImpl implements CompanyService {
     @Autowired
     private CompanyDao companyDao;

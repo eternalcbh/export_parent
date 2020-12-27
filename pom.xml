@@ -17,6 +17,7 @@
         <module>export_company_service</module>
         <module>export_web_portal</module>
         <module>export_web_portal</module>
+        <module>mybatis_generate</module>
     </modules>
 
 
