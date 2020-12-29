@@ -22,7 +22,7 @@
     <mvc:annotation-driven conversion-service="conversionService"/>
 
     <!--    放行静态资源-->
-    <mvc:default-servlet-handler/>
+    <mvc:default-servlet-handler default-servlet-name="default"/>
 
     <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
         <property name="converters">
@@ -50,4 +50,6 @@
 
     <!--    3.dubbo注解扫描-->
     <dubbo:annotation package="cn.itcast.web"/>
+
+    <dubbo:consumer check="false"/>
 </beans>

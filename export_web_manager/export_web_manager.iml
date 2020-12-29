@@ -34,6 +34,7 @@
     <orderEntry type="module" module-name="export_dao" />
     <orderEntry type="module" module-name="export_company_interface" />
     <orderEntry type="module" module-name="export_domain" />
+    <orderEntry type="module" module-name="export_cargo_interface" />
     <orderEntry type="library" name="Maven: com.alibaba:dubbo:2.6.6" level="project" />
     <orderEntry type="library" name="Maven: org.javassist:javassist:3.20.0-GA" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.netty:netty:3.2.5.Final" level="project" />

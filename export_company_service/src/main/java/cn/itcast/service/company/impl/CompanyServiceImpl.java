@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * dubbo公司服务提供者
@@ -30,6 +33,7 @@ public class CompanyServiceImpl implements CompanyService {
         //设置uuid作为主键
         company.setId(UUID.randomUUID().toString());
         companyDao.save(company);
+//        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(10, 10, 60L, TimeUnit.SECONDS, new ArrayBlockingQueue<>(10));
     }
 
     @Override

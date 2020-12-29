@@ -18,6 +18,8 @@
         <module>export_web_portal</module>
         <module>export_web_portal</module>
         <module>mybatis_generate</module>
+        <module>export_cargo_service</module>
+        <module>export_cargo_interface</module>
     </modules>
 
 

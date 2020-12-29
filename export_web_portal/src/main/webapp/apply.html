@@ -4,30 +4,31 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>EXPORT</title>
+      <title>EXPORT</title>
     <link rel="stylesheet" href="./plugins/bootstrap-3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/apply.css">
-    <script src="plugins/jquery.min.js" type="text/javascript"></script>
-    <script src="plugins/bootstrap.min.js" type="text/javascript"></script>
-    <script src="plugins/messages_zh.js" type="text/javascript"></script>
-    <script src="plugins/jquery.validate.min.js" type="text/javascript"></script>
 
-    <script>
-        function apply() {
-            $.ajax({
-                url:"/apply.do",
-                data:$("#signupForm").serialize(),
-                type:"POST",
-                success:function(data){
-                    if(data=='1'){
-                        location.href="commit.html";
-                    }else{
-                        alert("提交用户信息失败");
-                    }
-                }
-            });
-        }
-    </script>
+   <script src="plugins/jquery.min.js" type="text/javascript"></script>
+   <script src="plugins/bootstrap.min.js" type="text/javascript"></script>
+   <script src="plugins/messages_zh.js" type="text/javascript"></script>
+   <script src="plugins/jquery.validate.min.js" type="text/javascript"></script>
+
+  <script>
+       function apply() {
+           $.ajax({
+               url:"/apply.do",
+               data:$("#signupForm").serialize(),
+               type:"POST",
+               success:function(data){
+                   if(data=='1'){
+                       location.href="commit.html";
+                   }else{
+                       alert("提交用户信息失败");
+                   }
+               }
+           });
+       }
+   </script>
 </head>
 
 

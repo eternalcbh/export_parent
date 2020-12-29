@@ -39,17 +39,26 @@
         <!--        7.指定dao的接口文件所在路径-->
         <javaClientGenerator targetPackage="cn.itcast.dao.cargo"
                              targetProject="D:\workspace\export_parent\mybatis_generate\src\main\java"
-                                type="XMLMAPPER"
+                             type="XMLMAPPER"
         >
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 
-
+        <!-- enableCountByExample是否要给你生成统计函数-->
+        <!--enableDeleteByExample是否要生成根据条件删除代码-->
+        <!--enableSelectByExample是否根据条件查询-->
+        <!--enableUpdateByExample是否生成根据条件修改-->
         <!--        8.指定对数据库哪个表进行逆向-->
         <table schema="saas-export"
-               tableName="co_factory"
-               domainObjectName="Factory" mapperName="FactoryDao"
-               enableCountByExample="false" enableDeleteByExample="false"
-               enableSelectByExample="true" enableUpdateByExample="false"/>
+               tableName="co_ext_cproduct"
+               domainObjectName="ExtCproduct" mapperName="ExtCproductDao"
+
+        enableCountByExample="false"
+
+        enableDeleteByExample="false"
+
+        enableSelectByExample="true"
+
+        enableUpdateByExample="false"/>
     </context>
 </generatorConfiguration>

@@ -37,12 +37,6 @@ public class CompanyController extends BaseController {
         return "company/company-list";
     }
 
-    @RequestMapping("/save")
-    public String save(Date date){
-        int i = 1/0;
-        return "success";
-    }
-
     @RequestMapping("/toAdd")
     public String toAdd(){
         return "company/company-add";

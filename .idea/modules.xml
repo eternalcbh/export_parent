@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/export_cargo_interface/export_cargo_interface.iml" filepath="$PROJECT_DIR$/export_cargo_interface/export_cargo_interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/export_cargo_service/export_cargo_service.iml" filepath="$PROJECT_DIR$/export_cargo_service/export_cargo_service.iml" />
       <module fileurl="file://$PROJECT_DIR$/export_company_interface/export_company_interface.iml" filepath="$PROJECT_DIR$/export_company_interface/export_company_interface.iml" />
       <module fileurl="file://$PROJECT_DIR$/export_company_service/export_company_service.iml" filepath="$PROJECT_DIR$/export_company_service/export_company_service.iml" />
       <module fileurl="file://$PROJECT_DIR$/export_dao/export_dao.iml" filepath="$PROJECT_DIR$/export_dao/export_dao.iml" />

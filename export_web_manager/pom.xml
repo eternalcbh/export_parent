@@ -22,6 +22,11 @@
             <artifactId>export_company_interface</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>cn.itcast</groupId>
+            <artifactId>export_cargo_interface</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         <!--        dubbo依赖-->
         <dependency>
             <groupId>com.alibaba</groupId>
