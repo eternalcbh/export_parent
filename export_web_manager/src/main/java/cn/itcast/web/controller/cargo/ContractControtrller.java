@@ -2,9 +2,10 @@ package cn.itcast.web.controller.cargo;
 
 import cn.itcast.domain.cargo.Contract;
 import cn.itcast.domain.cargo.ContractExample;
-import cn.itcast.domain.company.Company;
 import cn.itcast.service.cargo.ContractService;
 import cn.itcast.web.controller.BaseController;
+import cn.itcast.web.handler.Factory;
+import cn.itcast.web.handler.Handler;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.log4j.Log4j;
@@ -13,8 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.Date;
 
 /**
  * @author cbh
@@ -44,19 +43,10 @@ public class ContractControtrller extends BaseController {
 		contractExample.setOrderByClause("create_time desc");
 
 		//查出登录者的登录等级
-		if (getLoginUser().getDegree() == 1) {
-			contractExample.createCriteria().andCompanyIdEqualTo(getLoginCompanyId());
-		} else if (getLoginUser().getDegree() == 2) {
-			PageInfo<Contract> pageInfo = contractService.findPageByDeptId(getLoginUser().getDeptId(), pageNum, pageSize, getLoginCompanyId());
-			model.addAttribute("pageInfo", pageInfo);
-			return "cargo/contract/contract-list";
-		} else if (getLoginUser().getDegree() == 3) {
-			contractExample.createCriteria().andCreateDeptEqualTo(getLoginUser().getDeptId()).andCompanyIdEqualTo(getLoginCompanyId());
-		} else if (getLoginUser().getDegree() == 4) {
-			contractExample.createCriteria().andCreateByEqualTo(getLoginUser().getId()).andCompanyIdEqualTo(getLoginCompanyId());
-		}
+		//策略模式+工厂模式,返回调用的策略
+		Handler invokeStrategy = Factory.getInvokeStrategy(getLoginUser().getDegree());
 
-		PageInfo<Contract> pageInfo = contractService.findByPage(contractExample, pageNum, pageSize);
+		PageInfo<Contract> pageInfo = invokeStrategy.strategy(contractService, contractExample, pageNum, pageSize, getLoginUser(), getLoginCompanyId());
 
 		model.addAttribute("pageInfo", pageInfo);
 

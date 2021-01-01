@@ -1,6 +1,5 @@
 package cn.itcast.web.controller.system;
 
-import cn.itcast.domain.system.Module;
 import cn.itcast.domain.system.SysLog;
 import cn.itcast.service.system.SysLogService;
 import cn.itcast.web.controller.BaseController;

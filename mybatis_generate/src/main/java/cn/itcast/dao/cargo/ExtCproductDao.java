@@ -4,7 +4,11 @@ import cn.itcast.domain.cargo.ExtCproduct;
 import cn.itcast.domain.cargo.ExtCproductExample;
 import java.util.List;
 
+/**
+ * @author cbh
+ */
 public interface ExtCproductDao {
+
     int deleteByPrimaryKey(String id);
 
     int insert(ExtCproduct record);

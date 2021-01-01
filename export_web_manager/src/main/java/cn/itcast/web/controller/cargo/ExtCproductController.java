@@ -1,10 +1,7 @@
 package cn.itcast.web.controller.cargo;
 
-import cn.itcast.domain.cargo.Contract;
-import cn.itcast.domain.cargo.ContractExample;
 import cn.itcast.domain.cargo.ExtCproduct;
 import cn.itcast.domain.cargo.ExtCproductExample;
-import cn.itcast.service.cargo.ContractService;
 import cn.itcast.service.cargo.ExtCproductService;
 import cn.itcast.web.controller.BaseController;
 import com.alibaba.dubbo.config.annotation.Reference;

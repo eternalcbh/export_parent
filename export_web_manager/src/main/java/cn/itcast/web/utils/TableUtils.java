@@ -21,7 +21,7 @@ public class TableUtils {
 	public static void isMain() throws ClassNotFoundException, SQLException, IOException {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("请输入你要构建的表名");
-		String table_name = scanner.nextLine();
+		String tableName = scanner.nextLine();
 		String name = TableUtils.class.getName();
 		//db.properties文件存放位置
 		InputStream inputStream = Class.forName(name).getResourceAsStream("/properties/db.properties");
@@ -30,7 +30,7 @@ public class TableUtils {
 		Class.forName(properties.getProperty("jdbc.driver"));
 		Connection connection = DriverManager.getConnection(properties.getProperty("jdbc.url"), properties.getProperty("jdbc.username"), properties.getProperty("jdbc.password"));
 		Statement statement = connection.createStatement();
-		String sql = "select * from " + table_name;
+		String sql = "select * from " + tableName;
 		ResultSet resultSet = statement.executeQuery(sql);
 		ResultSetMetaData metaData = resultSet.getMetaData();
 		//获取表的类型
