@@ -43,6 +43,19 @@ public class ContractControtrller extends BaseController {
 		//按照时间倒序查询
 		contractExample.setOrderByClause("create_time desc");
 
+		//查出登录者的登录等级
+		if (getLoginUser().getDegree() == 1) {
+			contractExample.createCriteria().andCompanyIdEqualTo(getLoginCompanyId());
+		} else if (getLoginUser().getDegree() == 2) {
+			PageInfo<Contract> pageInfo = contractService.findPageByDeptId(getLoginUser().getDeptId(), pageNum, pageSize, getLoginCompanyId());
+			model.addAttribute("pageInfo", pageInfo);
+			return "cargo/contract/contract-list";
+		} else if (getLoginUser().getDegree() == 3) {
+			contractExample.createCriteria().andCreateDeptEqualTo(getLoginUser().getDeptId()).andCompanyIdEqualTo(getLoginCompanyId());
+		} else if (getLoginUser().getDegree() == 4) {
+			contractExample.createCriteria().andCreateByEqualTo(getLoginUser().getId()).andCompanyIdEqualTo(getLoginCompanyId());
+		}
+
 		PageInfo<Contract> pageInfo = contractService.findByPage(contractExample, pageNum, pageSize);
 
 		model.addAttribute("pageInfo", pageInfo);

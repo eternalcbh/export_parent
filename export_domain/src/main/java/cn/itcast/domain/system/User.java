@@ -2,12 +2,15 @@ package cn.itcast.domain.system;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
- *
+ *用户id
+ * @author cbh
  */
 
 @Data
-public class User {
+public class User implements Serializable {
     private String id;
     private String deptId;
     private String deptName;

@@ -1437,7 +1437,7 @@ public class FactoryExample implements Serializable {
 	 *
 	 * @mbg.generated do_not_delete_during_merge Sun Dec 27 21:38:18 CST 2020
 	 */
-	public static class Criteria extends GeneratedCriteria {
+	public static class Criteria extends GeneratedCriteria{
 
 		protected Criteria() {
 			super();
@@ -1450,7 +1450,7 @@ public class FactoryExample implements Serializable {
 	 *
 	 * @mbg.generated Sun Dec 27 21:38:18 CST 2020
 	 */
-	public static class Criterion {
+	public static class Criterion  implements Serializable{
 		private String condition;
 
 		private Object value;

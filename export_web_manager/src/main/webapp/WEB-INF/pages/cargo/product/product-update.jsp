@@ -40,9 +40,9 @@
         <div class="panel panel-default">
             <div class="panel-heading">编辑货物</div>
             <form id="editForm" action="${ctx}/cargo/contractProduct/edit.do" method="post" enctype="multipart/form-data">
-                <input type="text" name="id" value="${contractProduct.id}">
-                <input type="text" name="contractId" value="${contractProduct.contractId}">
-                <input type="text"  name="factoryName" id="factoryName" value="${contractProduct.factoryName}">
+                <input type="hidden" name="id" value="${contractProduct.id}">
+                <input type="hidden" name="contractId" value="${contractProduct.contractId}">
+                <input type="hidden"  name="factoryName" id="factoryName" value="${contractProduct.factoryName}">
                 <div class="row data-type" style="margin: 0px">
                     <div class="col-md-2 title">生产厂家</div>
                     <div class="col-md-4 data">

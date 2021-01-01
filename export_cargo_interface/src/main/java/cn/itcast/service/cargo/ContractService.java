@@ -54,4 +54,15 @@ public interface ContractService {
 	 * @return
 	 */
 	List<Contract> findAll(ContractExample contractExample);
+
+	/**
+	 *
+	 * 查找子部门下所有部门的订单
+	 * @param deptId
+	 * @param pageNum
+	 * @param pageSize
+	 * @param companyId
+	 * @return
+	 */
+	PageInfo<Contract> findPageByDeptId(String deptId,Integer pageNum, Integer pageSize, String companyId);
 }

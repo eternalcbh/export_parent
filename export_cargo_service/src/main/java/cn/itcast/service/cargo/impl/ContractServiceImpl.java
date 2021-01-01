@@ -1,5 +1,6 @@
 package cn.itcast.service.cargo.impl;
 
+import cn.itcast.dao.TestUtil;
 import cn.itcast.dao.cargo.ContractDao;
 import cn.itcast.domain.cargo.Contract;
 import cn.itcast.domain.cargo.ContractExample;
@@ -10,6 +11,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -37,7 +39,7 @@ public class ContractServiceImpl implements ContractService {
 	 */
 	@Override
 	public PageInfo<Contract> findByPage(ContractExample contractExample, Integer pageNum, Integer pageSize) {
-		PageHelper.startPage(pageNum,pageSize);
+		PageHelper.startPage(pageNum, pageSize);
 
 		List<Contract> contractList = contractDao.selectByExample(contractExample);
 
@@ -69,6 +71,8 @@ public class ContractServiceImpl implements ContractService {
 
 		//数据添加时间
 		contract.setCreateTime(new Date());
+
+		contract.setState(0);
 
 		contractDao.insertSelective(contract);
 	}
@@ -104,4 +108,36 @@ public class ContractServiceImpl implements ContractService {
 	public List<Contract> findAll(ContractExample contractExample) {
 		return contractDao.selectByExample(contractExample);
 	}
+
+	/**
+	 * 查找子部门下所有部门的id
+	 *
+	 * @param deptId
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@Override
+	public PageInfo<Contract> findPageByDeptId(String deptId, Integer pageNum, Integer pageSize, String companyId) {
+		//实例1
+		String allDept = null;
+		try {
+			allDept = TestUtil.getAllDept(deptId);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		PageHelper.startPage(pageNum, pageSize);
+		List<Contract> contractList = contractDao.findPageByDeptId(allDept, companyId);
+
+
+//		//实例2
+//		List<Contract> contractList = contractDao.findPageByDeptId(deptId, companyId);
+//		PageHelper.startPage(pageNum,pageSize);
+		return new PageInfo<>(contractList);
+	}
+
+
 }

@@ -39,7 +39,8 @@
         <!--订单信息-->
         <div class="panel panel-default">
             <div class="panel-heading">编辑货物</div>
-            <form id="editForm" action="${ctx}/cargo/contractProduct/edit.do" method="post" enctype="multipart/form-data">
+<%--            enctype="multipart/form-data"--%>
+            <form id="editForm" action="${ctx}/cargo/contractProduct/edit.do" method="post" enctype="multipart/form-data" >
                 <input type="text" name="id" value="${contractProduct.id}">
                 <input type="text" name="contractId" value="${contractProduct.contractId}">
                 <input type="text"  name="factoryName" id="factoryName" value="${contractProduct.factoryName}">

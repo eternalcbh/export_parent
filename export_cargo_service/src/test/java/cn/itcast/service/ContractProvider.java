@@ -16,7 +16,5 @@ public class ContractProvider {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath*:spring/applicationContext-*.xml");
 		context.start();
 		System.in.read();
-
-
 	}
 }

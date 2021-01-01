@@ -405,4 +405,12 @@
       company_name = #{companyName,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+<!--实例1-->
+  <select id="findPageByDeptId" resultMap="BaseResultMap">
+    select * from co_contract where company_id = #{companyId} and find_in_set(create_dept,#{deptId})
+  </select>
+
+<!--  <select id="findPageByDeptId" resultMap="BaseResultMap">-->
+<!--    SELECT * FROM co_contract WHERE company_id =#{companyId} AND  FIND_IN_SET(create_dept,getDeptChild(#{deptId}))-->
+<!--  </select>-->
 </mapper>

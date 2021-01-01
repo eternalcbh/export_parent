@@ -1959,7 +1959,7 @@ public class ContractExample implements Serializable {
         }
     }
 
-    public static class Criterion {
+    public static class Criterion implements Serializable {
         private String condition;
 
         private Object value;

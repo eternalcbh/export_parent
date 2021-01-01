@@ -2,6 +2,8 @@ package cn.itcast.dao.cargo;
 
 import cn.itcast.domain.cargo.Contract;
 import cn.itcast.domain.cargo.ContractExample;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -58,4 +60,12 @@ public interface ContractDao {
      * @return
      */
     int updateByPrimaryKey(Contract record);
+
+    /**
+     * 查找该部门和其子部门所有的订单
+     * @param deptId
+     * @param companyId
+     * @return
+     */
+    List<Contract> findPageByDeptId(@Param("deptId") String deptId,@Param("companyId") String companyId);
 }

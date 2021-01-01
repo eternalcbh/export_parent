@@ -149,7 +149,7 @@
                         </thead>
                         <tbody class="tableBody" >
                         ${links }
-                        <c:forEach items="${page.rows}" var="o" varStatus="status">
+                        <c:forEach items="${pageInfo.list}" var="o" varStatus="status">
                             <tr class="odd" onmouseover="this.className='highlight'" onmouseout="this.className='odd'" >
                                 <td><input type="checkbox" name="id" value="${o.id}"/></td>
                                 <td>${status.index+1}</td>
