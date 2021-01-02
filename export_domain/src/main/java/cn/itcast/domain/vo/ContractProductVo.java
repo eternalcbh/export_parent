@@ -1,4 +1,4 @@
-package cn.itcast.domain.cargo;
+package cn.itcast.domain.vo;
 
 import java.io.Serializable;
 import java.sql.Date;

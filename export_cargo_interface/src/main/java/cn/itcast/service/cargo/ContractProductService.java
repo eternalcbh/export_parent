@@ -1,5 +1,6 @@
 package cn.itcast.service.cargo;
 
+import cn.itcast.domain.cargo.Contract;
 import cn.itcast.domain.cargo.ContractProduct;
 import cn.itcast.domain.cargo.ContractProductExample;
 import com.github.pagehelper.PageInfo;

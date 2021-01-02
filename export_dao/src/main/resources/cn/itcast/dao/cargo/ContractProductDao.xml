@@ -299,4 +299,24 @@
       company_name = #{companyName,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+
+  <select id="findByShipTime" resultType="cn.itcast.domain.vo.ContractProductVo">
+        SELECT
+			co_contract.custom_name ,
+			co_contract.id ,
+			co_contract_product.order_no ,
+			co_contract_product.cnumber ,
+			co_contract_product.factory_name ,
+			co_contract.delivery_period ,
+			co_contract.ship_time ,
+			co_contract.trade_terms
+		FROM
+			co_contract
+		inner JOIN
+			co_contract_product
+		on
+			co_contract_product.contract_id = co_contract.id
+		where
+			DATE_FORMAT(co_contract.ship_time,'%Y-%m') = #{shipTime} and co_contract.company_id = #{companyId}
+    </select>
 </mapper>

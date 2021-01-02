@@ -2,15 +2,16 @@ package cn.itcast.service.cargo.impl;
 
 import cn.itcast.dao.TestUtil;
 import cn.itcast.dao.cargo.ContractDao;
+import cn.itcast.dao.cargo.ContractProductDao;
 import cn.itcast.domain.cargo.Contract;
 import cn.itcast.domain.cargo.ContractExample;
+import cn.itcast.domain.vo.ContractProductVo;
 import cn.itcast.service.cargo.ContractService;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
@@ -29,6 +30,7 @@ public class ContractServiceImpl implements ContractService {
 	@Autowired
 	private ContractDao contractDao;
 
+	private ContractProductDao contractProductDao;
 	/**
 	 * 分页查询订单
 	 *
@@ -133,6 +135,18 @@ public class ContractServiceImpl implements ContractService {
 		List<Contract> contractList = contractDao.findPageByDeptId(allDept, companyId);
 
 		return new PageInfo<>(contractList);
+	}
+
+	/**
+	 * 根据船期查出所有订单
+	 *
+	 * @param companyId
+	 * @param inputData
+	 * @return
+	 */
+	@Override
+	public List<ContractProductVo> findByShipTime(String companyId, String inputData) {
+		return contractProductDao.findByShipTime(companyId,inputData);
 	}
 
 

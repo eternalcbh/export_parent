@@ -2,6 +2,7 @@ package cn.itcast.web.controller.cargo;
 
 import cn.itcast.domain.cargo.Contract;
 import cn.itcast.domain.cargo.ContractExample;
+import cn.itcast.domain.vo.ContractProductVo;
 import cn.itcast.service.cargo.ContractService;
 import cn.itcast.web.controller.BaseController;
 import cn.itcast.web.handler.Factory;
@@ -9,11 +10,16 @@ import cn.itcast.web.handler.Handler;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.log4j.Log4j;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 /**
  * @author cbh
@@ -134,5 +140,19 @@ public class ContractControtrller extends BaseController {
 	@RequestMapping("/print")
 	public String print(){
 		return "cargo/print/contract-print";
+	}
+
+	@RequestMapping("/printExcel")
+	public void printExcel(String inputData){
+		//查找出该日期下所有的订单
+		List<ContractProductVo> contractProductVoList = contractService.findByShipTime(getLoginCompanyId(),inputData);
+
+		//创建工作空间
+		Workbook workbook = new XSSFWorkbook();
+
+		//创建工作单
+		Sheet sheetAt = workbook.getSheetAt(0);
+
+
 	}
 }

@@ -225,9 +225,10 @@ public class ContractProductController extends BaseController {
 			contractProduct.setContractId(contractId);
 
 			//补充该货物生产的生产厂家id
-			Factory factory = factoryService.findByFactoryName(contractProduct.getFactoryName());
-			contractProduct.setFactoryId(factory.getId());
-
+			if (null != contractProduct.getFactoryName()){
+				Factory factory = factoryService.findByFactoryName(contractProduct.getFactoryName());
+				contractProduct.setFactoryId(factory.getId());
+			}
 			//保存数据
 			contractProductService.save(contractProduct);
 		}
