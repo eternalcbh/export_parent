@@ -130,4 +130,9 @@ public class ContractControtrller extends BaseController {
 		//3.返回销售合同列表
 		return "redirect:/cargo/contract/list";
 	}
+
+	@RequestMapping("/print")
+	public String print(){
+		return "cargo/print/contract-print";
+	}
 }

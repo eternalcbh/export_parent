@@ -54,4 +54,9 @@ public interface FactoryService {
 	 * @param factory
 	 */
 	void update(Factory factory);
+
+	/**
+	 * 根据厂家名查找厂家
+	 */
+	Factory findByFactoryName(String factoryName);
 }

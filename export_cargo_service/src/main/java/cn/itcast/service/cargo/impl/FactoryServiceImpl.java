@@ -86,4 +86,20 @@ public class FactoryServiceImpl implements FactoryService {
 	public void update(Factory factory) {
 
 	}
+
+	/**
+	 * 根据厂家名查找厂家
+	 *
+	 * @param factoryName
+	 */
+	@Override
+	public Factory findByFactoryName(String factoryName) {
+		//创建工厂查询对象
+		FactoryExample factoryExample = new FactoryExample();
+		factoryExample.createCriteria().andFactoryNameEqualTo(factoryName);
+
+		List<Factory> factoryList = factoryDao.selectByExample(factoryExample);
+
+		return factoryList.get(0);
+	}
 }

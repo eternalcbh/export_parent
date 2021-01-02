@@ -132,10 +132,6 @@ public class ContractServiceImpl implements ContractService {
 		PageHelper.startPage(pageNum, pageSize);
 		List<Contract> contractList = contractDao.findPageByDeptId(allDept, companyId);
 
-
-//		//实例2
-//		List<Contract> contractList = contractDao.findPageByDeptId(deptId, companyId);
-//		PageHelper.startPage(pageNum,pageSize);
 		return new PageInfo<>(contractList);
 	}
 

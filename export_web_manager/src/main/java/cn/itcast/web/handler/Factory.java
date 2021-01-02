@@ -1,6 +1,5 @@
 package cn.itcast.web.handler;
 
-import com.google.common.collect.Maps;
 import org.springframework.util.StringUtils;
 
 import java.util.HashMap;

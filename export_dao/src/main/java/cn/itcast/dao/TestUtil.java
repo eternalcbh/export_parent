@@ -37,11 +37,11 @@ public class TestUtil {
 
 		Connection connection = DriverManager.getConnection(url, "root", "root");
 
-		Statement statement = connection.createStatement();
+		PreparedStatement preparedStatement = connection.prepareStatement("select * from pe_dept where parent_id =  ? ");
 
-		String sql = "select * from pe_dept where parent_id = \"" + deptId + "\"";
+		preparedStatement.setString(1,deptId);
 
-		ResultSet resultSet = statement.executeQuery(sql);
+		ResultSet resultSet = preparedStatement.executeQuery();
 
 		while (resultSet.next()){
 			String dept = resultSet.getString(1);
