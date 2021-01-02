@@ -1,14 +1,5 @@
 package cn.itcast.dao;
 
-import cn.itcast.domain.system.Dept;
-import cn.itcast.domain.system.User;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.apache.ibatis.session.SqlSessionManager;
-import org.springframework.jdbc.core.JdbcTemplate;
-
-import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

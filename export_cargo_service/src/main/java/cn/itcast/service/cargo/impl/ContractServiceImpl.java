@@ -30,6 +30,7 @@ public class ContractServiceImpl implements ContractService {
 	@Autowired
 	private ContractDao contractDao;
 
+	@Autowired
 	private ContractProductDao contractProductDao;
 	/**
 	 * 分页查询订单
@@ -122,6 +123,7 @@ public class ContractServiceImpl implements ContractService {
 	@Override
 	public PageInfo<Contract> findPageByDeptId(String deptId, Integer pageNum, Integer pageSize, String companyId) {
 		//实例1
+		/*
 		String allDept = null;
 		try {
 			allDept = TestUtil.getAllDept(deptId);
@@ -129,10 +131,10 @@ public class ContractServiceImpl implements ContractService {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
+		}*/
 
 		PageHelper.startPage(pageNum, pageSize);
-		List<Contract> contractList = contractDao.findPageByDeptId(allDept, companyId);
+		List<Contract> contractList = contractDao.findPageByDeptId(deptId, companyId);
 
 		return new PageInfo<>(contractList);
 	}
@@ -141,13 +143,11 @@ public class ContractServiceImpl implements ContractService {
 	 * 根据船期查出所有订单
 	 *
 	 * @param companyId
-	 * @param inputData
+	 * @param inputDate
 	 * @return
 	 */
 	@Override
-	public List<ContractProductVo> findByShipTime(String companyId, String inputData) {
-		return contractProductDao.findByShipTime(companyId,inputData);
+	public List<ContractProductVo> findByShipTime(String companyId, String inputDate) {
+		return contractProductDao.findByShipTime(companyId,inputDate);
 	}
-
-
 }

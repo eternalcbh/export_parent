@@ -70,8 +70,8 @@ public interface ContractService {
 	/**
 	 * 根据船期查出所有订单
 	 * @param companyId
-	 * @param inputData
+	 * @param inputDate
 	 * @return
 	 */
-	List<ContractProductVo> findByShipTime(String companyId, String inputData);
+	List<ContractProductVo> findByShipTime(String companyId, String inputDate);
 }

@@ -5,7 +5,6 @@ import cn.itcast.dao.cargo.ContractProductDao;
 import cn.itcast.dao.cargo.ExtCproductDao;
 import cn.itcast.domain.cargo.*;
 import cn.itcast.service.cargo.ContractProductService;
-import cn.itcast.service.cargo.ExtCproductService;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;

@@ -40,7 +40,7 @@
             </c:if>
 
             <c:if test="${pageInfo.pageNum > 5 && pageInfo.pageNum+5 < pageInfo.pages }">
-                <c:forEach begin="${pageInfo.pageNum - 4 > 0 ? pageInfo.pageNum - 4 : 1 }" end="${pageInfo.pageNum + 5 < pageInfo.pages? pageInfo.pageNum+5:pageInfo.pages}" var="i">
+                <c:forEach begin="${pageInfo.pageNum - 4 > 0 ? pageInfo.pageNum - 4 : 1}" end="${pageInfo.pageNum + 5 < pageInfo.pages? pageInfo.pageNum+5:pageInfo.pages}" var="i">
                     <li class="paginate_button ${pageInfo.pageNum==i ? 'active':''}"><a
                             href="javascript:goPage(${i})">${i}</a>
                     </li>

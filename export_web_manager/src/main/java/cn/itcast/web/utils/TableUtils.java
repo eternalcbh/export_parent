@@ -1,7 +1,5 @@
 package cn.itcast.web.utils;
 
-import org.springframework.stereotype.Component;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;

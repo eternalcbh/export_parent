@@ -159,7 +159,7 @@ public class ContractProductController extends BaseController {
 		int rows = sheet.getPhysicalNumberOfRows();
 
 		//1.5遍历所有行读取数据
-		for (int i = 0; i < rows; i++){
+		for (int i = 1; i < rows; i++){
 			//每一行数据
 			Row row = sheet.getRow(i);
 
