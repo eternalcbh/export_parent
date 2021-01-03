@@ -2,93 +2,65 @@ package cn.itcast.domain.cargo;
 
 import cn.itcast.domain.BaseEntity;
 
-import java.math.BigDecimal;
+import java.io.Serializable;
 
 /**
- * 附件实体类
+ * 报运单下的附件
  * @author cbh
  */
-public class ExtCproduct extends BaseEntity {
+public class ExtEproduct extends BaseEntity implements Serializable {
     private String id;
 
-    /**
-     * 所属货物id
-     */
-    private String contractProductId;
+    private String exportProductId;
 
-    /**
-     * 购销合同id
-     */
-    private String contractId;
+    private String exportId;
 
     private String factoryId;
 
-    /**
-     * 工厂名
-     */
-    private String factoryName;
-
-    /**
-     * 、产品号
-     */
     private String productNo;
 
-    /**
-     * 图片
-     */
     private String productImage;
 
-    /**
-     * 产品描诉
-     */
     private String productDesc;
 
-    /**
-     * 包装单位
-     */
-    private String packingUnit;
-
-    /**
-     * 数量
-     */
     private Long cnumber;
 
-    /**
-     * 单价
-     */
+    private String packingUnit;
+
     private Double price;
 
-    /**
-     * 总金额
-     */
     private Double amount;
 
-    /**
-     * 排序号
-     */
     private Long orderNo;
+
+    private String companyId;
+
+    private String companyName;
 
     private String productRequest;
 
+    private String factoryName;
 
-    public ExtCproduct() {
+    public ExtEproduct() {
     }
 
-    public ExtCproduct(String id, String contractProductId, String contractId, String factoryId, String factoryName, String productNo, String productImage, String productDesc, String packingUnit, Long cnumber, Double price, Double amount, Long orderNo, String productRequest) {
+    public ExtEproduct(String id, String exportProductId, String exportId, String factoryId, String productNo, String productImage, String productDesc, Long cnumber, String packingUnit, Double price, Double amount, Long orderNo, String companyId, String companyName, String productRequest, String factoryName) {
         this.id = id;
-        this.contractProductId = contractProductId;
-        this.contractId = contractId;
+        this.exportProductId = exportProductId;
+        this.exportId = exportId;
         this.factoryId = factoryId;
-        this.factoryName = factoryName;
         this.productNo = productNo;
         this.productImage = productImage;
         this.productDesc = productDesc;
-        this.packingUnit = packingUnit;
         this.cnumber = cnumber;
+        this.packingUnit = packingUnit;
         this.price = price;
         this.amount = amount;
         this.orderNo = orderNo;
+        this.companyId = companyId;
+        this.companyName = companyName;
         this.productRequest = productRequest;
+        this.factoryName = factoryName;
     }
 
     /**
@@ -109,34 +81,34 @@ public class ExtCproduct extends BaseEntity {
 
     /**
      * 获取
-     * @return contractProductId
+     * @return exportProductId
      */
-    public String getContractProductId() {
-        return contractProductId;
+    public String getExportProductId() {
+        return exportProductId;
     }
 
     /**
      * 设置
-     * @param contractProductId
+     * @param exportProductId
      */
-    public void setContractProductId(String contractProductId) {
-        this.contractProductId = contractProductId;
+    public void setExportProductId(String exportProductId) {
+        this.exportProductId = exportProductId;
     }
 
     /**
      * 获取
-     * @return contractId
+     * @return exportId
      */
-    public String getContractId() {
-        return contractId;
+    public String getExportId() {
+        return exportId;
     }
 
     /**
      * 设置
-     * @param contractId
+     * @param exportId
      */
-    public void setContractId(String contractId) {
-        this.contractId = contractId;
+    public void setExportId(String exportId) {
+        this.exportId = exportId;
     }
 
     /**
@@ -153,22 +125,6 @@ public class ExtCproduct extends BaseEntity {
      */
     public void setFactoryId(String factoryId) {
         this.factoryId = factoryId;
-    }
-
-    /**
-     * 获取
-     * @return factoryName
-     */
-    public String getFactoryName() {
-        return factoryName;
-    }
-
-    /**
-     * 设置
-     * @param factoryName
-     */
-    public void setFactoryName(String factoryName) {
-        this.factoryName = factoryName;
     }
 
     /**
@@ -221,22 +177,6 @@ public class ExtCproduct extends BaseEntity {
 
     /**
      * 获取
-     * @return packingUnit
-     */
-    public String getPackingUnit() {
-        return packingUnit;
-    }
-
-    /**
-     * 设置
-     * @param packingUnit
-     */
-    public void setPackingUnit(String packingUnit) {
-        this.packingUnit = packingUnit;
-    }
-
-    /**
-     * 获取
      * @return cnumber
      */
     public Long getCnumber() {
@@ -249,6 +189,22 @@ public class ExtCproduct extends BaseEntity {
      */
     public void setCnumber(Long cnumber) {
         this.cnumber = cnumber;
+    }
+
+    /**
+     * 获取
+     * @return packingUnit
+     */
+    public String getPackingUnit() {
+        return packingUnit;
+    }
+
+    /**
+     * 设置
+     * @param packingUnit
+     */
+    public void setPackingUnit(String packingUnit) {
+        this.packingUnit = packingUnit;
     }
 
     /**
@@ -301,6 +257,38 @@ public class ExtCproduct extends BaseEntity {
 
     /**
      * 获取
+     * @return companyId
+     */
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    /**
+     * 设置
+     * @param companyId
+     */
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
+    }
+
+    /**
+     * 获取
+     * @return companyName
+     */
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    /**
+     * 设置
+     * @param companyName
+     */
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    /**
+     * 获取
      * @return productRequest
      */
     public String getProductRequest() {
@@ -315,7 +303,23 @@ public class ExtCproduct extends BaseEntity {
         this.productRequest = productRequest;
     }
 
+    /**
+     * 获取
+     * @return factoryName
+     */
+    public String getFactoryName() {
+        return factoryName;
+    }
+
+    /**
+     * 设置
+     * @param factoryName
+     */
+    public void setFactoryName(String factoryName) {
+        this.factoryName = factoryName;
+    }
+
     public String toString() {
-        return "ExtCproduct{id = " + id + ", contractProductId = " + contractProductId + ", contractId = " + contractId + ", factoryId = " + factoryId + ", factoryName = " + factoryName + ", productNo = " + productNo + ", productImage = " + productImage + ", productDesc = " + productDesc + ", packingUnit = " + packingUnit + ", cnumber = " + cnumber + ", price = " + price + ", amount = " + amount + ", orderNo = " + orderNo + ", productRequest = " + productRequest + "}";
+        return "ExtEproduct{id = " + id + ", exportProductId = " + exportProductId + ", exportId = " + exportId + ", factoryId = " + factoryId + ", productNo = " + productNo + ", productImage = " + productImage + ", productDesc = " + productDesc + ", cnumber = " + cnumber + ", packingUnit = " + packingUnit + ", price = " + price + ", amount = " + amount + ", orderNo = " + orderNo + ", companyId = " + companyId + ", companyName = " + companyName + ", productRequest = " + productRequest + ", factoryName = " + factoryName + "}";
     }
 }

@@ -130,7 +130,7 @@
                                 <td>${status.index+1}</td>
                                 <td>${o.productNo}</td>
                                 <td>
-                                    <input style="width: 90px" name="exportProducts[${status.index}].cnumber" value="${o.boxNum}">
+                                    <input style="width: 90px" name="exportProducts[${status.index}].cnumber" value="${o.cnumber}">
                                 </td>
                                 <td>
                                     <input style="width: 90px" name="exportProducts[${status.index}].grossWeight" value="${o.grossWeight}">

@@ -2,8 +2,6 @@ package cn.itcast.domain.cargo;
 
 import cn.itcast.domain.BaseEntity;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
 import java.sql.Date;
 
 /**
@@ -46,7 +44,7 @@ public class Contract extends BaseEntity {
     /**
      * 订单总金额
      */
-    private BigDecimal totalAmount;
+    private Double totalAmount;
 
     /**
      * 要求
@@ -127,7 +125,7 @@ public class Contract extends BaseEntity {
     public Contract() {
     }
 
-    public Contract(String id, String offeror, String contractNo, Date signingDate, String inputBy, String checkBy, String inspector, BigDecimal totalAmount, String crequest, String customName, Date shipTime, Long importNum, Date deliveryPeriod, Integer oldState, Integer outState, String tradeTerms, String printStyle, String remark, Integer state, Integer proNum, Integer extNum, String createBy, String createDept, String updateBy) {
+    public Contract(String id, String offeror, String contractNo, Date signingDate, String inputBy, String checkBy, String inspector, Double totalAmount, String crequest, String customName, Date shipTime, Long importNum, Date deliveryPeriod, Integer oldState, Integer outState, String tradeTerms, String printStyle, String remark, Integer state, Integer proNum, Integer extNum, String createBy, String createDept, String updateBy) {
         this.id = id;
         this.offeror = offeror;
         this.contractNo = contractNo;
@@ -270,7 +268,7 @@ public class Contract extends BaseEntity {
      * 获取
      * @return totalAmount
      */
-    public BigDecimal getTotalAmount() {
+    public Double getTotalAmount() {
         return totalAmount;
     }
 
@@ -278,7 +276,7 @@ public class Contract extends BaseEntity {
      * 设置
      * @param totalAmount
      */
-    public void setTotalAmount(BigDecimal totalAmount) {
+    public void setTotalAmount(Double totalAmount) {
         this.totalAmount = totalAmount;
     }
 

@@ -94,7 +94,7 @@
                     </thead>
                     <tbody>
                     <form id="exportForm" action="/cargo/export/toExport.do" method="post">
-                        <c:forEach items="${page.rows}" var="o" varStatus="status">
+                        <c:forEach items="${pageInfo.list}" var="o" varStatus="status">
                             <tr>
                                 <td><input type="checkbox" name="id" value="${o.id}"/></td>
                                 <td>${o.customName}</td>

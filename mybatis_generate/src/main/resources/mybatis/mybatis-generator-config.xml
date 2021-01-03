@@ -50,8 +50,8 @@
         <!--enableUpdateByExample是否生成根据条件修改-->
         <!--        8.指定对数据库哪个表进行逆向-->
         <table schema="saas-export"
-               tableName="co_ext_cproduct"
-               domainObjectName="ExtCproduct" mapperName="ExtCproductDao"
+               tableName="co_ext_eproduct"
+               domainObjectName="ExtEproduct" mapperName="ExtEproductDao"
 
         enableCountByExample="false"
 

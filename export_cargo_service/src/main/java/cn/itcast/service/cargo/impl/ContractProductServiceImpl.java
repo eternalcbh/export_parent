@@ -10,7 +10,6 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -68,16 +67,16 @@ public class ContractProductServiceImpl implements ContractProductService {
 		ContractProduct oldContractProduct = contractProductDao.selectByPrimaryKey(contractProduct.getId());
 
 		//4.旧总价
-		double oldamount = oldContractProduct.getCnumber() * oldContractProduct.getPrice().doubleValue();
+		double oldamount = oldContractProduct.getCnumber() * oldContractProduct.getPrice();
 
 		//5.修改订单价格
 		if (contractProduct.getPrice() != null && contractProduct.getCnumber() != null){
 			//3.计算出货品修改后的总价
-			amount = contractProduct.getPrice().doubleValue() * contractProduct.getCnumber();
+			amount = contractProduct.getPrice() * contractProduct.getCnumber();
 
-			contractProduct.setAmount(new BigDecimal(amount));
+			contractProduct.setAmount(amount);
 
-			contract.setTotalAmount(new BigDecimal(contract.getTotalAmount().doubleValue() + amount - oldamount));
+			contract.setTotalAmount(contract.getTotalAmount() + amount - oldamount);
 		}
 
 		//6.修改货品
@@ -111,8 +110,8 @@ public class ContractProductServiceImpl implements ContractProductService {
 
 		if (null != contractProduct.getCnumber() && null != contractProduct.getPrice()) {
 			//获取货物总价
-			amount = contractProduct.getPrice().doubleValue() * contractProduct.getCnumber();
-			contractProduct.setAmount(new BigDecimal(amount));
+			amount = contractProduct.getPrice() * contractProduct.getCnumber();
+			contractProduct.setAmount(amount);
 		}
 
 		//插入货物
@@ -122,10 +121,10 @@ public class ContractProductServiceImpl implements ContractProductService {
 
 		if (null != contract.getTotalAmount()){
 			//如果不是第一次添加合同
-			contract.setTotalAmount(new BigDecimal(contract.getTotalAmount().doubleValue() + amount));
+			contract.setTotalAmount(contract.getTotalAmount() + amount);
 		}else {
 			//第一次添加合同
-			contract.setTotalAmount(new BigDecimal(amount));
+			contract.setTotalAmount(amount);
 		}
 
 		//修改货物数量
@@ -177,7 +176,7 @@ public class ContractProductServiceImpl implements ContractProductService {
 		if (null != extCproductList){
 			for (ExtCproduct extCproduct : extCproductList) {
 				extCproductDao.deleteByPrimaryKey(extCproduct.getId());
-				totalExtAmount += extCproduct.getAmount().doubleValue();
+				totalExtAmount += extCproduct.getAmount();
 			}
 		}
 
@@ -186,7 +185,7 @@ public class ContractProductServiceImpl implements ContractProductService {
 		Contract contract = contractDao.selectByPrimaryKey(contractProduct.getContractId());
 
 		//4.修改订单总价
-		contract.setTotalAmount(new BigDecimal(contract.getTotalAmount().doubleValue() - amount - totalExtAmount));
+		contract.setTotalAmount(contract.getTotalAmount() - amount - totalExtAmount);
 
 		//5.更新货物数量
 		contract.setProNum(contract.getProNum() - 1);

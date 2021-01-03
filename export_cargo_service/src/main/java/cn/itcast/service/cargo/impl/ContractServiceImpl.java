@@ -1,6 +1,5 @@
 package cn.itcast.service.cargo.impl;
 
-import cn.itcast.dao.TestUtil;
 import cn.itcast.dao.cargo.ContractDao;
 import cn.itcast.dao.cargo.ContractProductDao;
 import cn.itcast.domain.cargo.Contract;
@@ -12,7 +11,6 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;

@@ -2,9 +2,10 @@ package cn.itcast.dao.cargo;
 
 import cn.itcast.domain.cargo.Export;
 import cn.itcast.domain.cargo.ExportExample;
+
 import java.util.List;
 
-public interface ExtCproductDao {
+public interface ExportDao {
     int deleteByPrimaryKey(String id);
 
     int insert(Export record);

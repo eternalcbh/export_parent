@@ -43,7 +43,7 @@ public class ContractProduct extends BaseEntity {
     /**
      * 报运箱数
      */
-    private Long boxNum;
+    private Integer boxNum;
 
     /**
      * 包装单位
@@ -53,7 +53,7 @@ public class ContractProduct extends BaseEntity {
     /**
      * 数量
      */
-    private Long cnumber;
+    private Integer cnumber;
 
     /**
      * 出货数量
@@ -73,17 +73,17 @@ public class ContractProduct extends BaseEntity {
     /**
      * 单价
      */
-    private BigDecimal price;
+    private Double price;
 
     /**
      * 总金额
      */
-    private BigDecimal amount;
+    private Double amount;
 
     /**
      * 排序号
      */
-    private Long orderNo;
+    private Integer orderNo;
 
     /**
      * 一对多
@@ -94,7 +94,7 @@ public class ContractProduct extends BaseEntity {
     public ContractProduct() {
     }
 
-    public ContractProduct(String id, String contractId, String factoryId, String factoryName, String productNo, String productImage, String productDesc, String loadingRate, Long boxNum, String packingUnit, Long cnumber, Long outNumber, Long finished, String productRequest, BigDecimal price, BigDecimal amount, Long orderNo, List<ExtCproduct> extCproducts) {
+    public ContractProduct(String id, String contractId, String factoryId, String factoryName, String productNo, String productImage, String productDesc, String loadingRate, Integer boxNum, String packingUnit, Integer cnumber, Long outNumber, Long finished, String productRequest, Double price, Double amount, Integer orderNo, List<ExtCproduct> extCproducts) {
         this.id = id;
         this.contractId = contractId;
         this.factoryId = factoryId;
@@ -247,7 +247,7 @@ public class ContractProduct extends BaseEntity {
      * 获取
      * @return boxNum
      */
-    public Long getBoxNum() {
+    public Integer getBoxNum() {
         return boxNum;
     }
 
@@ -255,7 +255,7 @@ public class ContractProduct extends BaseEntity {
      * 设置
      * @param boxNum
      */
-    public void setBoxNum(Long boxNum) {
+    public void setBoxNum(Integer boxNum) {
         this.boxNum = boxNum;
     }
 
@@ -279,7 +279,7 @@ public class ContractProduct extends BaseEntity {
      * 获取
      * @return cnumber
      */
-    public Long getCnumber() {
+    public Integer getCnumber() {
         return cnumber;
     }
 
@@ -287,7 +287,7 @@ public class ContractProduct extends BaseEntity {
      * 设置
      * @param cnumber
      */
-    public void setCnumber(Long cnumber) {
+    public void setCnumber(Integer cnumber) {
         this.cnumber = cnumber;
     }
 
@@ -343,7 +343,7 @@ public class ContractProduct extends BaseEntity {
      * 获取
      * @return price
      */
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
@@ -351,7 +351,7 @@ public class ContractProduct extends BaseEntity {
      * 设置
      * @param price
      */
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -359,7 +359,7 @@ public class ContractProduct extends BaseEntity {
      * 获取
      * @return amount
      */
-    public BigDecimal getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
@@ -367,7 +367,7 @@ public class ContractProduct extends BaseEntity {
      * 设置
      * @param amount
      */
-    public void setAmount(BigDecimal amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 
@@ -375,7 +375,7 @@ public class ContractProduct extends BaseEntity {
      * 获取
      * @return orderNo
      */
-    public Long getOrderNo() {
+    public Integer getOrderNo() {
         return orderNo;
     }
 
@@ -383,7 +383,7 @@ public class ContractProduct extends BaseEntity {
      * 设置
      * @param orderNo
      */
-    public void setOrderNo(Long orderNo) {
+    public void setOrderNo(Integer orderNo) {
         this.orderNo = orderNo;
     }
 

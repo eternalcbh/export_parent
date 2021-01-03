@@ -10,9 +10,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -52,15 +50,15 @@ public class ExtCproductServiceImpl implements ExtCproductService {
 		//4.计算出合同总价
 		double amount = 0;
 		if (null != extcProduct.getPrice() && null != extcProduct.getCnumber()){
-			amount = extcProduct.getCnumber() * extcProduct.getPrice().doubleValue();
-			extcProduct.setAmount(new BigDecimal(amount));
+			amount = extcProduct.getCnumber() * extcProduct.getPrice();
+			extcProduct.setAmount(amount);
 		}
 
 		//4.更新附件
 		extcProductDao.updateByPrimaryKey(extcProduct);
 
 		//5.更新订单总价
-		contract.setTotalAmount(new BigDecimal(contract.getTotalAmount().doubleValue() - oldExtCproduct.getAmount().doubleValue() + amount));
+		contract.setTotalAmount(contract.getTotalAmount() - oldExtCproduct.getAmount() + amount);
 
 		//6.修改附件
 		extcProductDao.updateByPrimaryKeySelective(extcProduct);
@@ -89,11 +87,11 @@ public class ExtCproductServiceImpl implements ExtCproductService {
 
 		if (null != extcProduct.getCnumber() && null != extcProduct.getPrice()){
 			amount = extcProduct.getCnumber() * extcProduct.getPrice().doubleValue();
-			extcProduct.setAmount(new BigDecimal(amount));
+			extcProduct.setAmount(amount);
 		}
 
 		//3.设置订单总价
-		contract.setTotalAmount(new BigDecimal(contract.getTotalAmount().doubleValue() + amount));
+		contract.setTotalAmount(contract.getTotalAmount() + amount);
 
 		//4.添加订单种类
 		if (null != contract.getExtNum()){
@@ -154,7 +152,7 @@ public class ExtCproductServiceImpl implements ExtCproductService {
 		extcProductDao.deleteByPrimaryKey(id);
 
 		//4.计算新的订单总价
-		contract.setTotalAmount(new BigDecimal(contract.getTotalAmount().doubleValue() - extCproduct.getAmount().doubleValue()));
+		contract.setTotalAmount(contract.getTotalAmount() - extCproduct.getAmount());
 
 		//5.更新购销合同中附件种类
 		contract.setExtNum(contract.getExtNum() - 1);
