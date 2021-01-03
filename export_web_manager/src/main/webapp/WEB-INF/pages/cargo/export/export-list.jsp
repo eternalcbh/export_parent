@@ -157,7 +157,7 @@
         <!-- .box-footer-->
         <div class="box-footer">
             <jsp:include page="../../common/page.jsp">
-                <jsp:param value="cargo/export/list.do" name="pageUrl"/>
+                <jsp:param value="/cargo/export/list.do" name="pageUrl"/>
             </jsp:include>
         </div>
         <!-- /.box-footer-->

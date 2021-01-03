@@ -85,11 +85,6 @@ public class ExportServiceImpl implements ExportService {
 		//根据购销合同找到所有id
 		String[] contractIds = export.getContractIds().split(",");
 
-
-		//根据购销合同找出所有的货物和附件
-		List<ContractProduct> contractProductList = new ArrayList<>();
-		List<ExtCproduct> extCproductList = new ArrayList<>();
-
 		//存储合同号
 		String contractNos = "";
 
@@ -98,21 +93,14 @@ public class ExportServiceImpl implements ExportService {
 
 		//总附件总类
 		double totalExtNum = 0;
-		for (String contractId : contractIds) {
-			ContractProductExample contractProductExample = new ContractProductExample();
-			contractProductExample.createCriteria().andContractIdEqualTo(contractId);
 
-			//该购销合同下所有的货物
-			contractProductList.addAll(contractProductDao.selectByExample(contractProductExample));
-			ExtCproductExample extCproductExample = new ExtCproductExample();
+		ContractExample contractExample = new ContractExample();
+		contractExample.createCriteria().andIdIn(Arrays.asList(contractIds));
 
-			//该购销合同下所有的附件
-			extCproductExample.createCriteria().andContractIdEqualTo(contractId);
-			extCproductList.addAll(extCproductDao.selectByExample(extCproductExample));
+		//找出该报运单下所有的合同
+		List<Contract> contractList = contractDao.selectByExample(contractExample);
 
-			//该合同
-			Contract contract = contractDao.selectByPrimaryKey(contractId);
-
+		for (Contract contract : contractList) {
 			//把状态转为生成报运合同
 			contract.setState(2);
 
@@ -155,8 +143,13 @@ public class ExportServiceImpl implements ExportService {
 
 		Map<String, String> map = new HashMap<>();
 
+		//找出该报运单下所有的订单
+		ContractProductExample contractProductExample = new ContractProductExample();
+		contractProductExample.createCriteria().andContractIdIn(Arrays.asList(contractIds));
 
-		if (contractProductList.size() != 0) {
+		List<ContractProduct> contractProductList = contractProductDao.selectByExample(contractProductExample);
+
+		if (null != contractProductList) {
 			//将货物列表存入
 			for (ContractProduct contractProduct : contractProductList) {
 				//报运单下的
@@ -178,6 +171,14 @@ public class ExportServiceImpl implements ExportService {
 				map.put(contractProduct.getId(), exportProduct.getId());
 			}
 		}
+
+		//找出该报运单下的附件
+		ExtCproductExample extCproductExample = new ExtCproductExample();
+		extCproductExample.createCriteria().andContractIdIn(Arrays.asList(contractIds));
+
+		extCproductExample.createCriteria().andContractIdIn(Arrays.asList(contractIds));
+
+		List<ExtCproduct> extCproductList = extCproductDao.selectByExample(extCproductExample);
 
 		if (extCproductList.size() != 0) {
 			for (ExtCproduct extCproduct : extCproductList) {
