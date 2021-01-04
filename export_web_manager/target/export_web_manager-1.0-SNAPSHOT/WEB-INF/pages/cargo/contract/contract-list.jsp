@@ -147,10 +147,9 @@
                                 <c:if test="${o.state==2}"><font color="red">已报运</font></c:if>
                             </td>
                             <td>
-                                <%--<a href="${ctx }/cargo/contract/toView.do?id=${o.id}">[查看详情]</a>--%>
-                                <a href="${ctx }/cargo/contract/toUpdate.do?id=${o.id}">[编辑]</a>
-                                <a href="${ctx }/cargo/contractProduct/list.do?contractId=${o.id}">[货物]</a>
-                                <a href="${ctx }/cargo/contractProduct/toImport.do?contractId=${o.id}">[上传货物]</a>
+                                <a ${o.state==0?'href='.concat(ctx.concat('/cargo/contract/toUpdate.do?id=').concat(o.id)):'href="javascript:void(0)" style="color: grey"'} ">[编辑]</a>
+                                <a ${o.state==0?'href='.concat(ctx.concat('/cargo/contractProduct/list.do?contractId=').concat(o.id)):'href="javascript:void(0)" style="color: grey"'} ">[货物]</a>
+                                <a ${o.state==0?'href='.concat(ctx.concat('/cargo/contractProduct/toImport.do?contractId=').concat(o.id)):'href="javascript:void(0)" style="color: grey"'} ">[上传货物]</a>
                             </td>
                         </tr>
                     </c:forEach>

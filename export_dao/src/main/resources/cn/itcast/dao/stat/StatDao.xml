@@ -4,4 +4,23 @@
     <select id="getFactoryData" resultType="map">
         SELECT factory_name name,sum(amount) value from co_contract_product where company_id = #{companyId} GROUP BY factory_id
     </select>
+
+    <select id="getSellData" resultType="map">
+        SELECT product_no name, sum(amount) value FROM co_contract_product where company_id = #{companyId} GROUP BY product_no order by cnumber desc LIMIT 5
+    </select>
+
+    <select id="getOnLineData" resultType="map">
+       select
+	        A1 name, count(DATE_FORMAT(log.time,'%H')) value
+        from
+	        st_online_info info
+        left join
+	        st_sys_log log
+        on
+	        info.A1 = DATE_FORMAT(log.time,'%H')
+        and
+	        log.company_id = '1'
+        GROUP BY
+	        name
+    </select>
 </mapper>

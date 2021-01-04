@@ -35,32 +35,35 @@
 <script src="../../plugins/echarts/echarts.min.js"></script>
 <script type="text/javascript">
     // 基于准备好的dom，初始化echarts实例
-    var myChart = echarts.init(document.getElementById('main'));
+    let myChart = echarts.init(document.getElementById('main'));
 
     $.get('/stat/sellCharts.do').done(function (data) {
+
+        let dataName = [];
+        let  dataValue = [];
+        for (let i = 0; i < data.length; i++){
+            dataName[i] = data[i].name;
+            dataValue[i] = data[i].value;
+        }
+
         // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(
-            option = {
-                title: {
-                    left: 'center',
-                    text: '产品销量排行',
-                },
-                xAxis: {
-                    type: 'category',
-                    data: data.title,
-                    axisLabel: {
-                        rotate:70
-                    }
-                },
-                yAxis: {
-                    type: 'value'
-                },
-                series: [{
-                    data: data.value,
-                    type: 'bar'
-                }]
-            }
-        )
+       myChart.setOption({
+           xAxis: {
+               type: 'category',
+               data: dataName,
+           },
+           yAxis: {
+               type: 'value'
+           },
+           series: [{
+               data: dataValue,
+               type: 'bar',
+               showBackground: true,
+               backgroundStyle: {
+                   color: 'rgba(220, 220, 220, 0.8)'
+               }
+           }]
+       })
     });
 </script>
 

@@ -34,9 +34,33 @@ public class StatController extends BaseController {
 		return "stat/stat-" +chartsType;
 	}
 
+	/**
+	 * 工厂饼状图
+	 * @return
+	 */
 	@RequestMapping("/factoryCharts")
 	@ResponseBody
 	public List<Map<String, Object>> factoryCharts(){
 		return statService.getFactoryData(getLoginCompanyId());
+	}
+
+	/**
+	 * 货物柱状图
+	 * @return
+	 */
+	@RequestMapping("/sellCharts")
+	@ResponseBody
+	public List<Map<String, Object>> sellCharts(){
+		return statService.getSellData(getLoginCompanyId());
+	}
+
+	/**
+	 * 压力测试图
+	 * @return
+	 */
+	@RequestMapping("/onlineCharts")
+	@ResponseBody
+	public List<Map<String, Object>> onlineCharts(){
+		return statService.getOnLineData(getLoginCompanyId());
 	}
 }

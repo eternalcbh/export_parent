@@ -163,7 +163,7 @@ public class ExportController extends BaseController {
 		BeanUtils.copyProperties(export,exportVo);
 
 		//补全id
-//		exportVo.setExportId(export.getId());
+		exportVo.setExportId(export.getId());
 
 		//遍历set集合
 		if (null != exportProductList){
@@ -173,9 +173,9 @@ public class ExportController extends BaseController {
 				BeanUtils.copyProperties(exportProduct,exportProductVo);
 
 				//补全id
-//				exportProductVo.setExportId(export.getId());
+				exportProductVo.setExportId(export.getId());
 
-//				exportProductVo.setExportProductId(exportProduct.getExportId());
+				exportProductVo.setExportProductId(exportProduct.getExportId());
 
 				exportVo.getProducts().add(exportProductVo);
 			}

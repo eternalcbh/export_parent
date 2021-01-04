@@ -22,12 +22,31 @@ public class StatServiceImpl implements StatService {
 	private StatDao statDao;
 	/**
 	 * 获取商家销售数据
-	 *
 	 * @param companyId
 	 * @return
 	 */
 	@Override
 	public List<Map<String, Object>> getFactoryData(String companyId) {
 		return statDao.getFactoryData(companyId);
+	}
+
+	/**
+	 * 获取销售货品额
+	 * @param companyId
+	 * @return
+	 */
+	@Override
+	public List<Map<String, Object>> getSellData(String companyId) {
+		return statDao.getSellData(companyId);
+	}
+
+	/**
+	 * 访问压力图
+	 * @param companyId
+	 * @return
+	 */
+	@Override
+	public List<Map<String, Object>> getOnLineData(String companyId) {
+		return statDao.getOnLineData(companyId);
 	}
 }

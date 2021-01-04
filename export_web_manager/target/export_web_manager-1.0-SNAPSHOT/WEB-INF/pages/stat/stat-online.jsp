@@ -39,23 +39,30 @@
     var myChart = echarts.init(document.getElementById('main'));
     // 指定图表的配置项和数据
     $.get('/stat/onlineCharts.do').done(function (data) {
+
+        let arrayTime = [];
+        let arrayNumber = [];
+
+        for (let i = 0; i < data.length; i++) {
+            arrayTime[i] = data[i].name;
+            arrayNumber[i] = data[i].value;
+        }
+
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(
             {
-                title: {
-                    left: 'center',
-                    text: '在线人数折线图',
-                },
                 xAxis: {
                     type: 'category',
-                    data: data.title
+                    boundaryGap: false,
+                    data: arrayTime
                 },
                 yAxis: {
                     type: 'value'
                 },
                 series: [{
-                    data: data.value,
-                    type: 'line'
+                    data: arrayNumber,
+                    type: 'line',
+                    areaStyle: {}
                 }]
             }
         )

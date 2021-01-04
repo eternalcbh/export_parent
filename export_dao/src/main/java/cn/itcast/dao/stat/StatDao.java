@@ -17,4 +17,18 @@ public interface StatDao {
 	 * @return
 	 */
 	List<Map<String, Object>> getFactoryData(String companyId);
+
+	/**
+	 * 获取销售货品额
+	 * @param companyId
+	 * @return
+	 */
+	List<Map<String, Object>> getSellData(String companyId);
+
+	/**
+	 * 访问压力图
+	 * @param companyId
+	 * @return
+	 */
+	List<Map<String, Object>> getOnLineData(String companyId);
 }
