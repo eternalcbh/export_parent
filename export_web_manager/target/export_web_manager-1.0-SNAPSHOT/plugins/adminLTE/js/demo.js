@@ -75,7 +75,7 @@
       + "<input type='checkbox' data-layout='sidebar-collapse' class='pull-right'/> "
       + "Toggle Sidebar"
       + "</label>"
-      + "<p>Toggle the left sidebar's state (open or collapse)</p>"
+      + "<p>Toggle the left sidebar's stat (open or collapse)</p>"
       + "</div>"
         //Sidebar mini expand on hover toggle
       + "<div class='form-group'>"

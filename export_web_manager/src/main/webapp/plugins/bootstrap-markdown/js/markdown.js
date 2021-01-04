@@ -1019,7 +1019,7 @@ function strong_em( tag, md ) {
         return [ consumed, [ tag ].concat(res) ];
       }
       else {
-        // Restore the state of the other kind. We might have mistakenly closed it.
+        // Restore the stat of the other kind. We might have mistakenly closed it.
         this[other_slot] = other;
         this[state_slot] = state;
 

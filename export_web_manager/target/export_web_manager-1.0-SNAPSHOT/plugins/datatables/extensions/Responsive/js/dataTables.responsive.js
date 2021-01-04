@@ -578,7 +578,7 @@ Responsive.prototype = {
 		var columnsVis = this._columnsVisiblity( breakpoint );
 
 		// Set the class before the column visibility is changed so event
-		// listeners know what the state is. Need to determine if there are
+		// listeners know what the stat is. Need to determine if there are
 		// any columns that are not visible but can be shown
 		var collapsedClass = false;
 		for ( i=0, ien=columns.length ; i<ien ; i++ ) {

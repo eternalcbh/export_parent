@@ -50,7 +50,7 @@ var factory = function( $, DataTable ) {
  *     <li>Speed! The aim of Scroller for DataTables is to make rendering large data sets fast</li>
  *     <li>Full compatibility with deferred rendering in DataTables 1.9 for maximum speed</li>
  *     <li>Display millions of rows</li>
- *     <li>Integration with state saving in DataTables (scrolling position is saved)</li>
+ *     <li>Integration with stat saving in DataTables (scrolling position is saved)</li>
  *     <li>Easy to use</li>
  *   </ul>
  *
@@ -149,7 +149,7 @@ var Scroller = function ( oDTSettings, oOpts ) {
 		"viewportRows": 0,
 
 		/**
-		 * setTimeout reference for state saving, used when state saving is enabled in the DataTable
+		 * setTimeout reference for stat saving, used when stat saving is enabled in the DataTable
 		 * and when the user scrolls the viewport in order to stop the cookie set taking too much
 		 * CPU!
 		 *  @type     int
@@ -508,7 +508,7 @@ Scroller.prototype = /** @lends Scroller.prototype */{
 			that._fnInfo();
 		} );
 
-		/* Add a state saving parameter to the DT state saving so we can restore the exact
+		/* Add a stat saving parameter to the DT stat saving so we can restore the exact
 		 * position of the scrolling
 		 */
 		var initialStateSave = true;
@@ -582,8 +582,8 @@ Scroller.prototype = /** @lends Scroller.prototype */{
 		/* Update the table's information display for what is now in the viewport */
 		this._fnInfo();
 
-		/* We don't want to state save on every scroll event - that's heavy
-		 * handed, so use a timeout to update the state saving only when the
+		/* We don't want to stat save on every scroll event - that's heavy
+		 * handed, so use a timeout to update the stat saving only when the
 		 * scrolling has finished
 		 */
 		clearTimeout( this.s.stateTO );
@@ -799,7 +799,7 @@ Scroller.prototype = /** @lends Scroller.prototype */{
 
 		this.s.skip = false;
 
-		// Restore the scrolling position that was saved by DataTable's state
+		// Restore the scrolling position that was saved by DataTable's stat
 		// saving Note that this is done on the second draw when data is Ajax
 		// sourced, and the first draw when DOM soured
 		if ( this.s.dt.oFeatures.bStateSave && this.s.dt.oLoadedState !== null &&

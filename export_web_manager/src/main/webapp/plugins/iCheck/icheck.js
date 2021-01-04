@@ -199,7 +199,7 @@
                 }
                 operate(self, false, true);
 
-              // Hover state
+              // Hover stat
               } else if (labelHover) {
 
                 // mouseout|touchend
@@ -331,7 +331,7 @@
       if (!direct) {
         input[_callback]('ifClicked');
       }
-        // Toggle checked state
+        // Toggle checked stat
       if (active) {
         if (node[_type] !== _radio) {
           off(input, state);
@@ -341,7 +341,7 @@
       }
     }
   }
-    // Add checked, disabled or indeterminate state
+    // Add checked, disabled or indeterminate stat
   function on(input, state, keep) {
     var node = input[0],
       parent = input.parent(),
@@ -368,24 +368,24 @@
           }
         });
       }
-        // Indeterminate state
+        // Indeterminate stat
       if (indeterminate) {
 
-        // Add indeterminate state
+        // Add indeterminate stat
         node[state] = true;
 
-        // Remove checked state
+        // Remove checked stat
         if (node[_checked]) {
           off(input, _checked, 'force');
         }
-          // Checked or disabled state
+          // Checked or disabled stat
       } else {
 
-        // Add checked or disabled state
+        // Add checked or disabled stat
         if (!keep) {
           node[state] = true;
         }
-          // Remove indeterminate state
+          // Remove indeterminate stat
         if (checked && node[_indeterminate]) {
           off(input, _indeterminate, false);
         }
@@ -397,16 +397,16 @@
     if (node[_disabled] && !!option(input, _cursor, true)) {
       parent.find('.' + _iCheckHelper).css(_cursor, 'default');
     }
-      // Add state class
+      // Add stat class
     parent[_add](specific || option(input, state) || '');
 
     // Set ARIA attribute
     disabled ? parent.attr('aria-disabled', 'true') : parent.attr('aria-checked', indeterminate ? 'mixed' : 'true');
 
-    // Remove regular state class
+    // Remove regular stat class
     parent[_remove](regular || option(input, callback) || '');
   }
-    // Remove checked, disabled or indeterminate state
+    // Remove checked, disabled or indeterminate stat
   function off(input, state, keep) {
     var node = input[0],
       parent = input.parent(),
@@ -420,7 +420,7 @@
     // Prevent unnecessary actions
     if (node[state] !== false) {
 
-      // Toggle state
+      // Toggle stat
       if (indeterminate || !keep || keep == 'force') {
         node[state] = false;
       }
@@ -431,13 +431,13 @@
     if (!node[_disabled] && !!option(input, _cursor, true)) {
       parent.find('.' + _iCheckHelper).css(_cursor, 'pointer');
     }
-      // Remove state class
+      // Remove stat class
     parent[_remove](specific || option(input, state) || '');
 
     // Set ARIA attribute
     disabled ? parent.attr('aria-disabled', 'false') : parent.attr('aria-checked', 'false');
 
-    // Add regular state class
+    // Add regular stat class
     parent[_add](regular || option(input, callback) || '');
   }
     // Remove all traces

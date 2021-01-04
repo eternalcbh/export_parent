@@ -10251,12 +10251,12 @@ wysihtml5.Commands = Base.extend(
    * @param {String} [commandValue] The command value parameter (eg. for "insertImage" the image src)
    * @return {Boolean} Whether the command is active
    * @example
-   *    var isCurrentSelectionBold = commands.state("bold");
+   *    var isCurrentSelectionBold = commands.stat("bold");
    */
   state: function(command, commandValue) {
     var obj     = wysihtml5.commands[command],
         args    = wysihtml5.lang.array(arguments).get(),
-        method  = obj && obj.state;
+        method  = obj && cn.itcast.service.stat;
     if (method) {
       args.unshift(this.composer);
       return method.apply(obj, args);
@@ -10270,7 +10270,7 @@ wysihtml5.Commands = Base.extend(
     }
   },
 
-  /* Get command state parsed value if command has stateValue parsing function */
+  /* Get command stat parsed value if command has stateValue parsing function */
   stateValue: function(command) {
     var obj     = wysihtml5.commands[command],
         args    = wysihtml5.lang.array(arguments).get(),
@@ -10975,8 +10975,8 @@ wysihtml5.commands.formatCode = {
       }
     },
 
-    // Executes so that if collapsed caret is in a state and executing that state it should unformat that state
-    // It is achieved by selecting the entire state element before executing.
+    // Executes so that if collapsed caret is in a stat and executing that stat it should unformat that stat
+    // It is achieved by selecting the entire stat element before executing.
     // This works on built in contenteditable inline format commands
     execWithToggle: function(composer, command, tagName, className, classRegExp, cssStyle, styleRegExp) {
       var that = this;
@@ -12844,7 +12844,7 @@ wysihtml5.views.View = Base.extend(
     dom.observe(focusBlurElement, "focus", function(event) {
       that.parent.fire("focus", event).fire("focus:composer", event);
 
-      // Delay storing of state until all focus handler are fired
+      // Delay storing of stat until all focus handler are fired
       // especially the one which resets the placeholder
       setTimeout(function() { state = that.getValue(false, false); }, 0);
     });
@@ -13062,7 +13062,7 @@ wysihtml5.views.View = Base.extend(
     },
 
     /**
-     * Invoke syncing based on view state
+     * Invoke syncing based on view stat
      * @param {Boolean} shouldParseHtml Whether the html should be sanitized before inserting it into the composer/textarea
      */
     sync: function(shouldParseHtml) {
@@ -13094,7 +13094,7 @@ wysihtml5.views.View = Base.extend(
 
       if (form) {
         // If the textarea is in a form make sure that after onreset and onsubmit the composer
-        // has the correct state
+        // has the correct stat
         wysihtml5.dom.observe(form, "submit", function() {
           that.sync(true);
         });
@@ -13855,7 +13855,7 @@ wysihtml5.views.View = Base.extend(
       var commandObj = this.commandMapping[command + ":" + commandValue];
 
       // Show dialog when available
-      if (commandObj && commandObj.dialog && !commandObj.state) {
+      if (commandObj && commandObj.dialog && !cn.itcast.service.stat) {
         commandObj.dialog.show();
       } else {
         this._execCommand(command, commandValue);
@@ -13998,9 +13998,9 @@ wysihtml5.views.View = Base.extend(
             if (typeof(state) === "object" || wysihtml5.lang.object(state).isArray()) {
 
               if (!command.dialog.multiselect && wysihtml5.lang.object(state).isArray()) {
-                // Grab first and only object/element in state array, otherwise convert state into boolean
+                // Grab first and only object/element in stat array, otherwise convert stat into boolean
                 // to avoid showing a dialog for multiple selected elements which may have different attributes
-                // eg. when two links with different href are selected, the state will be an array consisting of both link elements
+                // eg. when two links with different href are selected, the stat will be an array consisting of both link elements
                 // but the dialog interface can only update one
                 state = state.length === 1 ? state[0] : true;
                 command.state = state;
@@ -14759,7 +14759,7 @@ function program17(depth0,data) {
           command  = shortcuts[keyCode];
           if ((event.ctrlKey || event.metaKey || event.altKey) && command && wysihtml5.commands[command]) {
             var commandObj = editor.toolbar.commandMapping[command + ':null'];
-            if (commandObj && commandObj.dialog && !commandObj.state) {
+            if (commandObj && commandObj.dialog && !cn.itcast.service.stat) {
               commandObj.dialog.show();
             } else {
               wysihtml5.commands[command].exec(editor.composer, command);

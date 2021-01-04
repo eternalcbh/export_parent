@@ -5097,7 +5097,7 @@ S2.define('select2/core',[
     this._registerResultsEvents();
     this._registerEvents();
 
-    // Set the initial state
+    // Set the initial stat
     this.dataAdapter.current(function (initialData) {
       self.trigger('selection:update', {
         data: initialData

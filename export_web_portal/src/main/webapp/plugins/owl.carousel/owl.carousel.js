@@ -130,7 +130,7 @@
 		this._pipe = [];
 
 		/**
-		 * Current state information for the drag operation.
+		 * Current stat information for the drag operation.
 		 * @todo #261
 		 * @protected
 		 */
@@ -146,7 +146,7 @@
 		};
 
 		/**
-		 * Current state information and their tags.
+		 * Current stat information and their tags.
 		 * @type {Object}
 		 * @protected
 		 */
@@ -254,7 +254,7 @@
 	 */
 	Owl.Type = {
 		Event: 'event',
-		State: 'state'
+		State: 'stat'
 	};
 
 	/**
@@ -964,8 +964,8 @@
 	};
 
 	/**
-	 * Checks whether the carousel is in a specific state or not.
-	 * @param {String} state - The state to check.
+	 * Checks whether the carousel is in a specific stat or not.
+	 * @param {String} state - The stat to check.
 	 * @returns {Boolean} - The flag which indicates if the carousel is busy.
 	 */
 	Owl.prototype.is = function(state) {
@@ -1545,8 +1545,8 @@
 	 * @param {String} name - The event name.
 	 * @param {*} [data=null] - The event data.
 	 * @param {String} [namespace=carousel] - The event namespace.
-	 * @param {String} [state] - The state which is associated with the event.
-	 * @param {Boolean} [enter=false] - Indicates if the call enters the specified state or not.
+	 * @param {String} [state] - The stat which is associated with the event.
+	 * @param {Boolean} [enter=false] - Indicates if the call enters the specified stat or not.
 	 * @returns {Event} - The event arguments.
 	 */
 	Owl.prototype.trigger = function(name, data, namespace, state, enter) {
@@ -1579,8 +1579,8 @@
 	};
 
 	/**
-	 * Enters a state.
-	 * @param name - The state name.
+	 * Enters a stat.
+	 * @param name - The stat name.
 	 */
 	Owl.prototype.enter = function(name) {
 		$.each([ name ].concat(this._states.tags[name] || []), $.proxy(function(i, name) {
@@ -1593,8 +1593,8 @@
 	};
 
 	/**
-	 * Leaves a state.
-	 * @param name - The state name.
+	 * Leaves a stat.
+	 * @param name - The stat name.
 	 */
 	Owl.prototype.leave = function(name) {
 		$.each([ name ].concat(this._states.tags[name] || []), $.proxy(function(i, name) {
@@ -1603,9 +1603,9 @@
 	};
 
 	/**
-	 * Registers an event or state.
+	 * Registers an event or stat.
 	 * @public
-	 * @param {Object} object - The event or state to register.
+	 * @param {Object} object - The event or stat to register.
 	 */
 	Owl.prototype.register = function(object) {
 		if (object.type === Owl.Type.Event) {
@@ -2194,7 +2194,7 @@
 		this._handlers = {
 			'initialized.owl.carousel': $.proxy(function(e) {
 				if (e.namespace) {
-					this._core.register({ type: 'state', name: 'playing', tags: [ 'interacting' ] });
+					this._core.register({ type: 'stat', name: 'playing', tags: [ 'interacting' ] });
 				}
 			}, this),
 			'resize.owl.carousel': $.proxy(function(e) {
@@ -2630,9 +2630,9 @@
 		this._call = null;
 
 		/**
-		 * Depending on the state of the plugin, this variable contains either
+		 * Depending on the stat of the plugin, this variable contains either
 		 * the start time of the timer or the current timer value if it's
-		 * paused. Since we start in a paused state we initialize the timer
+		 * paused. Since we start in a paused stat we initialize the timer
 		 * value.
 		 * @type {Number}
 		 */
@@ -3077,7 +3077,7 @@
 	};
 
 	/**
-	 * Updates the internal state.
+	 * Updates the internal stat.
 	 * @protected
 	 */
 	Navigation.prototype.update = function() {

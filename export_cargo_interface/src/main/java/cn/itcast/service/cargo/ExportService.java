@@ -2,6 +2,7 @@ package cn.itcast.service.cargo;
 
 import cn.itcast.domain.cargo.Export;
 import cn.itcast.domain.cargo.ExportExample;
+import cn.itcast.domain.vo.ExportResult;
 import com.github.pagehelper.PageInfo;
 
 /**
@@ -45,4 +46,10 @@ public interface ExportService {
 	 * @return
 	 */
 	PageInfo<Export> findByPage(ExportExample exportExample,int pageNum, int pageSize);
+
+	/**
+	 * 根据海关返回的信息修改
+	 * @param exportResult
+	 */
+	void updateState(ExportResult exportResult);
 }

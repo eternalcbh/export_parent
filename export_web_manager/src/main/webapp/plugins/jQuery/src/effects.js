@@ -463,7 +463,7 @@ jQuery.speed = function( speed, easing, fn ) {
 		easing: fn && easing || easing && !jQuery.isFunction( easing ) && easing
 	};
 
-	// Go to the end state if fx are off
+	// Go to the end stat if fx are off
 	if ( jQuery.fx.off ) {
 		opt.duration = 0;
 

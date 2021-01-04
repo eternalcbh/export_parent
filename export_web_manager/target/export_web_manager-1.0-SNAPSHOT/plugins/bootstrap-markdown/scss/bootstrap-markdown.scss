@@ -57,7 +57,7 @@ $input-border-focus: #66afe9;
     }
   }
 
-  // Hover state
+  // Hover stat
   $color: $input-border-focus;
   $color-rgba: rgba(red($color), green($color), blue($color), .6);
   &.active {

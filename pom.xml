@@ -20,6 +20,7 @@
         <module>mybatis_generate</module>
         <module>export_cargo_service</module>
         <module>export_cargo_interface</module>
+        <module>export_stat_service</module>
     </modules>
 
 

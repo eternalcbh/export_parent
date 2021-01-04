@@ -2,6 +2,8 @@ package cn.itcast.domain.system;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @author cbh
  * @PackageName:cn.itcast.domain.company
@@ -10,7 +12,7 @@ import lombok.Data;
  * @date 2020-12-21 19:52
  */
 @Data
-public class Module {
+public class Module implements Serializable {
 	private String id;
 	/**
 	 * 父模块id

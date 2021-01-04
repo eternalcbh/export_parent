@@ -128,7 +128,7 @@ Licensed under the MIT license.
 		// size of its element, to take advantage of the fact that retina
 		// displays have that many more pixels in the same advertised space.
 
-		// Resizing should reset the state (excanvas seems to be buggy though)
+		// Resizing should reset the stat (excanvas seems to be buggy though)
 
 		if (this.width != width) {
 			element.width = width * pixelRatio;
@@ -143,8 +143,8 @@ Licensed under the MIT license.
 		}
 
 		// Save the context, so we can reset in case we get replotted.  The
-		// restore ensure that we're really back at the initial state, and
-		// should be safe even if we haven't saved the initial state yet.
+		// restore ensure that we're really back at the initial stat, and
+		// should be safe even if we haven't saved the initial stat yet.
 
 		context.restore();
 		context.save();

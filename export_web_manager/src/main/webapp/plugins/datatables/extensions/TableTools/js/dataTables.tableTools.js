@@ -2654,7 +2654,7 @@ TableTools.prototype = {
 				var sDisplay = $(nChildren[i]).css("display");
 				if ( sDisplay != "none" )
 				{
-					/* Cache the node and it's previous state so we can restore it */
+					/* Cache the node and it's previous stat so we can restore it */
 					anHidden.push( {
 						"node": nChildren[i],
 						"display": sDisplay
@@ -3067,7 +3067,7 @@ TableTools.classes = {
 TableTools.classes_themeroller = {
 	"container": "DTTT_container ui-buttonset ui-buttonset-multi",
 	"buttons": {
-		"normal": "DTTT_button ui-button ui-state-default"
+		"normal": "DTTT_button ui-button ui-stat-default"
 	},
 	"collection": {
 		"container": "DTTT_collection ui-buttonset ui-buttonset-multi"

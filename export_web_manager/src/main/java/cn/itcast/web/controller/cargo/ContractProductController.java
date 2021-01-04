@@ -101,7 +101,7 @@ public class ContractProductController extends BaseController {
 
 		if (null != productPhoto) {
 			String imgUrl = uploadFileUtil.upload(productPhoto);
-			contractProduct.setProductImage(imgUrl);
+			contractProduct.setProductImage("http://" + imgUrl);
 		}
 
 		if (StringUtils.isEmpty(contractProduct.getId())) {

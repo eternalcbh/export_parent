@@ -1117,62 +1117,62 @@ public class ExportExample {
         }
 
         public Criteria andStateIsNull() {
-            addCriterion("state is null");
+            addCriterion("stat is null");
             return (Criteria) this;
         }
 
         public Criteria andStateIsNotNull() {
-            addCriterion("state is not null");
+            addCriterion("stat is not null");
             return (Criteria) this;
         }
 
         public Criteria andStateEqualTo(Long value) {
-            addCriterion("state =", value, "state");
+            addCriterion("stat =", value, "stat");
             return (Criteria) this;
         }
 
         public Criteria andStateNotEqualTo(Long value) {
-            addCriterion("state <>", value, "state");
+            addCriterion("stat <>", value, "stat");
             return (Criteria) this;
         }
 
         public Criteria andStateGreaterThan(Long value) {
-            addCriterion("state >", value, "state");
+            addCriterion("stat >", value, "stat");
             return (Criteria) this;
         }
 
         public Criteria andStateGreaterThanOrEqualTo(Long value) {
-            addCriterion("state >=", value, "state");
+            addCriterion("stat >=", value, "stat");
             return (Criteria) this;
         }
 
         public Criteria andStateLessThan(Long value) {
-            addCriterion("state <", value, "state");
+            addCriterion("stat <", value, "stat");
             return (Criteria) this;
         }
 
         public Criteria andStateLessThanOrEqualTo(Long value) {
-            addCriterion("state <=", value, "state");
+            addCriterion("stat <=", value, "stat");
             return (Criteria) this;
         }
 
         public Criteria andStateIn(List<Long> values) {
-            addCriterion("state in", values, "state");
+            addCriterion("stat in", values, "stat");
             return (Criteria) this;
         }
 
         public Criteria andStateNotIn(List<Long> values) {
-            addCriterion("state not in", values, "state");
+            addCriterion("stat not in", values, "stat");
             return (Criteria) this;
         }
 
         public Criteria andStateBetween(Long value1, Long value2) {
-            addCriterion("state between", value1, value2, "state");
+            addCriterion("stat between", value1, value2, "stat");
             return (Criteria) this;
         }
 
         public Criteria andStateNotBetween(Long value1, Long value2) {
-            addCriterion("state not between", value1, value2, "state");
+            addCriterion("stat not between", value1, value2, "stat");
             return (Criteria) this;
         }
 

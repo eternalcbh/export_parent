@@ -2,6 +2,8 @@ package cn.itcast.service.cargo.impl;
 
 import cn.itcast.dao.cargo.*;
 import cn.itcast.domain.cargo.*;
+import cn.itcast.domain.vo.ExportProductResult;
+import cn.itcast.domain.vo.ExportResult;
 import cn.itcast.service.cargo.ExportService;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.PageHelper;
@@ -229,5 +231,36 @@ public class ExportServiceImpl implements ExportService {
 		List<Export> exportList = exportDao.selectByExample(exportExample);
 
 		return new PageInfo<>(exportList);
+	}
+
+	/**
+	 * 根据海关返回的信息修改
+	 *
+	 * @param exportResult
+	 */
+	@Override
+	public void updateState(ExportResult exportResult) {
+		//1.根据海关返回结果找到报运单
+		Export export = exportDao.selectByPrimaryKey(exportResult.getExportId());
+
+		//2.更新报运单状态
+		export.setState(exportResult.getState());
+		exportDao.updateByPrimaryKeySelective(export);
+
+		//3.更新商品的税
+		Set<ExportProductResult> products = exportResult.getProducts();
+
+		if (null != products){
+			for (ExportProductResult product : products) {
+				//找到对应的报运商品
+				ExportProduct exportProduct = exportProductDao.selectByPrimaryKey(product.getExportProductId());
+
+				//修改税
+				exportProduct.setTax(product.getTax());
+
+				//修改商品值
+				exportProductDao.updateByPrimaryKeySelective(exportProduct);
+			}
+		}
 	}
 }

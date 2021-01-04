@@ -808,9 +808,9 @@ FixedColumns.prototype = /** @lends FixedColumns.prototype */{
 
 
 	/**
-	 * Get information about the DataTable's scrolling state - specifically if the table is scrolling
+	 * Get information about the DataTable's scrolling stat - specifically if the table is scrolling
 	 * on either the x or y axis, and also the scrollbar width.
-	 *  @returns {object} Information about the DataTables scrolling state with the properties:
+	 *  @returns {object} Information about the DataTables scrolling stat with the properties:
 	 *    'x', 'y' and 'bar'
 	 *  @private
 	 */

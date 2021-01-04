@@ -95,7 +95,7 @@ public class ExtCproductController extends BaseController {
 		//七牛云上传
 		if (null != productPhoto){
 			String url = fileUtil.upload(productPhoto);
-			extCproduct.setProductImage(url);
+			extCproduct.setProductImage("http://" + url);
 		}
 
 		if (StringUtils.isEmpty(extCproduct.getId())){

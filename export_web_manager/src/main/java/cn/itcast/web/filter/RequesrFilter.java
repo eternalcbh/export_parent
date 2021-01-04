@@ -76,8 +76,8 @@ public class RequesrFilter implements Filter {
 	 * doFilter method again on this instance of the filter. <br><br>
 	 * <p>
 	 * This method gives the filter an opportunity to clean up any resources that are being held (for
-	 * example, memory, file handles, threads) and make sure that any persistent state is synchronized
-	 * with the filter's current state in memory.
+	 * example, memory, file handles, threads) and make sure that any persistent stat is synchronized
+	 * with the filter's current stat in memory.
 	 */
 	@Override
 	public void destroy() {

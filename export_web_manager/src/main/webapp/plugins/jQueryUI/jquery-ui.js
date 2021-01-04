@@ -610,8 +610,8 @@ $.Widget.prototype = {
 
 		// clean up events and states
 		this.bindings.unbind( this.eventNamespace );
-		this.hoverable.removeClass( "ui-state-hover" );
-		this.focusable.removeClass( "ui-state-focus" );
+		this.hoverable.removeClass( "ui-stat-hover" );
+		this.focusable.removeClass( "ui-stat-focus" );
 	},
 	_destroy: $.noop,
 
@@ -676,8 +676,8 @@ $.Widget.prototype = {
 
 			// If the widget is becoming disabled, then nothing is interactive
 			if ( value ) {
-				this.hoverable.removeClass( "ui-state-hover" );
-				this.focusable.removeClass( "ui-state-focus" );
+				this.hoverable.removeClass( "ui-stat-hover" );
+				this.focusable.removeClass( "ui-stat-focus" );
 			}
 		}
 
@@ -719,7 +719,7 @@ $.Widget.prototype = {
 				// - disabled class as method for disabling individual parts
 				if ( !suppressDisabledCheck &&
 						( instance.options.disabled === true ||
-							$( this ).hasClass( "ui-state-disabled" ) ) ) {
+							$( this ).hasClass( "ui-stat-disabled" ) ) ) {
 					return;
 				}
 				return ( typeof handler === "string" ? instance[ handler ] : handler )
@@ -779,10 +779,10 @@ $.Widget.prototype = {
 		this.focusable = this.focusable.add( element );
 		this._on( element, {
 			focusin: function( event ) {
-				$( event.currentTarget ).addClass( "ui-state-focus" );
+				$( event.currentTarget ).addClass( "ui-stat-focus" );
 			},
 			focusout: function( event ) {
-				$( event.currentTarget ).removeClass( "ui-state-focus" );
+				$( event.currentTarget ).removeClass( "ui-stat-focus" );
 			}
 		});
 	},
@@ -1653,8 +1653,8 @@ var accordion = $.widget( "ui.accordion", {
 
 		// clean up headers
 		this.headers
-			.removeClass( "ui-accordion-header ui-accordion-header-active ui-state-default " +
-				"ui-corner-all ui-state-active ui-state-disabled ui-corner-top" )
+			.removeClass( "ui-accordion-header ui-accordion-header-active ui-stat-default " +
+				"ui-corner-all ui-stat-active ui-stat-disabled ui-corner-top" )
 			.removeAttr( "role" )
 			.removeAttr( "aria-expanded" )
 			.removeAttr( "aria-selected" )
@@ -1667,7 +1667,7 @@ var accordion = $.widget( "ui.accordion", {
 		// clean up content panels
 		contents = this.headers.next()
 			.removeClass( "ui-helper-reset ui-widget-content ui-corner-bottom " +
-				"ui-accordion-content ui-accordion-content-active ui-state-disabled" )
+				"ui-accordion-content ui-accordion-content-active ui-stat-disabled" )
 			.css( "display", "" )
 			.removeAttr( "role" )
 			.removeAttr( "aria-hidden" )
@@ -1800,7 +1800,7 @@ var accordion = $.widget( "ui.accordion", {
 			prevPanels = this.panels;
 
 		this.headers = this.element.find( this.options.header )
-			.addClass( "ui-accordion-header ui-state-default ui-corner-all" );
+			.addClass( "ui-accordion-header ui-stat-default ui-corner-all" );
 
 		this.panels = this.headers.next()
 			.addClass( "ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom" )
@@ -1821,7 +1821,7 @@ var accordion = $.widget( "ui.accordion", {
 			parent = this.element.parent();
 
 		this.active = this._findActive( options.active )
-			.addClass( "ui-accordion-header-active ui-state-active ui-corner-top" )
+			.addClass( "ui-accordion-header-active ui-stat-active ui-corner-top" )
 			.removeClass( "ui-corner-all" );
 		this.active.next()
 			.addClass( "ui-accordion-content-active" )
@@ -1977,7 +1977,7 @@ var accordion = $.widget( "ui.accordion", {
 
 		// switch classes
 		// corner classes on the previously active header stay after the animation
-		active.removeClass( "ui-accordion-header-active ui-state-active" );
+		active.removeClass( "ui-accordion-header-active ui-stat-active" );
 		if ( options.icons ) {
 			active.children( ".ui-accordion-header-icon" )
 				.removeClass( options.icons.activeHeader )
@@ -1987,7 +1987,7 @@ var accordion = $.widget( "ui.accordion", {
 		if ( !clickedIsActive ) {
 			clicked
 				.removeClass( "ui-corner-all" )
-				.addClass( "ui-accordion-header-active ui-state-active ui-corner-top" );
+				.addClass( "ui-accordion-header-active ui-stat-active ui-corner-top" );
 			if ( options.icons ) {
 				clicked.children( ".ui-accordion-header-icon" )
 					.removeClass( options.icons.header )
@@ -2025,7 +2025,7 @@ var accordion = $.widget( "ui.accordion", {
 			"aria-expanded": "false"
 		});
 		// if we're switching panels, remove the old header from the tab order
-		// if we're opening from collapsed state, remove the previous header from the tab order
+		// if we're opening from collapsed stat, remove the previous header from the tab order
 		// if we're collapsing, then keep the collapsing header in the tab order
 		if ( toShow.length && toHide.length ) {
 			toHide.prev().attr({
@@ -2220,9 +2220,9 @@ var menu = $.widget( "ui.menu", {
 					return;
 				}
 				var target = $( event.currentTarget );
-				// Remove ui-state-active class from siblings of the newly focused menu item
+				// Remove ui-stat-active class from siblings of the newly focused menu item
 				// to avoid a jump caused by adjacent elements both having a class with a border
-				target.siblings( ".ui-state-active" ).removeClass( "ui-state-active" );
+				target.siblings( ".ui-stat-active" ).removeClass( "ui-stat-active" );
 				this.focus( event, target );
 			},
 			mouseleave: "collapseAll",
@@ -2282,7 +2282,7 @@ var menu = $.widget( "ui.menu", {
 			.removeAttr( "role" )
 			.removeAttr( "aria-disabled" )
 			.removeUniqueId()
-			.removeClass( "ui-state-hover" )
+			.removeClass( "ui-stat-hover" )
 			.removeAttr( "tabIndex" )
 			.removeAttr( "role" )
 			.removeAttr( "aria-haspopup" )
@@ -2474,7 +2474,7 @@ var menu = $.widget( "ui.menu", {
 		this._scrollIntoView( item );
 
 		this.active = item.first();
-		focused = this.active.addClass( "ui-state-focus" ).removeClass( "ui-state-active" );
+		focused = this.active.addClass( "ui-stat-focus" ).removeClass( "ui-stat-active" );
 		// Only update aria-activedescendant if there's a role
 		// otherwise we assume focus is managed elsewhere
 		if ( this.options.role ) {
@@ -2485,7 +2485,7 @@ var menu = $.widget( "ui.menu", {
 		this.active
 			.parent()
 			.closest( ".ui-menu-item" )
-			.addClass( "ui-state-active" );
+			.addClass( "ui-stat-active" );
 
 		if ( event && event.type === "keydown" ) {
 			this._close();
@@ -2531,7 +2531,7 @@ var menu = $.widget( "ui.menu", {
 			return;
 		}
 
-		this.active.removeClass( "ui-state-focus" );
+		this.active.removeClass( "ui-stat-focus" );
 		this.active = null;
 
 		this._trigger( "blur", event, { item: this.active } );
@@ -2601,8 +2601,8 @@ var menu = $.widget( "ui.menu", {
 				.attr( "aria-hidden", "true" )
 				.attr( "aria-expanded", "false" )
 			.end()
-			.find( ".ui-state-active" ).not( ".ui-state-focus" )
-				.removeClass( "ui-state-active" );
+			.find( ".ui-stat-active" ).not( ".ui-stat-focus" )
+				.removeClass( "ui-stat-active" );
 	},
 
 	_closeOnDocumentClick: function( event ) {
@@ -3381,7 +3381,7 @@ var autocomplete = $.ui.autocomplete;
 
 
 var lastActive,
-	baseClasses = "ui-button ui-widget ui-state-default ui-corner-all",
+	baseClasses = "ui-button ui-widget ui-stat-default ui-corner-all",
 	typeClasses = "ui-button-icons-only ui-button-icon-only ui-button-text-icons ui-button-text-icon-primary ui-button-text-icon-secondary ui-button-text-only",
 	formResetHandler = function() {
 		var form = $( this );
@@ -3436,7 +3436,7 @@ $.widget( "ui.button", {
 		var that = this,
 			options = this.options,
 			toggleButton = this.type === "checkbox" || this.type === "radio",
-			activeClass = !toggleButton ? "ui-state-active" : "";
+			activeClass = !toggleButton ? "ui-stat-active" : "";
 
 		if ( options.label === null ) {
 			options.label = (this.type === "input" ? this.buttonElement.val() : this.buttonElement.html());
@@ -3469,13 +3469,13 @@ $.widget( "ui.button", {
 			});
 
 		// Can't use _focusable() because the element that receives focus
-		// and the element that gets the ui-state-focus class are different
+		// and the element that gets the ui-stat-focus class are different
 		this._on({
 			focus: function() {
-				this.buttonElement.addClass( "ui-state-focus" );
+				this.buttonElement.addClass( "ui-stat-focus" );
 			},
 			blur: function() {
-				this.buttonElement.removeClass( "ui-state-focus" );
+				this.buttonElement.removeClass( "ui-stat-focus" );
 			}
 		});
 
@@ -3505,7 +3505,7 @@ $.widget( "ui.button", {
 					.map(function() {
 						return $( this ).button( "widget" )[ 0 ];
 					})
-					.removeClass( "ui-state-active" )
+					.removeClass( "ui-stat-active" )
 					.attr( "aria-pressed", "false" );
 			});
 		} else {
@@ -3535,7 +3535,7 @@ $.widget( "ui.button", {
 					}
 				})
 				// see #8559, we bind to blur here in case the button element loses
-				// focus between keydown and keyup, it would be left in an "active" state
+				// focus between keydown and keyup, it would be left in an "active" stat
 				.bind( "keyup" + this.eventNamespace + " blur" + this.eventNamespace, function() {
 					$( this ).removeClass( "ui-state-active" );
 				});
@@ -3584,7 +3584,7 @@ $.widget( "ui.button", {
 
 			checked = this.element.is( ":checked" );
 			if ( checked ) {
-				this.buttonElement.addClass( "ui-state-active" );
+				this.buttonElement.addClass( "ui-stat-active" );
 			}
 			this.buttonElement.prop( "aria-pressed", checked );
 		} else {
@@ -3600,7 +3600,7 @@ $.widget( "ui.button", {
 		this.element
 			.removeClass( "ui-helper-hidden-accessible" );
 		this.buttonElement
-			.removeClass( baseClasses + " ui-state-active " + typeClasses )
+			.removeClass( baseClasses + " ui-stat-active " + typeClasses )
 			.removeAttr( "role" )
 			.removeAttr( "aria-pressed" )
 			.html( this.buttonElement.find(".ui-button-text").html() );
@@ -3617,9 +3617,9 @@ $.widget( "ui.button", {
 			this.element.prop( "disabled", !!value );
 			if ( value ) {
 				if ( this.type === "checkbox" || this.type === "radio" ) {
-					this.buttonElement.removeClass( "ui-state-focus" );
+					this.buttonElement.removeClass( "ui-stat-focus" );
 				} else {
-					this.buttonElement.removeClass( "ui-state-focus ui-state-active" );
+					this.buttonElement.removeClass( "ui-stat-focus ui-stat-active" );
 				}
 			}
 			return;
@@ -3649,11 +3649,11 @@ $.widget( "ui.button", {
 		} else if ( this.type === "checkbox" ) {
 			if ( this.element.is( ":checked" ) ) {
 				this.buttonElement
-					.addClass( "ui-state-active" )
+					.addClass( "ui-stat-active" )
 					.attr( "aria-pressed", "true" );
 			} else {
 				this.buttonElement
-					.removeClass( "ui-state-active" )
+					.removeClass( "ui-stat-active" )
 					.attr( "aria-pressed", "false" );
 			}
 		}
@@ -3890,7 +3890,7 @@ function Datepicker() {
 		constrainInput: true, // The input is constrained by the current date format
 		showButtonPanel: false, // True to show button panel, false to not show it
 		autoSize: false, // True to size the input for the date format, false to leave as is
-		disabled: false // The initial disabled state
+		disabled: false // The initial disabled stat
 	};
 	$.extend(this._defaults, this.regional[""]);
 	this.regional.en = $.extend( true, {}, this.regional[ "" ]);
@@ -5374,7 +5374,7 @@ $.extend(Datepicker.prototype, {
 		});
 	},
 
-	/* Generate the HTML for the current state of the date picker. */
+	/* Generate the HTML for the current stat of the date picker. */
 	_generateHTML: function(inst) {
 		var maxDraw, prevText, prev, nextText, next, currentText, gotoDate,
 			controls, buttonPanel, firstDay, showWeek, dayNames, dayNamesMin,
@@ -5427,7 +5427,7 @@ $.extend(Datepicker.prototype, {
 		prev = (this._canAdjustMonth(inst, -1, drawYear, drawMonth) ?
 			"<a class='ui-datepicker-prev ui-corner-all' data-handler='prev' data-event='click'" +
 			" title='" + prevText + "'><span class='ui-icon ui-icon-circle-triangle-" + ( isRTL ? "e" : "w") + "'>" + prevText + "</span></a>" :
-			(hideIfNoPrevNext ? "" : "<a class='ui-datepicker-prev ui-corner-all ui-state-disabled' title='"+ prevText +"'><span class='ui-icon ui-icon-circle-triangle-" + ( isRTL ? "e" : "w") + "'>" + prevText + "</span></a>"));
+			(hideIfNoPrevNext ? "" : "<a class='ui-datepicker-prev ui-corner-all ui-stat-disabled' title='"+ prevText +"'><span class='ui-icon ui-icon-circle-triangle-" + ( isRTL ? "e" : "w") + "'>" + prevText + "</span></a>"));
 
 		nextText = this._get(inst, "nextText");
 		nextText = (!navigationAsDateFormat ? nextText : this.formatDate(nextText,
@@ -5437,18 +5437,18 @@ $.extend(Datepicker.prototype, {
 		next = (this._canAdjustMonth(inst, +1, drawYear, drawMonth) ?
 			"<a class='ui-datepicker-next ui-corner-all' data-handler='next' data-event='click'" +
 			" title='" + nextText + "'><span class='ui-icon ui-icon-circle-triangle-" + ( isRTL ? "w" : "e") + "'>" + nextText + "</span></a>" :
-			(hideIfNoPrevNext ? "" : "<a class='ui-datepicker-next ui-corner-all ui-state-disabled' title='"+ nextText + "'><span class='ui-icon ui-icon-circle-triangle-" + ( isRTL ? "w" : "e") + "'>" + nextText + "</span></a>"));
+			(hideIfNoPrevNext ? "" : "<a class='ui-datepicker-next ui-corner-all ui-stat-disabled' title='"+ nextText + "'><span class='ui-icon ui-icon-circle-triangle-" + ( isRTL ? "w" : "e") + "'>" + nextText + "</span></a>"));
 
 		currentText = this._get(inst, "currentText");
 		gotoDate = (this._get(inst, "gotoCurrent") && inst.currentDay ? currentDate : today);
 		currentText = (!navigationAsDateFormat ? currentText :
 			this.formatDate(currentText, gotoDate, this._getFormatConfig(inst)));
 
-		controls = (!inst.inline ? "<button type='button' class='ui-datepicker-close ui-state-default ui-priority-primary ui-corner-all' data-handler='hide' data-event='click'>" +
+		controls = (!inst.inline ? "<button type='button' class='ui-datepicker-close ui-stat-default ui-priority-primary ui-corner-all' data-handler='hide' data-event='click'>" +
 			this._get(inst, "closeText") + "</button>" : "");
 
 		buttonPanel = (showButtonPanel) ? "<div class='ui-datepicker-buttonpane ui-widget-content'>" + (isRTL ? controls : "") +
-			(this._isInRange(inst, gotoDate) ? "<button type='button' class='ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all' data-handler='today' data-event='click'" +
+			(this._isInRange(inst, gotoDate) ? "<button type='button' class='ui-datepicker-current ui-stat-default ui-priority-secondary ui-corner-all' data-handler='today' data-event='click'" +
 			">" + currentText + "</button>" : "") + (isRTL ? "" : controls) + "</div>" : "";
 
 		firstDay = parseInt(this._get(inst, "firstDay"),10);
@@ -5532,9 +5532,9 @@ $.extend(Datepicker.prototype, {
 							((!otherMonth || showOtherMonths) && daySettings[2] ? " title='" + daySettings[2].replace(/'/g, "&#39;") + "'" : "") + // cell title
 							(unselectable ? "" : " data-handler='selectDay' data-event='click' data-month='" + printDate.getMonth() + "' data-year='" + printDate.getFullYear() + "'") + ">" + // actions
 							(otherMonth && !showOtherMonths ? "&#xa0;" : // display for other months
-							(unselectable ? "<span class='ui-state-default'>" + printDate.getDate() + "</span>" : "<a class='ui-state-default" +
-							(printDate.getTime() === today.getTime() ? " ui-state-highlight" : "") +
-							(printDate.getTime() === currentDate.getTime() ? " ui-state-active" : "") + // highlight selected day
+							(unselectable ? "<span class='ui-stat-default'>" + printDate.getDate() + "</span>" : "<a class='ui-stat-default" +
+							(printDate.getTime() === today.getTime() ? " ui-stat-highlight" : "") +
+							(printDate.getTime() === currentDate.getTime() ? " ui-stat-active" : "") + // highlight selected day
 							(otherMonth ? " ui-priority-secondary" : "") + // distinguish dates from other months
 							"' href='#'>" + printDate.getDate() + "</a>")) + "</td>"; // display selectable date
 						printDate.setDate(printDate.getDate() + 1);
@@ -10514,7 +10514,7 @@ $.fn.extend({
 				}
 			}
 
-			// If the element already has the correct final state, delegate to
+			// If the element already has the correct final stat, delegate to
 			// the core methods so the internal tracking of "olddisplay" works.
 			if ( elem.is( ":hidden" ) ? mode === "hide" : mode === "show" ) {
 				elem[ mode ]();
@@ -12252,7 +12252,7 @@ var selectmenu = $.widget( "ui.selectmenu", {
 
 		// Create button
 		this.button = $( "<span>", {
-			"class": "ui-selectmenu-button ui-widget ui-state-default ui-corner-all",
+			"class": "ui-selectmenu-button ui-widget ui-stat-default ui-corner-all",
 			tabindex: this.options.disabled ? -1 : 0,
 			id: this.ids.button,
 			role: "combobox",
@@ -12387,7 +12387,7 @@ var selectmenu = $.widget( "ui.selectmenu", {
 		this.menuInstance.focus( null, item );
 		this._setAria( item.data( "ui-selectmenu-item" ) );
 
-		// Set disabled state
+		// Set disabled stat
 		this._setOption( "disabled", this.element.prop( "disabled" ) );
 	},
 
@@ -12402,7 +12402,7 @@ var selectmenu = $.widget( "ui.selectmenu", {
 		} else {
 
 			// Menu clears focus on close, reset focus to selected item
-			this.menu.find( ".ui-state-focus" ).removeClass( "ui-state-focus" );
+			this.menu.find( ".ui-stat-focus" ).removeClass( "ui-stat-focus" );
 			this.menuInstance.focus( null, this._getSelectedItem() );
 		}
 
@@ -12495,7 +12495,7 @@ var selectmenu = $.widget( "ui.selectmenu", {
 			item = this.menuItems.eq( this.focusIndex );
 		} else {
 			item = this.menuItems.eq( this.element[ 0 ].selectedIndex );
-			filter += ":not(.ui-state-disabled)";
+			filter += ":not(.ui-stat-disabled)";
 		}
 
 		if ( direction === "first" || direction === "last" ) {
@@ -12852,8 +12852,8 @@ var slider = $.widget( "ui.slider", $.ui.mouse, {
 	_createHandles: function() {
 		var i, handleCount,
 			options = this.options,
-			existingHandles = this.element.find( ".ui-slider-handle" ).addClass( "ui-state-default ui-corner-all" ),
-			handle = "<span class='ui-slider-handle ui-state-default ui-corner-all' tabindex='0'></span>",
+			existingHandles = this.element.find( ".ui-slider-handle" ).addClass( "ui-stat-default ui-corner-all" ),
+			handle = "<span class='ui-slider-handle ui-stat-default ui-corner-all' tabindex='0'></span>",
 			handles = [];
 
 		handleCount = ( options.values && options.values.length ) || 1;
@@ -12980,7 +12980,7 @@ var slider = $.widget( "ui.slider", $.ui.mouse, {
 		this._handleIndex = index;
 
 		closestHandle
-			.addClass( "ui-state-active" )
+			.addClass( "ui-stat-active" )
 			.focus();
 
 		offset = closestHandle.offset();
@@ -12994,7 +12994,7 @@ var slider = $.widget( "ui.slider", $.ui.mouse, {
 				( parseInt( closestHandle.css("marginTop"), 10 ) || 0)
 		};
 
-		if ( !this.handles.hasClass( "ui-state-hover" ) ) {
+		if ( !this.handles.hasClass( "ui-stat-hover" ) ) {
 			this._slide( event, index, normValue );
 		}
 		this._animateOff = true;
@@ -13015,7 +13015,7 @@ var slider = $.widget( "ui.slider", $.ui.mouse, {
 	},
 
 	_mouseStop: function( event ) {
-		this.handles.removeClass( "ui-state-active" );
+		this.handles.removeClass( "ui-stat-active" );
 		this._mouseSliding = false;
 
 		this._stop( event, this._handleIndex );
@@ -14956,7 +14956,7 @@ var spinner = $.widget( "ui.spinner", {
 		},
 		"mouseup .ui-spinner-button": "_stop",
 		"mouseenter .ui-spinner-button": function( event ) {
-			// button will add ui-state-active if mouse was down while mouseleave and kept down
+			// button will add ui-stat-active if mouse was down while mouseleave and kept down
 			if ( !$( event.currentTarget ).hasClass( "ui-state-active" ) ) {
 				return;
 			}
@@ -15629,7 +15629,7 @@ var tabs = $.widget( "ui.tabs", {
 			this.tabs.eq( 0 ).attr( "tabIndex", 0 );
 		} else {
 			this.active
-				.addClass( "ui-tabs-active ui-state-active" )
+				.addClass( "ui-tabs-active ui-stat-active" )
 				.attr({
 					"aria-selected": "true",
 					"aria-expanded": "true",
@@ -15673,7 +15673,7 @@ var tabs = $.widget( "ui.tabs", {
 			});
 
 		this.tabs = this.tablist.find( "> li:has(a[href])" )
-			.addClass( "ui-state-default ui-corner-top" )
+			.addClass( "ui-stat-default ui-corner-top" )
 			.attr({
 				role: "tab",
 				tabIndex: -1
@@ -15765,11 +15765,11 @@ var tabs = $.widget( "ui.tabs", {
 		for ( var i = 0, li; ( li = this.tabs[ i ] ); i++ ) {
 			if ( disabled === true || $.inArray( i, disabled ) !== -1 ) {
 				$( li )
-					.addClass( "ui-state-disabled" )
+					.addClass( "ui-stat-disabled" )
 					.attr( "aria-disabled", "true" );
 			} else {
 				$( li )
-					.removeClass( "ui-state-disabled" )
+					.removeClass( "ui-stat-disabled" )
 					.removeAttr( "aria-disabled" );
 			}
 		}
@@ -15896,7 +15896,7 @@ var tabs = $.widget( "ui.tabs", {
 		}
 
 		function show() {
-			eventData.newTab.closest( "li" ).addClass( "ui-tabs-active ui-state-active" );
+			eventData.newTab.closest( "li" ).addClass( "ui-tabs-active ui-stat-active" );
 
 			if ( toShow.length && that.options.show ) {
 				that._show( toShow, that.options.show, complete );
@@ -15909,11 +15909,11 @@ var tabs = $.widget( "ui.tabs", {
 		// start out by hiding, then showing, then completing
 		if ( toHide.length && this.options.hide ) {
 			this._hide( toHide, this.options.hide, function() {
-				eventData.oldTab.closest( "li" ).removeClass( "ui-tabs-active ui-state-active" );
+				eventData.oldTab.closest( "li" ).removeClass( "ui-tabs-active ui-stat-active" );
 				show();
 			});
 		} else {
-			eventData.oldTab.closest( "li" ).removeClass( "ui-tabs-active ui-state-active" );
+			eventData.oldTab.closest( "li" ).removeClass( "ui-tabs-active ui-stat-active" );
 			toHide.hide();
 			show();
 		}
@@ -15924,7 +15924,7 @@ var tabs = $.widget( "ui.tabs", {
 			"aria-expanded": "false"
 		});
 		// If we're switching tabs, remove the old tab from the tab order.
-		// If we're opening from collapsed state, remove the previous tab from the tab order.
+		// If we're opening from collapsed stat, remove the previous tab from the tab order.
 		// If we're collapsing, then keep the collapsing tab in the tab order.
 		if ( toShow.length && toHide.length ) {
 			eventData.oldTab.attr( "tabIndex", -1 );
@@ -16002,7 +16002,7 @@ var tabs = $.widget( "ui.tabs", {
 				$( this ).remove();
 			} else {
 				$( this )
-					.removeClass( "ui-state-default ui-state-active ui-state-disabled " +
+					.removeClass( "ui-stat-default ui-stat-active ui-stat-disabled " +
 						"ui-corner-top ui-corner-bottom ui-widget-content ui-tabs-active ui-tabs-panel" )
 					.removeAttr( "tabIndex" )
 					.removeAttr( "aria-live" )

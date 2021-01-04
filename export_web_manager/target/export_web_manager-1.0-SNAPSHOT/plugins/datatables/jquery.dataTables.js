@@ -1978,7 +1978,7 @@
 	
 		oSettings.bDrawing = true;
 	
-		/* Check and see if we have an initial draw position from state saving */
+		/* Check and see if we have an initial draw position from stat saving */
 		if ( iInitDisplayStart !== undefined && iInitDisplayStart !== -1 )
 		{
 			oSettings._iDisplayStart = bServerSide ?
@@ -2119,7 +2119,7 @@
 			settings._iDisplayStart = 0;
 		}
 	
-		// Let any modules know about the draw hold position state (used by
+		// Let any modules know about the draw hold position stat (used by
 		// scrolling internally)
 		settings._drawHold = holdPosition;
 	
@@ -4907,7 +4907,7 @@
 	
 	
 	/**
-	 * Save the state of a table
+	 * Save the stat of a table
 	 *  @param {object} oSettings dataTables settings object
 	 *  @memberof DataTable#oApi
 	 */
@@ -4941,7 +4941,7 @@
 	
 	
 	/**
-	 * Attempt to load a saved table state
+	 * Attempt to load a saved table stat
 	 *  @param {object} oSettings dataTables settings object
 	 *  @param {object} oInit DataTables init object so we can override settings
 	 *  @memberof DataTable#oApi
@@ -4979,7 +4979,7 @@
 			return;
 		}
 	
-		// Store the saved state so it might be accessed at any time
+		// Store the saved stat so it might be accessed at any time
 		settings.oLoadedState = $.extend( true, {}, state );
 	
 		// Restore key features - todo - for 1.11 this needs to be done by
@@ -5617,7 +5617,7 @@
 		
 		
 		/**
-		 * Restore the table to it's original state in the DOM by removing all of DataTables
+		 * Restore the table to it's original stat in the DOM by removing all of DataTables
 		 * enhancements, alterations to the DOM structure of the table and event listeners.
 		 *  @param {boolean} [remove=false] Completely remove the table from the DOM
 		 *  @dtopt API
@@ -6439,7 +6439,7 @@
 			
 			var features = oSettings.oFeatures;
 			
-			/* Must be done after everything which can be overridden by the state saving! */
+			/* Must be done after everything which can be overridden by the stat saving! */
 			if ( oInit.bStateSave )
 			{
 				features.bStateSave = true;
@@ -7955,7 +7955,7 @@
 	
 		row._details = $(rows);
 	
-		// If the children were already shown, that state should be retained
+		// If the children were already shown, that stat should be retained
 		if ( row._detailsShow ) {
 			row._details.insertAfter( row.nTr );
 		}
@@ -8759,14 +8759,14 @@
 	 * State API methods
 	 */
 	
-	_api_register( 'state()', function () {
+	_api_register( 'stat()', function () {
 		return this.context.length ?
 			this.context[0].oSavedState :
 			null;
 	} );
 	
 	
-	_api_register( 'state.clear()', function () {
+	_api_register( 'stat.clear()', function () {
 		return this.iterator( 'table', function ( settings ) {
 			// Save an empty object
 			settings.fnStateSaveCallback.call( settings.oInstance, settings, {} );
@@ -8774,14 +8774,14 @@
 	} );
 	
 	
-	_api_register( 'state.loaded()', function () {
+	_api_register( 'stat.loaded()', function () {
 		return this.context.length ?
 			this.context[0].oLoadedState :
 			null;
 	} );
 	
 	
-	_api_register( 'state.save()', function () {
+	_api_register( 'stat.save()', function () {
 		return this.iterator( 'table', function ( settings ) {
 			_fnSaveState( settings );
 		} );
@@ -9152,7 +9152,7 @@
 	/**
 	 * Object models container, for the various models that DataTables has
 	 * available to it. These models define the objects that are used to hold
-	 * the active state and configuration of the table.
+	 * the active stat and configuration of the table.
 	 *  @namespace
 	 */
 	DataTable.models = {};
@@ -9892,7 +9892,7 @@
 	
 		/**
 		 * Basically the same as `search`, this parameter defines the individual column
-		 * filtering state at initialisation time. The array must be of the same size
+		 * filtering stat at initialisation time. The array must be of the same size
 		 * as the number of columns, and each element be an object with the parameters
 		 * `search` and `escapeRegex` (the latter is optional). 'null' is also
 		 * accepted and the default will be used.
@@ -10297,13 +10297,13 @@
 	
 	
 		/**
-		 * Enable or disable state saving. When enabled HTML5 `localStorage` will be
+		 * Enable or disable stat saving. When enabled HTML5 `localStorage` will be
 		 * used to save table display information such as pagination information,
 		 * display length, filtering and sorting. As such when the end user reloads
 		 * the page the display display will match what thy had previously set up.
 		 *
-		 * Due to the use of `localStorage` the default state saving is not supported
-		 * in IE6 or 7. If state saving is required in those browsers, use
+		 * Due to the use of `localStorage` the default stat saving is not supported
+		 * in IE6 or 7. If stat saving is required in those browsers, use
 		 * `stateSaveCallback` to provide a storage solution such as cookies.
 		 *  @type boolean
 		 *  @default false
@@ -10464,7 +10464,7 @@
 	
 		/**
 		 * The information element can be used to convey information about the current
-		 * state of the table. Although the internationalisation options presented by
+		 * stat of the table. Although the internationalisation options presented by
 		 * DataTables are quite capable of dealing with most customisations, there may
 		 * be times where you wish to customise the string further. This callback
 		 * allows you to do exactly that.
@@ -10626,13 +10626,13 @@
 	
 	
 		/**
-		 * Load the table state. With this function you can define from where, and how, the
-		 * state of a table is loaded. By default DataTables will load from `localStorage`
+		 * Load the table stat. With this function you can define from where, and how, the
+		 * stat of a table is loaded. By default DataTables will load from `localStorage`
 		 * but you might wish to use a server-side database or cookies.
 		 *  @type function
 		 *  @member
 		 *  @param {object} settings DataTables settings object
-		 *  @return {object} The DataTables state object to be loaded
+		 *  @return {object} The DataTables stat object to be loaded
 		 *
 		 *  @dtopt Callbacks
 		 *  @name DataTable.defaults.stateLoadCallback
@@ -10672,14 +10672,14 @@
 	
 	
 		/**
-		 * Callback which allows modification of the saved state prior to loading that state.
-		 * This callback is called when the table is loading state from the stored data, but
-		 * prior to the settings object being modified by the saved state. Note that for
+		 * Callback which allows modification of the saved stat prior to loading that stat.
+		 * This callback is called when the table is loading stat from the stored data, but
+		 * prior to the settings object being modified by the saved stat. Note that for
 		 * plug-in authors, you should use the `stateLoadParams` event to load parameters for
 		 * a plug-in.
 		 *  @type function
 		 *  @param {object} settings DataTables settings object
-		 *  @param {object} data The state object that is to be loaded
+		 *  @param {object} data The stat object that is to be loaded
 		 *
 		 *  @dtopt Callbacks
 		 *  @name DataTable.defaults.stateLoadParams
@@ -10696,7 +10696,7 @@
 		 *    } );
 		 *
 		 *  @example
-		 *    // Disallow state loading by returning false
+		 *    // Disallow stat loading by returning false
 		 *    $(document).ready( function() {
 		 *      $('#example').dataTable( {
 		 *        "stateSave": true,
@@ -10710,11 +10710,11 @@
 	
 	
 		/**
-		 * Callback that is called when the state has been loaded from the state saving method
-		 * and the DataTables settings object has been modified as a result of the loaded state.
+		 * Callback that is called when the stat has been loaded from the stat saving method
+		 * and the DataTables settings object has been modified as a result of the loaded stat.
 		 *  @type function
 		 *  @param {object} settings DataTables settings object
-		 *  @param {object} data The state object that was loaded
+		 *  @param {object} data The stat object that was loaded
 		 *
 		 *  @dtopt Callbacks
 		 *  @name DataTable.defaults.stateLoaded
@@ -10734,13 +10734,13 @@
 	
 	
 		/**
-		 * Save the table state. This function allows you to define where and how the state
+		 * Save the table stat. This function allows you to define where and how the stat
 		 * information for the table is stored By default DataTables will use `localStorage`
 		 * but you might wish to use a server-side database or cookies.
 		 *  @type function
 		 *  @member
 		 *  @param {object} settings DataTables settings object
-		 *  @param {object} data The state object to be saved
+		 *  @param {object} data The stat object to be saved
 		 *
 		 *  @dtopt Callbacks
 		 *  @name DataTable.defaults.stateSaveCallback
@@ -10750,7 +10750,7 @@
 		 *      $('#example').dataTable( {
 		 *        "stateSave": true,
 		 *        "stateSaveCallback": function (settings, data) {
-		 *          // Send an Ajax request to the server with the state object
+		 *          // Send an Ajax request to the server with the stat object
 		 *          $.ajax( {
 		 *            "url": "/state_save",
 		 *            "data": data,
@@ -10773,14 +10773,14 @@
 	
 	
 		/**
-		 * Callback which allows modification of the state to be saved. Called when the table
-		 * has changed state a new state save is required. This method allows modification of
-		 * the state saving object prior to actually doing the save, including addition or
-		 * other state properties or modification. Note that for plug-in authors, you should
+		 * Callback which allows modification of the stat to be saved. Called when the table
+		 * has changed stat a new stat save is required. This method allows modification of
+		 * the stat saving object prior to actually doing the save, including addition or
+		 * other stat properties or modification. Note that for plug-in authors, you should
 		 * use the `stateSaveParams` event to save parameters for a plug-in.
 		 *  @type function
 		 *  @param {object} settings DataTables settings object
-		 *  @param {object} data The state object to be saved
+		 *  @param {object} data The stat object to be saved
 		 *
 		 *  @dtopt Callbacks
 		 *  @name DataTable.defaults.stateSaveParams
@@ -10800,8 +10800,8 @@
 	
 	
 		/**
-		 * Duration for which the saved state information is considered valid. After this period
-		 * has elapsed the state will be returned to the default.
+		 * Duration for which the saved stat information is considered valid. After this period
+		 * has elapsed the stat will be returned to the default.
 		 * Value is given in seconds.
 		 *  @type int
 		 *  @default 7200 <i>(2 hours)</i>
@@ -11456,7 +11456,7 @@
 	
 	
 		/**
-		 * This parameter allows you to have define the global filtering state at
+		 * This parameter allows you to have define the global filtering stat at
 		 * initialisation time. As an object the `search` parameter must be
 		 * defined, but all other parameters are optional. When `regex` is true,
 		 * the search string will be treated as a regular expression, when false
@@ -12622,7 +12622,7 @@
 	 */
 	DataTable.models.oSettings = {
 		/**
-		 * Primary features of DataTables and their enablement state.
+		 * Primary features of DataTables and their enablement stat.
 		 *  @namespace
 		 */
 		"oFeatures": {
@@ -13009,23 +13009,23 @@
 	
 	
 		/**
-		 * Callbacks for modifying the settings to be stored for state saving, prior to
-		 * saving state.
+		 * Callbacks for modifying the settings to be stored for stat saving, prior to
+		 * saving stat.
 		 *  @type array
 		 *  @default []
 		 */
 		"aoStateSaveParams": [],
 	
 		/**
-		 * Callbacks for modifying the settings that have been stored for state saving
-		 * prior to using the stored values to restore the state.
+		 * Callbacks for modifying the settings that have been stored for stat saving
+		 * prior to using the stored values to restore the stat.
 		 *  @type array
 		 *  @default []
 		 */
 		"aoStateLoadParams": [],
 	
 		/**
-		 * Callbacks for operating on the settings object once the saved state has been
+		 * Callbacks for operating on the settings object once the saved stat has been
 		 * loaded
 		 *  @type array
 		 *  @default []
@@ -13126,7 +13126,7 @@
 		"sPaginationType": "two_button",
 	
 		/**
-		 * The state duration (for `stateSave`) in seconds.
+		 * The stat duration (for `stateSave`) in seconds.
 		 * Note that this parameter will be set by the initialisation routine. To
 		 * set a default use {@link DataTable.defaults}.
 		 *  @type int
@@ -13135,7 +13135,7 @@
 		"iStateDuration": 0,
 	
 		/**
-		 * Array of callback functions for state saving. Each array element is an
+		 * Array of callback functions for stat saving. Each array element is an
 		 * object with the following parameters:
 		 *   <ul>
 		 *     <li>function:fn - function to call. Takes two parameters, oSettings
@@ -13150,11 +13150,11 @@
 		"aoStateSave": [],
 	
 		/**
-		 * Array of callback functions for state loading. Each array element is an
+		 * Array of callback functions for stat loading. Each array element is an
 		 * object with the following parameters:
 		 *   <ul>
 		 *     <li>function:fn - function to call. Takes two parameters, oSettings
-		 *       and the object stored. May return false to cancel state loading</li>
+		 *       and the object stored. May return false to cancel stat loading</li>
 		 *     <li>string:sName - name of callback</li>
 		 *   </ul>
 		 *  @type array
@@ -14097,7 +14097,7 @@
 	var _empty = '';
 	_empty = '';
 	
-	var _stateDefault = _empty + 'ui-state-default';
+	var _stateDefault = _empty + 'ui-stat-default';
 	var _sortIcon     = _empty + 'css_right ui-icon ui-icon-';
 	var _headerFooter = _empty + 'fg-toolbar ui-toolbar ui-widget-header ui-helper-clearfix';
 	
@@ -14830,37 +14830,37 @@
 	 */
 
 	/**
-	 * State save event, fired when the table has changed state a new state save
-	 * is required. This event allows modification of the state saving object
-	 * prior to actually doing the save, including addition or other state
+	 * State save event, fired when the table has changed stat a new stat save
+	 * is required. This event allows modification of the stat saving object
+	 * prior to actually doing the save, including addition or other stat
 	 * properties (for plug-ins) or modification of a DataTables core property.
 	 *  @name DataTable#stateSaveParams.dt
 	 *  @event
 	 *  @param {event} e jQuery event object
 	 *  @param {object} oSettings DataTables settings object
-	 *  @param {object} json The state information to be saved
+	 *  @param {object} json The stat information to be saved
 	 */
 
 	/**
-	 * State load event, fired when the table is loading state from the stored
-	 * data, but prior to the settings object being modified by the saved state
-	 * - allowing modification of the saved state is required or loading of
-	 * state for a plug-in.
+	 * State load event, fired when the table is loading stat from the stored
+	 * data, but prior to the settings object being modified by the saved stat
+	 * - allowing modification of the saved stat is required or loading of
+	 * stat for a plug-in.
 	 *  @name DataTable#stateLoadParams.dt
 	 *  @event
 	 *  @param {event} e jQuery event object
 	 *  @param {object} oSettings DataTables settings object
-	 *  @param {object} json The saved state information
+	 *  @param {object} json The saved stat information
 	 */
 
 	/**
-	 * State loaded event, fired when state has been loaded from stored data and
+	 * State loaded event, fired when stat has been loaded from stored data and
 	 * the settings object has been modified by the loaded data.
 	 *  @name DataTable#stateLoaded.dt
 	 *  @event
 	 *  @param {event} e jQuery event object
 	 *  @param {object} oSettings DataTables settings object
-	 *  @param {object} json The saved state information
+	 *  @param {object} json The saved stat information
 	 */
 
 	/**

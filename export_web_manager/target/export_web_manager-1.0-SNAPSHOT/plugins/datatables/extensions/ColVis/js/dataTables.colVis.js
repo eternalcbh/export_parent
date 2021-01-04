@@ -256,7 +256,7 @@ ColVis.prototype = {
 		this.dom.button = $( '<button />', {
 				'class': !this.s.dt.bJUI ?
 					"ColVis_Button ColVis_MasterButton" :
-					"ColVis_Button ColVis_MasterButton ui-button ui-state-default"
+					"ColVis_Button ColVis_MasterButton ui-button ui-stat-default"
 			} )
 			.append( '<span>'+this.s.buttonText+'</span>' )
 			.bind( this.s.activate=="mouseover" ? "mouseover" : "click", function (e) {
@@ -304,7 +304,7 @@ ColVis.prototype = {
 			$(that.dom.wrapper).remove();
 		} );
 
-		// Set the initial state
+		// Set the initial stat
 		this._fnDrawCallback();
 	},
 
@@ -499,7 +499,7 @@ ColVis.prototype = {
 			dt = this.s.dt;
 
 		return $(
-				'<li class="ColVis_Special '+(dt.bJUI ? 'ui-button ui-state-default' : '')+'">'+
+				'<li class="ColVis_Special '+(dt.bJUI ? 'ui-button ui-stat-default' : '')+'">'+
 					this.s.restore+
 				'</li>'
 			)
@@ -528,7 +528,7 @@ ColVis.prototype = {
 			dt = this.s.dt;
 
 		return $(
-				'<li class="ColVis_Special '+(dt.bJUI ? 'ui-button ui-state-default' : '')+'">'+
+				'<li class="ColVis_Special '+(dt.bJUI ? 'ui-button ui-stat-default' : '')+'">'+
 					str+
 				'</li>'
 			)
@@ -562,7 +562,7 @@ ColVis.prototype = {
 			oGroup = this.s.aoGroups[i];
 
 		return $(
-				'<li class="ColVis_Special '+(dt.bJUI ? 'ui-button ui-state-default' : '')+'">'+
+				'<li class="ColVis_Special '+(dt.bJUI ? 'ui-button ui-stat-default' : '')+'">'+
 					'<label>'+
 						'<input type="checkbox" />'+
 						'<span>'+oGroup.sTitle+'</span>'+
@@ -603,7 +603,7 @@ ColVis.prototype = {
 			this.s.fnLabel( i, column.sTitle, column.nTh );
 
 		return $(
-				'<li '+(dt.bJUI ? 'class="ui-button ui-state-default"' : '')+'>'+
+				'<li '+(dt.bJUI ? 'class="ui-button ui-stat-default"' : '')+'>'+
 					'<label>'+
 						'<input type="checkbox" />'+
 						'<span>'+title+'</span>'+
@@ -972,7 +972,7 @@ ColVis.defaults = {
 	sAlign: 'left',
 
 	/**
-	 * Callback function to tell the user when the state has changed
+	 * Callback function to tell the user when the stat has changed
 	 *  @property fnStateChange
 	 *  @type     function
 	 *  @default  null

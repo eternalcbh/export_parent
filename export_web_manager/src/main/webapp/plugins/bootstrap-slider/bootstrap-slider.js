@@ -305,7 +305,7 @@
 		function createNewSlider(element, options) {
 
 			/*
-				The internal state object is used to store data about the current 'state' of slider.
+				The internal stat object is used to store data about the current 'stat' of slider.
 
 				This includes values such as the `value`, `enabled`, etc...
 			*/

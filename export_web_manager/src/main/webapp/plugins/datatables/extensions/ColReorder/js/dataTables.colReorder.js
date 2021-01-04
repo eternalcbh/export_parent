@@ -735,7 +735,7 @@ ColReorder.prototype = {
 			this.s.dt.oInstance.fnAdjustColumnSizing( false );
 		}
 
-		/* Save the state */
+		/* Save the stat */
 		this.s.dt.oInstance.oApi._fnSaveState( this.s.dt );
 
 		this._fnSetColumnIndexes();
@@ -749,10 +749,10 @@ ColReorder.prototype = {
 
 	/**
 	 * Because we change the indexes of columns in the table, relative to their starting point
-	 * we need to reorder the state columns to what they are at the starting point so we can
-	 * then rearrange them again on state load!
+	 * we need to reorder the stat columns to what they are at the starting point so we can
+	 * then rearrange them again on stat load!
 	 *  @method  _fnStateSave
-	 *  @param   object oState DataTables state
+	 *  @param   object oState DataTables stat
 	 *  @returns string JSON encoded cookie string for DataTables
 	 *  @private
 	 */
@@ -968,7 +968,7 @@ ColReorder.prototype = {
 				this.s.dt.oInstance.fnAdjustColumnSizing( false );
 			}
 
-			/* Save the state */
+			/* Save the stat */
 			this.s.dt.oInstance.oApi._fnSaveState( this.s.dt );
 
 			if ( this.s.reorderCallback !== null )

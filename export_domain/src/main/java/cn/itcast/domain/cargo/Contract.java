@@ -442,7 +442,7 @@ public class Contract extends BaseEntity {
 
     /**
      * 获取
-     * @return state
+     * @return stat
      */
     public Integer getState() {
         return state;
@@ -537,6 +537,6 @@ public class Contract extends BaseEntity {
     }
 
     public String toString() {
-        return "Contract{id = " + id + ", offeror = " + offeror + ", contractNo = " + contractNo + ", signingDate = " + signingDate + ", inputBy = " + inputBy + ", checkBy = " + checkBy + ", inspector = " + inspector + ", totalAmount = " + totalAmount + ", crequest = " + crequest + ", customName = " + customName + ", shipTime = " + shipTime + ", importNum = " + importNum + ", deliveryPeriod = " + deliveryPeriod + ", oldState = " + oldState + ", outState = " + outState + ", tradeTerms = " + tradeTerms + ", printStyle = " + printStyle + ", remark = " + remark + ", state = " + state + ", proNum = " + proNum + ", extNum = " + extNum + ", createBy = " + createBy + ", createDept = " + createDept + ", updateBy = " + updateBy + "}";
+        return "Contract{id = " + id + ", offeror = " + offeror + ", contractNo = " + contractNo + ", signingDate = " + signingDate + ", inputBy = " + inputBy + ", checkBy = " + checkBy + ", inspector = " + inspector + ", totalAmount = " + totalAmount + ", crequest = " + crequest + ", customName = " + customName + ", shipTime = " + shipTime + ", importNum = " + importNum + ", deliveryPeriod = " + deliveryPeriod + ", oldState = " + oldState + ", outState = " + outState + ", tradeTerms = " + tradeTerms + ", printStyle = " + printStyle + ", remark = " + remark + ", stat = " + state + ", proNum = " + proNum + ", extNum = " + extNum + ", createBy = " + createBy + ", createDept = " + createDept + ", updateBy = " + updateBy + "}";
     }
 }

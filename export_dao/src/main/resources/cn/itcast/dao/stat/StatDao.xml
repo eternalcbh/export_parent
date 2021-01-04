@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.itcast.dao.stat.StatDao">
+    <select id="getFactoryData" resultType="map">
+        SELECT factory_name name,sum(amount) value from co_contract_product where company_id = #{companyId} GROUP BY factory_id
+    </select>
+</mapper>

@@ -1,0 +1,36 @@
+package cn.itcast.domain.vo;
+
+import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
+
+@XmlRootElement(name="products")
+public class ExportProductResult implements Serializable {
+	private String exportProductId;
+	private Double tax;
+
+	public ExportProductResult() {
+	}
+
+	public ExportProductResult(String exportProductId, Double tax) {
+		this.exportProductId = exportProductId;
+		this.tax = tax;
+	}
+
+
+	public String getExportProductId() {
+		return exportProductId;
+	}
+	public void setExportProductId(String exportProductId) {
+		this.exportProductId = exportProductId;
+	}
+	public Double getTax() {
+		return tax;
+	}
+	public void setTax(Double tax) {
+		this.tax = tax;
+	}
+
+	public String toString() {
+		return "ExportProductResult{exportProductId = " + exportProductId + ", tax = " + tax + "}";
+	}
+}

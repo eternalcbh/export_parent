@@ -612,7 +612,7 @@ function _init() {
  * BOX REFRESH BUTTON
  * ------------------
  * This is a custom plugin to use with the component BOX. It allows you to add
- * a refresh button to the box. It converts the box's state to a loading state.
+ * a refresh button to the box. It converts the box's stat to a loading stat.
  *
  * @type plugin
  * @usage $("#box-widget").boxRefresh( options );

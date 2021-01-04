@@ -10,6 +10,7 @@
       <module fileurl="file://$PROJECT_DIR$/export_domain/export_domain.iml" filepath="$PROJECT_DIR$/export_domain/export_domain.iml" />
       <module fileurl="file://$PROJECT_DIR$/export_parent.iml" filepath="$PROJECT_DIR$/export_parent.iml" />
       <module fileurl="file://$PROJECT_DIR$/export_service_system/export_service_system.iml" filepath="$PROJECT_DIR$/export_service_system/export_service_system.iml" />
+      <module fileurl="file://$PROJECT_DIR$/export_stat_service/export_stat_service.iml" filepath="$PROJECT_DIR$/export_stat_service/export_stat_service.iml" />
       <module fileurl="file://$PROJECT_DIR$/export_web_manager/export_web_manager.iml" filepath="$PROJECT_DIR$/export_web_manager/export_web_manager.iml" />
       <module fileurl="file://$PROJECT_DIR$/export_web_portal/export_web_portal.iml" filepath="$PROJECT_DIR$/export_web_portal/export_web_portal.iml" />
       <module fileurl="file://$PROJECT_DIR$/mybatis_generate/mybatis_generate.iml" filepath="$PROJECT_DIR$/mybatis_generate/mybatis_generate.iml" />

@@ -3,6 +3,7 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/export_web_manager" />
     <file type="web" url="file://$PROJECT_DIR$/export_web_portal" />
+    <file type="web" url="file://$PROJECT_DIR$/jk_export" />
   </component>
   <component name="JavaScriptSettings">
     <option name="languageLevel" value="ES6" />

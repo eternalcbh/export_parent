@@ -369,7 +369,7 @@ public class Export extends BaseEntity {
 
     /**
      * 获取
-     * @return state
+     * @return stat
      */
     public Integer getState() {
         return state;
@@ -432,6 +432,6 @@ public class Export extends BaseEntity {
     }
 
     public String toString() {
-        return "Export{id = " + id + ", inputDate = " + inputDate + ", contractIds = " + contractIds + ", customerContract = " + customerContract + ", lcno = " + lcno + ", consignee = " + consignee + ", marks = " + marks + ", shipmentPort = " + shipmentPort + ", destinationPort = " + destinationPort + ", transportMode = " + transportMode + ", priceCondition = " + priceCondition + ", remark = " + remark + ", boxNums = " + boxNums + ", grossWeights = " + grossWeights + ", measurements = " + measurements + ", state = " + state + ", proNum = " + proNum + ", extNum = " + extNum + ", exportProducts = " + exportProducts + "}";
+        return "Export{id = " + id + ", inputDate = " + inputDate + ", contractIds = " + contractIds + ", customerContract = " + customerContract + ", lcno = " + lcno + ", consignee = " + consignee + ", marks = " + marks + ", shipmentPort = " + shipmentPort + ", destinationPort = " + destinationPort + ", transportMode = " + transportMode + ", priceCondition = " + priceCondition + ", remark = " + remark + ", boxNums = " + boxNums + ", grossWeights = " + grossWeights + ", measurements = " + measurements + ", stat = " + state + ", proNum = " + proNum + ", extNum = " + extNum + ", exportProducts = " + exportProducts + "}";
     }
 }

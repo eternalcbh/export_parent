@@ -2358,7 +2358,7 @@ var MouseFollower = Class.extend({
 			this.isAnimating = false;
 			_this.destroyEl();
 
-			this.top0 = this.left0 = null; // reset state for future updatePosition calls
+			this.top0 = this.left0 = null; // reset stat for future updatePosition calls
 
 			if (callback) {
 				callback();
@@ -3381,7 +3381,7 @@ Grid.mixin({
 	},
 
 
-	// Updates internal state and triggers handlers for when an event element is moused over
+	// Updates internal stat and triggers handlers for when an event element is moused over
 	triggerSegMouseover: function(seg, ev) {
 		if (!this.mousedOverSeg) {
 			this.mousedOverSeg = seg;
@@ -3390,7 +3390,7 @@ Grid.mixin({
 	},
 
 
-	// Updates internal state and triggers handlers for when an event element is moused out.
+	// Updates internal stat and triggers handlers for when an event element is moused out.
 	// Can be given no arguments, in which case it will mouseout the segment that was previously moused over.
 	triggerSegMouseout: function(seg, ev) {
 		ev = ev || {}; // if given no args, make a mock mouse event
@@ -6353,7 +6353,7 @@ var View = fc.View = Class.extend({
 
 		this.widgetHeaderClass = tm + '-widget-header';
 		this.widgetContentClass = tm + '-widget-content';
-		this.highlightStateClass = tm + '-state-highlight';
+		this.highlightStateClass = tm + '-stat-highlight';
 	},
 
 
@@ -6421,7 +6421,7 @@ var View = fc.View = Class.extend({
 	},
 
 
-	// Sets the scroll value of the scroller to the initial pre-configured state prior to allowing the user to change it
+	// Sets the scroll value of the scroller to the initial pre-configured stat prior to allowing the user to change it
 	initializeScroll: function() {
 	},
 
@@ -6686,14 +6686,14 @@ var View = fc.View = Class.extend({
 	},
 
 
-	// Called when a new selection is made. Updates internal state and triggers handlers.
+	// Called when a new selection is made. Updates internal stat and triggers handlers.
 	reportSelection: function(range, ev) {
 		this.isSelected = true;
 		this.trigger('select', null, range.start, range.end, ev);
 	},
 
 
-	// Undoes a selection. updates in the internal state and triggers handlers.
+	// Undoes a selection. updates in the internal stat and triggers handlers.
 	// `ev` is the native mouse event that began the interaction.
 	unselect: function(ev) {
 		if (this.isSelected) {
@@ -7732,7 +7732,7 @@ function Header(calendar, options) {
 							classes = [
 								'fc-' + buttonName + '-button',
 								tm + '-button',
-								tm + '-state-default'
+								tm + '-stat-default'
 							];
 
 							button = $( // type="button" so that it doesn't submit a form
@@ -7742,17 +7742,17 @@ function Header(calendar, options) {
 								)
 								.click(function() {
 									// don't process clicks for disabled buttons
-									if (!button.hasClass(tm + '-state-disabled')) {
+									if (!button.hasClass(tm + '-stat-disabled')) {
 
 										buttonClick();
 
 										// after the click action, if the button becomes the "active" tab, or disabled,
 										// it should never have a hover class, so remove it now.
 										if (
-											button.hasClass(tm + '-state-active') ||
-											button.hasClass(tm + '-state-disabled')
+											button.hasClass(tm + '-stat-active') ||
+											button.hasClass(tm + '-stat-disabled')
 										) {
-											button.removeClass(tm + '-state-hover');
+											button.removeClass(tm + '-stat-hover');
 										}
 									}
 								})
@@ -7760,28 +7760,28 @@ function Header(calendar, options) {
 									// the *down* effect (mouse pressed in).
 									// only on buttons that are not the "active" tab, or disabled
 									button
-										.not('.' + tm + '-state-active')
-										.not('.' + tm + '-state-disabled')
-										.addClass(tm + '-state-down');
+										.not('.' + tm + '-stat-active')
+										.not('.' + tm + '-stat-disabled')
+										.addClass(tm + '-stat-down');
 								})
 								.mouseup(function() {
 									// undo the *down* effect
-									button.removeClass(tm + '-state-down');
+									button.removeClass(tm + '-stat-down');
 								})
 								.hover(
 									function() {
 										// the *hover* effect.
 										// only on buttons that are not the "active" tab, or disabled
 										button
-											.not('.' + tm + '-state-active')
-											.not('.' + tm + '-state-disabled')
-											.addClass(tm + '-state-hover');
+											.not('.' + tm + '-stat-active')
+											.not('.' + tm + '-stat-disabled')
+											.addClass(tm + '-stat-hover');
 									},
 									function() {
 										// undo the *hover* effect
 										button
-											.removeClass(tm + '-state-hover')
-											.removeClass(tm + '-state-down'); // if mouseleave happens before mouseup
+											.removeClass(tm + '-stat-hover')
+											.removeClass(tm + '-stat-down'); // if mouseleave happens before mouseup
 									}
 								);
 
@@ -7821,27 +7821,27 @@ function Header(calendar, options) {
 	
 	function activateButton(buttonName) {
 		el.find('.fc-' + buttonName + '-button')
-			.addClass(tm + '-state-active');
+			.addClass(tm + '-stat-active');
 	}
 	
 	
 	function deactivateButton(buttonName) {
 		el.find('.fc-' + buttonName + '-button')
-			.removeClass(tm + '-state-active');
+			.removeClass(tm + '-stat-active');
 	}
 	
 	
 	function disableButton(buttonName) {
 		el.find('.fc-' + buttonName + '-button')
 			.attr('disabled', 'disabled')
-			.addClass(tm + '-state-disabled');
+			.addClass(tm + '-stat-disabled');
 	}
 	
 	
 	function enableButton(buttonName) {
 		el.find('.fc-' + buttonName + '-button')
 			.removeAttr('disabled')
-			.removeClass(tm + '-state-disabled');
+			.removeClass(tm + '-stat-disabled');
 	}
 
 
@@ -9543,7 +9543,7 @@ fcViews.agenda = View.extend({ // AgendaView
 		}
 		this.bottomRuleEl.hide(); // .show() will be called later if this <hr> is necessary
 
-		// reset all dimensions back to the original state
+		// reset all dimensions back to the original stat
 		this.scrollerEl.css('overflow', '');
 		unsetScroller(this.scrollerEl);
 		uncompensateScroll(this.noScrollRowEls);
@@ -9585,7 +9585,7 @@ fcViews.agenda = View.extend({ // AgendaView
 	},
 
 
-	// Sets the scroll value of the scroller to the initial pre-configured state prior to allowing the user to change it
+	// Sets the scroll value of the scroller to the initial pre-configured stat prior to allowing the user to change it
 	initializeScroll: function() {
 		var _this = this;
 		var scrollTime = moment.duration(this.opt('scrollTime'));
@@ -9603,7 +9603,7 @@ fcViews.agenda = View.extend({ // AgendaView
 		}
 
 		scroll();
-		setTimeout(scroll, 0); // overrides any previous scroll state made by the browser
+		setTimeout(scroll, 0); // overrides any previous scroll stat made by the browser
 	},
 
 

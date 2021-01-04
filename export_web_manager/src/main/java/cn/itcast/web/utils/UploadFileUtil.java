@@ -68,7 +68,7 @@ public class UploadFileUtil {
 			//解析上传成功的结果
 			DefaultPutRet defaultPutRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
 
-			img = rtValue + "/" + fileName;
+			img =  rtValue + "/" + fileName;
 		} catch (QiniuException ex) {
 			System.err.println(ex.getMessage());
 			Response r = ex.response;
