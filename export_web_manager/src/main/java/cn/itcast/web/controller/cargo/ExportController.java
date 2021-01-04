@@ -175,7 +175,7 @@ public class ExportController extends BaseController {
 				//补全id
 				exportProductVo.setExportId(export.getId());
 
-				exportProductVo.setExportProductId(exportProduct.getExportId());
+				exportProductVo.setExportProductId(exportProduct.getId());
 
 				exportVo.getProducts().add(exportProductVo);
 			}
