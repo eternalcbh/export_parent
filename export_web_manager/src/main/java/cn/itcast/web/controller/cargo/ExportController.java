@@ -16,7 +16,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.ServletContext;
+import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -39,26 +42,26 @@ public class ExportController extends BaseController {
 
 	@RequestMapping("/list")
 	public String list(@RequestParam(defaultValue = "1") Integer pageNum,
-	                   @RequestParam(defaultValue = "5") Integer pageSize){
+	                   @RequestParam(defaultValue = "5") Integer pageSize) {
 		//设置属于什么公司
 		ExportExample exportExample = new ExportExample();
 		exportExample.setOrderByClause("create_time desc");
 		exportExample.createCriteria().andCompanyIdEqualTo(getLoginCompanyId());
 		PageInfo<Export> pageInfo = exportService.findByPage(exportExample, pageNum, pageSize);
-		request.setAttribute("pageInfo",pageInfo);
+		request.setAttribute("pageInfo", pageInfo);
 		return "cargo/export/export-list";
 	}
 
 	@RequestMapping("/toExport")
-	public String toExport(String id){
+	public String toExport(String id) {
 		Export export = exportService.findById(id);
-		request.setAttribute("export",export);
-		request.setAttribute("id",id);
+		request.setAttribute("export", export);
+		request.setAttribute("id", id);
 		return "cargo/export/export-toExport";
 	}
 
 	@RequestMapping("/edit")
-	public String edit(Export export){
+	public String edit(Export export) {
 		//报运单创建人
 		export.setCreateBy(getLoginCompanyId());
 		//报运单所属于的部门
@@ -67,9 +70,9 @@ public class ExportController extends BaseController {
 		export.setCompanyId(getLoginCompanyId());
 		export.setCompanyName(getLoginCompanyName());
 
-		if (StringUtils.isEmpty(export.getId())){
+		if (StringUtils.isEmpty(export.getId())) {
 			exportService.save(export);
-		}else {
+		} else {
 			exportService.update(export);
 		}
 
@@ -77,31 +80,31 @@ public class ExportController extends BaseController {
 	}
 
 	@RequestMapping("/toUpdate")
-	public String toUpdate(String id){
+	public String toUpdate(String id) {
 		//回显报运单数据
 		Export export = exportService.findById(id);
-		request.setAttribute("export",export);
+		request.setAttribute("export", export);
 
 		//查找出该报运单下所有的货物
 		ExportProductExample exportProductExample = new ExportProductExample();
 		exportProductExample.createCriteria().andExportIdEqualTo(id);
 		List<ExportProduct> exportProductList = exportProductService.findAll(exportProductExample);
 
-		request.setAttribute("eps",exportProductList);
+		request.setAttribute("eps", exportProductList);
 
 		return "cargo/export/export-update";
 	}
 
 	@RequestMapping("/toView")
-	public String toView(String id){
+	public String toView(String id) {
 		//报运单搜索对象
 		Export export = exportService.findById(id);
-		request.setAttribute("export",export);
+		request.setAttribute("export", export);
 		return "cargo/export/export-view";
 	}
 
 	@RequestMapping("/contractList")
-	public String contractList(@RequestParam(defaultValue = "1")Integer pageNum,@RequestParam(defaultValue = "5") Integer pageSize){
+	public String contractList(@RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "5") Integer pageSize) {
 		//创建合同搜索对象
 		ContractExample contractExample = new ContractExample();
 
@@ -112,13 +115,13 @@ public class ExportController extends BaseController {
 		PageInfo<Contract> pageInfo = contractService.findByPage(contractExample, pageNum, pageSize);
 
 		//存到域中
-		request.setAttribute("pageInfo",pageInfo);
+		request.setAttribute("pageInfo", pageInfo);
 
 		return "cargo/export/export-contractList";
 	}
 
 	@RequestMapping("/submit")
-	public String submit(String id){
+	public String submit(String id) {
 		//根据id查询出报运单
 		Export export = exportService.findById(id);
 
@@ -132,7 +135,7 @@ public class ExportController extends BaseController {
 	}
 
 	@RequestMapping("/cancel")
-	public String cancel(String id){
+	public String cancel(String id) {
 		//根据id查询报运单
 		Export export = exportService.findById(id);
 
@@ -146,7 +149,7 @@ public class ExportController extends BaseController {
 	}
 
 	@RequestMapping("/exportE")
-	public String exportE(String id){
+	public String exportE(String id) {
 
 		//找到报运单
 		Export export = exportService.findById(id);
@@ -160,17 +163,17 @@ public class ExportController extends BaseController {
 
 		//进行值拷贝
 		ExportVo exportVo = new ExportVo();
-		BeanUtils.copyProperties(export,exportVo);
+		BeanUtils.copyProperties(export, exportVo);
 
 		//补全id
 		exportVo.setExportId(export.getId());
 
 		//遍历set集合
-		if (null != exportProductList){
+		if (null != exportProductList) {
 			for (ExportProduct exportProduct : exportProductList) {
 				ExportProductVo exportProductVo = new ExportProductVo();
 				//对货物进行值拷贝
-				BeanUtils.copyProperties(exportProduct,exportProductVo);
+				BeanUtils.copyProperties(exportProduct, exportProductVo);
 
 				//补全id
 				exportProductVo.setExportId(export.getId());
@@ -188,10 +191,34 @@ public class ExportController extends BaseController {
 		//获取海关给回来的数据
 		ExportResult exportResult = WebClient.create("http://localhost:6888/ws/export/user/" + id).get(ExportResult.class);
 
-		if (null != exportResult){
+		if (null != exportResult) {
 			exportService.updateState(exportResult);
 		}
 
 		return "redirect:/cargo/export/list";
+	}
+
+	@RequestMapping("/exportPdf")
+	@ResponseBody
+	public void exportPdf(String id) {
+		//读取文件模板
+		InputStream resourceAsStream = session.getServletContext().getResourceAsStream("/jasper/export.jasper");
+
+		//2.把模板与数据填充， 拿到JasperPrint对象（数据+模板结合）
+        /*
+        fillReport(InputStream inputStream, Map<String, Object> parameters, JRDataSource dataSource)
+                inputStream: 模板的输入流
+                parameters: 需要被填充的参数，不需要被遍历的
+                dataSource: 数据源，需要被遍历的数据
+         */
+
+
+
+		//3. 把pdf文件输出
+        /*
+            exportReportToPdfStream(JasperPrint jasperPrint, OutputStream outputStream)
+                    jasperPrint： jasperprint的对象
+                    outputStream: 输出的目标地址的输出流对象
+         */
 	}
 }

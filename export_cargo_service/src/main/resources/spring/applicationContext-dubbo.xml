@@ -12,5 +12,5 @@
     <dubbo:protocol name="dubbo" port="20990"/>
 
     <!--    4.注解扫描-->
-    <dubbo:annotation package="cn.itcast.service.cargo"/>
+    <dubbo:annotation package="cn.itcast.service"/>
 </beans>
