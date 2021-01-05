@@ -1,6 +1,8 @@
 package cn.itcast.web.controller.cargo;
 
+
 import cn.itcast.domain.cargo.*;
+import cn.itcast.domain.system.User;
 import cn.itcast.domain.vo.ExportProductVo;
 import cn.itcast.domain.vo.ExportResult;
 import cn.itcast.domain.vo.ExportVo;
@@ -10,17 +12,30 @@ import cn.itcast.service.cargo.ExportService;
 import cn.itcast.web.controller.BaseController;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.github.pagehelper.PageInfo;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanArrayDataSource;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import org.apache.commons.beanutils.BeanMap;
 import org.apache.cxf.jaxrs.client.WebClient;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.ServletContext;
+import javax.sql.DataSource;
+import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.sql.SQLException;
+import java.util.*;
 
 /**
  * @author cbh
@@ -200,7 +215,7 @@ public class ExportController extends BaseController {
 
 	@RequestMapping("/exportPdf")
 	@ResponseBody
-	public void exportPdf(String id) {
+	public void exportPdf(String id) throws JRException, IOException, SQLException, ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
 		//读取文件模板
 		InputStream resourceAsStream = session.getServletContext().getResourceAsStream("/jasper/export.jasper");
 
@@ -211,7 +226,46 @@ public class ExportController extends BaseController {
                 parameters: 需要被填充的参数，不需要被遍历的
                 dataSource: 数据源，需要被遍历的数据
          */
+        //查出报运单
+		Export export = exportService.findById(id);
 
+		//查出报运单的货物
+		ExportProductExample exportProductExample = new ExportProductExample();
+		exportProductExample.createCriteria().andExportIdEqualTo(id).andCompanyIdEqualTo(getLoginCompanyId());
+		List<ExportProduct> exportProductList = exportProductService.findAll(exportProductExample);
+
+		HashMap<String, Object> map = new HashMap<>();
+
+		//获取反射Class
+		Class<?> aClass = Class.forName(export.getClass().getName());
+
+		//获取成员字段
+		Field[] fields = aClass.getDeclaredFields();
+
+
+		//获取方法集合
+		Method[] declaredMethods = aClass.getDeclaredMethods();
+
+		//开启暴力反射
+		for (Method declaredMethod : declaredMethods) {
+			declaredMethod.setAccessible(true);
+		}
+
+		//赋值
+		for (Field field : fields) {
+			StringBuilder stringBuilder = new StringBuilder();
+			String first = String.valueOf(field.getName().charAt(0)).toUpperCase();
+			String methodName = stringBuilder.append(first + field.getName().substring(1)).toString();
+			Method method = aClass.getMethod("get"+methodName);
+			map.put(field.getName(), method.invoke(export));
+		}
+
+		//3.填充数据
+
+		//把数据封装到BeanSoucrce
+		JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(exportProductList);
+
+		JasperPrint jasperPrint = JasperFillManager.fillReport(resourceAsStream, map, jrBeanCollectionDataSource);
 
 
 		//3. 把pdf文件输出
@@ -220,5 +274,6 @@ public class ExportController extends BaseController {
                     jasperPrint： jasperprint的对象
                     outputStream: 输出的目标地址的输出流对象
          */
+		JasperExportManager.exportReportToPdfStream(jasperPrint,response.getOutputStream());
 	}
 }

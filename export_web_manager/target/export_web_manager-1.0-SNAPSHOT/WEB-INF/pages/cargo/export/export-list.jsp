@@ -161,8 +161,6 @@
             </jsp:include>
         </div>
         <!-- /.box-footer-->
-
-
     </div>
 
 </section>
