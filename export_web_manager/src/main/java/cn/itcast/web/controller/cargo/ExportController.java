@@ -9,7 +9,9 @@ import cn.itcast.domain.vo.ExportVo;
 import cn.itcast.service.cargo.ContractService;
 import cn.itcast.service.cargo.ExportProductService;
 import cn.itcast.service.cargo.ExportService;
+import cn.itcast.service.cargo.FactoryService;
 import cn.itcast.web.controller.BaseController;
+import cn.itcast.web.utils.MyBeanMapUtils;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.github.pagehelper.PageInfo;
 import net.sf.jasperreports.engine.JRException;
@@ -34,6 +36,7 @@ import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.URLEncoder;
 import java.sql.SQLException;
 import java.util.*;
 
@@ -54,6 +57,9 @@ public class ExportController extends BaseController {
 
 	@Reference
 	private ExportProductService exportProductService;
+
+	@Reference
+	private FactoryService factoryService;
 
 	@RequestMapping("/list")
 	public String list(@RequestParam(defaultValue = "1") Integer pageNum,
@@ -216,6 +222,12 @@ public class ExportController extends BaseController {
 	@RequestMapping("/exportPdf")
 	@ResponseBody
 	public void exportPdf(String id) throws JRException, IOException, SQLException, ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+		//设置url编码
+		String fileName = "报运单";
+		fileName = URLEncoder.encode(fileName,"UTF-8");
+		//通知浏览器以附件下载
+		response.setHeader("context-disposition","attachement;filename=" + fileName);
+
 		//读取文件模板
 		InputStream resourceAsStream = session.getServletContext().getResourceAsStream("/jasper/export.jasper");
 
@@ -234,31 +246,13 @@ public class ExportController extends BaseController {
 		exportProductExample.createCriteria().andExportIdEqualTo(id).andCompanyIdEqualTo(getLoginCompanyId());
 		List<ExportProduct> exportProductList = exportProductService.findAll(exportProductExample);
 
-		HashMap<String, Object> map = new HashMap<>();
-
-		//获取反射Class
-		Class<?> aClass = Class.forName(export.getClass().getName());
-
-		//获取成员字段
-		Field[] fields = aClass.getDeclaredFields();
-
-
-		//获取方法集合
-		Method[] declaredMethods = aClass.getDeclaredMethods();
-
-		//开启暴力反射
-		for (Method declaredMethod : declaredMethods) {
-			declaredMethod.setAccessible(true);
+		for (ExportProduct exportProduct : exportProductList) {
+			Factory factory = factoryService.findById(exportProduct.getFactoryId());
+			exportProduct.setFactoryName(factory.getFactoryName());
 		}
 
-		//赋值
-		for (Field field : fields) {
-			StringBuilder stringBuilder = new StringBuilder();
-			String first = String.valueOf(field.getName().charAt(0)).toUpperCase();
-			String methodName = stringBuilder.append(first + field.getName().substring(1)).toString();
-			Method method = aClass.getMethod("get"+methodName);
-			map.put(field.getName(), method.invoke(export));
-		}
+		//封装数据
+		Map<String, Object> map = MyBeanMapUtils.getMap(export);
 
 		//3.填充数据
 

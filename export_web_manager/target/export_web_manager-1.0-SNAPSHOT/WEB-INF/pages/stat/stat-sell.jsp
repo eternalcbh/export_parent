@@ -25,7 +25,7 @@
     </section>
     <section class="content">
         <div class="box box-primary">
-            <div id="main" style="width: 600px;height:400px;"></div>
+            <div id="main" style="width: 800px;height:400px;"></div>
         </div>
     </section>
 </div>

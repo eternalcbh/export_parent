@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--    1.定义任务的详情(你要干什么)-->
+    <!--    创建任务类-->
+    <bean id="myTask" class="cn.itcast.web.task.MyTask"/>
+    <bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!--        1.任务对象-->
+        <property name="targetObject" ref="myTask"/>
+        <!--        任务方法-->
+        <property name="targetMethod" value="showTime"/>
+    </bean>
+
+    <!--    2.定义触发器-->
+    <bean id="trigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <!--        任务详情-->
+        <property name="jobDetail" ref="jobDetail"/>
+        <!--        时间表达式-->
+        <property name="cronExpression" value="0/2 * * * * ? *"/>
+    </bean>
+
+    <!--    把触发器交给任务工厂调度-->
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <array>
+                <ref bean="trigger"/>
+            </array>
+        </property>
+    </bean>
+</beans>

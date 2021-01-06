@@ -1,4 +1,4 @@
-package cn.itcast.common.utils;
+package cn.itcast.web.utils;
 
 import org.springframework.cglib.beans.BeanMap;
 

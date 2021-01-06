@@ -411,6 +411,6 @@
 <!--  </select>-->
 
   <select id="findPageByDeptId" resultMap="BaseResultMap">
-    SELECT * FROM co_contract WHERE company_id =#{companyId} AND  FIND_IN_SET(create_dept,getDeptChild(#{deptId}))
+    SELECT * FROM co_contract WHERE company_id =#{companyId} AND  FIND_IN_SET(create_dept,getDeptChild(#{deptId})) order by `create_time` desc
   </select>
 </mapper>

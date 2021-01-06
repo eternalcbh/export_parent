@@ -5,6 +5,7 @@ import cn.itcast.domain.cargo.Factory;
 import cn.itcast.domain.cargo.FactoryExample;
 import cn.itcast.service.cargo.FactoryService;
 import com.alibaba.dubbo.config.annotation.Service;
+import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -32,7 +33,9 @@ public class FactoryServiceImpl implements FactoryService {
 	 */
 	@Override
 	public PageInfo<Factory> findByPage(FactoryExample factoryExample, Integer pageNum, Integer pageSize) {
-		return null;
+		PageHelper.startPage(pageNum,pageSize);
+		List<Factory> factories = factoryDao.selectByExample(factoryExample);
+		return new PageInfo<>(factories);
 	}
 
 	/**
@@ -43,7 +46,7 @@ public class FactoryServiceImpl implements FactoryService {
 	 */
 	@Override
 	public Factory findById(String id) {
-		return null;
+		return factoryDao.selectByPrimaryKey(id);
 	}
 
 	/**
@@ -64,7 +67,7 @@ public class FactoryServiceImpl implements FactoryService {
 	 */
 	@Override
 	public void delete(String id) {
-
+		factoryDao.deleteByPrimaryKey(id);
 	}
 
 	/**
@@ -74,7 +77,9 @@ public class FactoryServiceImpl implements FactoryService {
 	 */
 	@Override
 	public void save(Factory factory) {
-
+		if (null != factory){
+			factoryDao.insertSelective(factory);
+		}
 	}
 
 	/**
@@ -84,7 +89,9 @@ public class FactoryServiceImpl implements FactoryService {
 	 */
 	@Override
 	public void update(Factory factory) {
-
+		if (null != factory){
+			factoryDao.updateByPrimaryKeySelective(factory);
+		}
 	}
 
 	/**
