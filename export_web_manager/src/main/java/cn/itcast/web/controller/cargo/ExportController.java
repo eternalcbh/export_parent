@@ -261,7 +261,6 @@ public class ExportController extends BaseController {
 
 		JasperPrint jasperPrint = JasperFillManager.fillReport(resourceAsStream, map, jrBeanCollectionDataSource);
 
-
 		//3. 把pdf文件输出
         /*
             exportReportToPdfStream(JasperPrint jasperPrint, OutputStream outputStream)

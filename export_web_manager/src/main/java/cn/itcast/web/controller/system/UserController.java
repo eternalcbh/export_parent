@@ -9,6 +9,7 @@ import cn.itcast.service.system.UserService;
 import cn.itcast.web.controller.BaseController;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.log4j.Log4j;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +32,9 @@ public class UserController extends BaseController {
 
 	@Autowired
 	private RoleService roleService;
+
+	@Autowired
+	private RabbitTemplate rabbitTemplate;
 
 	/**
 	 * 列表查询
@@ -71,6 +75,8 @@ public class UserController extends BaseController {
 		user.setCompanyName(getLoginCompanyName());
 		if (StringUtils.isEmpty(user.getId())) {
 			userService.save(user);
+			//给mq发信息
+			rabbitTemplate.convertAndSend("email-exchanger","user.add",user);
 		} else {
 			userService.update(user);
 		}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit.xsd">
+    <!--    1.连接工厂-->
+    <rabbit:connection-factory id="connectionFactory" host="115.159.193.54" port="5672" username="root" password="root"
+                               virtual-host="/itcast"/>
+
+    <!--    2.admin对象-->
+    <rabbit:admin connection-factory="connectionFactory"/>
+
+    <!--    3.创建监听器-->
+    <bean id="emailListener" class="cn.itcast.listener.EmailListener"/>
+
+    <!--    4.把监听器交给监听容器,启动-->
+    <rabbit:listener-container connection-factory="connectionFactory">
+        <rabbit:listener ref="emailListener" queue-names="email-queue"/>
+    </rabbit:listener-container>
+</beans>
