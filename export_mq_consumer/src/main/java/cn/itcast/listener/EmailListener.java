@@ -21,10 +21,10 @@ public class EmailListener implements MessageListener {
 	@Override
 	public void onMessage(Message message) {
 		byte[] body = message.getBody();
-		System.out.println("注册用户");
 		try {
 			User user = objectMapper.readValue(body, User.class);
 			MailUtil.sendMsg(user.getEmail(), "欢迎册用户","用户名"+user.getUserName());
+			System.out.println("邮件发送完毕");
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
